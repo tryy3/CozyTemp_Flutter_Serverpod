@@ -80,6 +80,34 @@ class MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _collectDataTest() async {
+    try {
+      await client.temperature.collectData(
+        CollectData(
+          nodeIdentifier: 'test',
+          data: [
+            CollectDataTemperature(
+              sensorIdentifier: 'test',
+              temperature: 20.0,
+            ),
+            CollectDataTemperature(
+              sensorIdentifier: 'test2',
+              temperature: 21.0,
+            ),
+          ],
+        ),
+      );
+      setState(() {
+        _errorMessage = null;
+        _resultMessage = 'Data collected';
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = '$e';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,12 +123,23 @@ class MyHomePageState extends State<MyHomePage> {
                 decoration: const InputDecoration(hintText: 'Enter your name'),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: ElevatedButton(
-                onPressed: _callHello,
-                child: const Text('Send to Server'),
-              ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: ElevatedButton(
+                    onPressed: _callHello,
+                    child: const Text('Send to Server'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: ElevatedButton(
+                    onPressed: _collectDataTest,
+                    child: const Text('Collect Data Test'),
+                  ),
+                ),
+              ],
             ),
             ResultDisplay(
               resultMessage: _resultMessage,
