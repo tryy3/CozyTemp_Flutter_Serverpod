@@ -19,21 +19,28 @@ class TemperatureEndpoint extends Endpoint {
     // 2.1.2 If the sensor does not exist, create it
     // 2.2 Create a new raw data entry for the sensor
 
-    var node = await Node.db.findOrCreate(
-        session, Node(identifier: collectData.nodeIdentifier),
-        where: (t) => t.identifier.equals(collectData.nodeIdentifier));
-
-    for (var data in collectData.data) {
-      var sensor = await Sensor.db.findOrCreate(
+    await session.db.transaction((transaction) async {
+      var node = await Node.db.findOrCreate(
         session,
-        Sensor(identifier: data.sensorIdentifier, parentNodeId: node.id!),
-        where: (t) => t.identifier.equals(data.sensorIdentifier),
+        Node(identifier: collectData.nodeIdentifier),
+        where: (t) => t.identifier.equals(collectData.nodeIdentifier),
+        transaction: transaction,
       );
 
-      await RawData.db.insertRow(
-        session,
-        RawData(sensorId: sensor.id!, temperature: data.temperature),
-      );
-    }
+      for (var data in collectData.data) {
+        var sensor = await Sensor.db.findOrCreate(
+          session,
+          Sensor(identifier: data.sensorIdentifier, parentNodeId: node.id!),
+          where: (t) => t.identifier.equals(data.sensorIdentifier),
+          transaction: transaction,
+        );
+
+        await RawData.db.insertRow(
+          session,
+          RawData(sensorId: sensor.id!, temperature: data.temperature),
+          transaction: transaction,
+        );
+      }
+    });
   }
 }
