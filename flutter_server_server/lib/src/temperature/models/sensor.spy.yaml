@@ -1,0 +1,24 @@
+### A sensor is the physical component that measures temperature.
+class: Sensor
+table: sensors
+
+fields:
+    ## Database ID of the sensor
+    id: UuidValue?, defaultPersist=random
+    ## The node that the sensor is attached to
+    parentNode: Node?, relation(name=node_sensors)
+    ## The raw data from the sensor
+    rawDataList: List<RawData>?, relation(name=sensor_raw_data)
+
+    ### The unique identifier of the sensor, set by the device
+    identifier: String # Required
+
+    ## Friendly name of the sensor
+    name: String? # Optional
+    ## Description of the sensor
+    description: String? # Optional
+
+    ## The last time the sensor was updated
+    updatedAt: DateTime, default=now # Automatically set by the server
+    ## The time the sensor was created
+    createdAt: DateTime, default=now # Automatically set by the server

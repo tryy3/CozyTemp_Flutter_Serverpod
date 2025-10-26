@@ -32,6 +32,21 @@ class EndpointGreeting extends _i1.EndpointRef {
       );
 }
 
+/// {@category Endpoint}
+class EndpointTemperature extends _i1.EndpointRef {
+  EndpointTemperature(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'temperature';
+
+  _i2.Future<String> getTemperatures(String ingredients) =>
+      caller.callServerEndpoint<String>(
+        'temperature',
+        'getTemperatures',
+        {'ingredients': ingredients},
+      );
+}
+
 class Client extends _i1.ServerpodClientShared {
   Client(
     String host, {
@@ -59,12 +74,18 @@ class Client extends _i1.ServerpodClientShared {
               disconnectStreamsOnLostInternetConnection,
         ) {
     greeting = EndpointGreeting(this);
+    temperature = EndpointTemperature(this);
   }
 
   late final EndpointGreeting greeting;
 
+  late final EndpointTemperature temperature;
+
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {'greeting': greeting};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'greeting': greeting,
+        'temperature': temperature,
+      };
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../greeting_endpoint.dart' as _i2;
+import '../temperature/temperature_endpoint.dart' as _i3;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -21,7 +22,13 @@ class Endpoints extends _i1.EndpointDispatch {
           server,
           'greeting',
           null,
-        )
+        ),
+      'temperature': _i3.TemperatureEndpoint()
+        ..initialize(
+          server,
+          'temperature',
+          null,
+        ),
     };
     connectors['greeting'] = _i1.EndpointConnector(
       name: 'greeting',
@@ -43,6 +50,31 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['greeting'] as _i2.GreetingEndpoint).hello(
             session,
             params['name'],
+          ),
+        )
+      },
+    );
+    connectors['temperature'] = _i1.EndpointConnector(
+      name: 'temperature',
+      endpoint: endpoints['temperature']!,
+      methodConnectors: {
+        'getTemperatures': _i1.MethodConnector(
+          name: 'getTemperatures',
+          params: {
+            'ingredients': _i1.ParameterDescription(
+              name: 'ingredients',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .getTemperatures(
+            session,
+            params['ingredients'],
           ),
         )
       },

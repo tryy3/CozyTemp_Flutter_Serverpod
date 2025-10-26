@@ -1,0 +1,23 @@
+meta {
+  name: Get Temperatures
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/temperature
+  body: json
+  auth: inherit
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {"ingredients":"test","method":"getTemperatures"}
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,21 @@
+### A node is a physical device that can be used to measure temperature.
+class: Node
+table: nodes
+
+fields:
+    ## Database ID of the node
+    id: UuidValue?, defaultPersist=random
+    ## The sensors attached to the node
+    sensors: List<Sensor>?, relation(name=node_sensors)
+
+    ### The unique identifier of the node, set by the device
+    identifier: String # Required
+
+    ## Friendly name of the node
+    name: String? # Optional
+    ## Description of the node
+    description: String? # Optional
+    ## The last time the node was updated
+    updatedAt: DateTime, default=now # Automatically set by the server
+    ## The time the node was created
+    createdAt: DateTime, default=now # Automatically set by the server

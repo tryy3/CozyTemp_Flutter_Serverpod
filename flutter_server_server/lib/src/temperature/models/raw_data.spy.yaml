@@ -1,0 +1,15 @@
+### A raw data is the raw temperature data from a sensor.
+class: RawData
+table: raw_data
+
+fields:
+    ## Database ID of the raw data
+    id: UuidValue?, defaultPersist=random
+    ## The sensor that the raw data is from
+    sensor: Sensor?, relation(name=sensor_raw_data)
+
+    ## The raw data
+    temperature: double # Required
+
+    ## The time the raw data was created
+    createdAt: DateTime, default=now # Automatically set by the server
