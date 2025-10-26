@@ -1,4 +1,5 @@
 import 'package:flutter_server_server/src/birthday_reminder.dart';
+import 'package:flutter_server_server/src/web/routes/api.dart';
 import 'package:serverpod/serverpod.dart';
 
 import 'package:flutter_server_server/src/web/routes/root.dart';
@@ -17,6 +18,9 @@ void run(List<String> args) async {
   // Setup a default page at the web root.
   pod.webServer.addRoute(RouteRoot(), '/');
   pod.webServer.addRoute(RouteRoot(), '/index.html');
+
+  pod.webServer.addRoute(APIRoute(), '/api/*');
+
   // Serve all files in the /static directory.
   pod.webServer.addRoute(
     RouteStaticDirectory(serverDirectory: 'static', basePath: '/'),

@@ -1,0 +1,38 @@
+meta {
+  name: API Collect data copy
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/temperature/collectData
+  body: json
+  auth: inherit
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "collectData": 
+  {
+      "nodeIdentifier": "test",
+      "data": [
+          {
+              "sensorIdentifier": "test",
+              "temperature": 20
+          },
+          {
+              "sensorIdentifier": "test2",
+              "temperature": 21
+          }
+      ]
+  }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
