@@ -18,6 +18,7 @@ class TemperatureEndpoint extends Endpoint {
     // 2.1.1 Get the sensor from the database
     // 2.1.2 If the sensor does not exist, create it
     // 2.2 Create a new raw data entry for the sensor
+    session.log("Temperature reading collection started");
 
     await session.db.transaction((transaction) async {
       var node = await Node.db.findOrCreate(
@@ -41,6 +42,7 @@ class TemperatureEndpoint extends Endpoint {
           transaction: transaction,
         );
       }
+      session.log("Temperature reading collection completed");
     });
   }
 }
