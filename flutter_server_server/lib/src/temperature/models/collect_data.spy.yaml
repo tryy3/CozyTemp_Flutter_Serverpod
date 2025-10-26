@@ -1,0 +1,4 @@
+class: CollectData
+fields:
+    nodeIdentifier: String
+    data: List<CollectDataTemperature>

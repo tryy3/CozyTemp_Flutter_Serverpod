@@ -12,6 +12,8 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../greeting_endpoint.dart' as _i2;
 import '../temperature/temperature_endpoint.dart' as _i3;
+import 'package:flutter_server_server/src/generated/temperature/models/collect_data.dart'
+    as _i4;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -76,7 +78,25 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             params['ingredients'],
           ),
-        )
+        ),
+        'collectData': _i1.MethodConnector(
+          name: 'collectData',
+          params: {
+            'collectData': _i1.ParameterDescription(
+              name: 'collectData',
+              type: _i1.getType<_i4.CollectData>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint).collectData(
+            session,
+            params['collectData'],
+          ),
+        ),
       },
     );
   }

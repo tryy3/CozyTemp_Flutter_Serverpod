@@ -1,0 +1,5 @@
+class: CollectDataTemperature
+
+fields:
+    sensorIdentifier: String
+    temperature: double

@@ -15,6 +15,8 @@ import 'package:serverpod_test/serverpod_test.dart' as _i1;
 import 'package:serverpod/serverpod.dart' as _i2;
 import 'dart:async' as _i3;
 import 'package:flutter_server_server/src/generated/greeting.dart' as _i4;
+import 'package:flutter_server_server/src/generated/temperature/models/collect_data.dart'
+    as _i5;
 import 'package:flutter_server_server/src/generated/protocol.dart';
 import 'package:flutter_server_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -196,6 +198,35 @@ class _TemperatureEndpoint {
           _localUniqueSession,
           _localCallContext.arguments,
         ) as _i3.Future<String>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<void> collectData(
+    _i1.TestSessionBuilder sessionBuilder,
+    _i5.CollectData collectData,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'collectData',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'collectData',
+          parameters: _i1.testObjectToJson({'collectData': collectData}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<void>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

@@ -12,7 +12,9 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
 import 'package:flutter_server_client/src/protocol/greeting.dart' as _i3;
-import 'protocol.dart' as _i4;
+import 'package:flutter_server_client/src/protocol/temperature/models/collect_data.dart'
+    as _i4;
+import 'protocol.dart' as _i5;
 
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
@@ -45,6 +47,13 @@ class EndpointTemperature extends _i1.EndpointRef {
         'getTemperatures',
         {'ingredients': ingredients},
       );
+
+  _i2.Future<void> collectData(_i4.CollectData collectData) =>
+      caller.callServerEndpoint<void>(
+        'temperature',
+        'collectData',
+        {'collectData': collectData},
+      );
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -63,7 +72,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
           host,
-          _i4.Protocol(),
+          _i5.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,
