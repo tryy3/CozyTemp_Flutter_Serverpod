@@ -194,6 +194,11 @@ class MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _loadTemperatureData,
+        tooltip: 'Refresh temperature data',
+        child: const Icon(Icons.refresh),
+      ),
     );
   }
 
