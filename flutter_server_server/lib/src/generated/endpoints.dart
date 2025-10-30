@@ -107,6 +107,92 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .latestTemperatureData(session),
         ),
+        'getNodeHistoricalData': _i1.MethodConnector(
+          name: 'getNodeHistoricalData',
+          params: {
+            'nodeId': _i1.ParameterDescription(
+              name: 'nodeId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'timeRange': _i1.ParameterDescription(
+              name: 'timeRange',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .getNodeHistoricalData(
+            session,
+            params['nodeId'],
+            params['timeRange'],
+          ),
+        ),
+        'updateNode': _i1.MethodConnector(
+          name: 'updateNode',
+          params: {
+            'nodeId': _i1.ParameterDescription(
+              name: 'nodeId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'name': _i1.ParameterDescription(
+              name: 'name',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'description': _i1.ParameterDescription(
+              name: 'description',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint).updateNode(
+            session,
+            params['nodeId'],
+            params['name'],
+            params['description'],
+          ),
+        ),
+        'updateSensor': _i1.MethodConnector(
+          name: 'updateSensor',
+          params: {
+            'sensorId': _i1.ParameterDescription(
+              name: 'sensorId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'name': _i1.ParameterDescription(
+              name: 'name',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+            'description': _i1.ParameterDescription(
+              name: 'description',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .updateSensor(
+            session,
+            params['sensorId'],
+            params['name'],
+            params['description'],
+          ),
+        ),
       },
     );
   }

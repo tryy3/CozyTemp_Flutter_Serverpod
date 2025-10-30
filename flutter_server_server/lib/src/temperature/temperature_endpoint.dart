@@ -84,4 +84,189 @@ class TemperatureEndpoint extends Endpoint {
 
     return nodes;
   }
+
+  /// Fetches historical temperature data for a specific node with aggregation
+  /// [nodeId] - The UUID of the node to fetch data for
+  /// [timeRange] - Time range filter: "24h", "7d", or "all"
+  ///
+  /// Data is aggregated into time buckets to optimize performance:
+  /// - 24h: 5-minute intervals (~288 points per sensor)
+  /// - 7d: 1-hour intervals (~168 points per sensor)
+  /// - all: 1-day intervals
+  Future<Node?> getNodeHistoricalData(
+    Session session,
+    String nodeId,
+    String timeRange,
+  ) async {
+    session
+        .log("Fetching historical data for node: $nodeId, range: $timeRange");
+
+    // Parse the node ID
+    UuidValue? nodeUuid;
+    try {
+      nodeUuid = UuidValue.fromString(nodeId);
+    } catch (e) {
+      session.log("Invalid node ID format: $nodeId");
+      return null;
+    }
+
+    // Fetch the node with its sensors
+    var node = await Node.db.findById(
+      session,
+      nodeUuid,
+      include: Node.include(
+        sensors: Sensor.includeList(
+          include: Sensor.include(),
+        ),
+      ),
+    );
+
+    if (node == null) {
+      session.log("Node not found: $nodeId");
+      return null;
+    }
+
+    // Calculate the time threshold and bucket interval based on the range
+    DateTime? timeThreshold;
+    String bucketInterval;
+    String bucketOrigin;
+
+    if (timeRange == "24h") {
+      timeThreshold = DateTime.now().subtract(const Duration(hours: 24));
+      bucketInterval = '5 minutes'; // ~288 data points
+      bucketOrigin = '2000-01-01 00:00:00'; // Arbitrary origin for alignment
+    } else if (timeRange == "7d") {
+      timeThreshold = DateTime.now().subtract(const Duration(days: 7));
+      bucketInterval = '1 hour'; // ~168 data points
+      bucketOrigin = '2000-01-01 00:00:00';
+    } else {
+      // For "all", use daily buckets and no time filter
+      bucketInterval = '1 day';
+      bucketOrigin = '2000-01-01 00:00:00';
+    }
+
+    // Fetch aggregated historical data for each sensor
+    var sensors = node.sensors ?? [];
+    for (var sensor in sensors) {
+      sensor.rawDataList ??= [];
+
+      // Build SQL query with time bucketing and aggregation
+      // Using date_bin for PostgreSQL to group data into arbitrary time buckets
+      String whereClause = timeThreshold != null
+          ? "AND \"createdAt\" >= '${timeThreshold.toIso8601String()}'"
+          : "";
+
+      final sql = '''
+        SELECT 
+          date_bin('$bucketInterval', "createdAt", '$bucketOrigin') as bucket_time,
+          AVG(temperature) as avg_temp
+        FROM raw_data
+        WHERE "sensorId" = '${sensor.id!.uuid}'
+        $whereClause
+        GROUP BY bucket_time
+        ORDER BY bucket_time ASC
+      ''';
+
+      session
+          .log("Executing aggregation query for sensor ${sensor.identifier}");
+
+      final result = await session.db.unsafeQuery(sql);
+
+      // Convert the aggregated results to RawData objects
+      // We'll use the average temperature as the main value
+      List<RawData> rawData = [];
+      for (var row in result) {
+        final bucketTime = row[0] as DateTime;
+        final avgTemp = (row[1] as num).toDouble();
+
+        rawData.add(RawData(
+          sensorId: sensor.id!,
+          temperature: avgTemp,
+          createdAt: bucketTime,
+        ));
+      }
+
+      sensor.rawDataList = rawData;
+      session.log(
+          "Fetched ${rawData.length} aggregated data points for sensor ${sensor.identifier} (reduced from potentially thousands)");
+    }
+
+    return node;
+  }
+
+  /// Updates a node's name and/or description
+  /// Returns the updated node or null if not found
+  Future<Node?> updateNode(
+    Session session,
+    String nodeId,
+    String? name,
+    String? description,
+  ) async {
+    session.log("Updating node: $nodeId");
+
+    // Parse the node ID
+    UuidValue? nodeUuid;
+    try {
+      nodeUuid = UuidValue.fromString(nodeId);
+    } catch (e) {
+      session.log("Invalid node ID format: $nodeId");
+      return null;
+    }
+
+    // Fetch the existing node
+    var node = await Node.db.findById(session, nodeUuid);
+    if (node == null) {
+      session.log("Node not found: $nodeId");
+      return null;
+    }
+
+    // Update fields
+    node.name = name;
+    node.description = description;
+    node.updatedAt = DateTime.now();
+
+    // Save to database
+    await Node.db.updateRow(session, node);
+
+    session.log("Node updated successfully: $nodeId");
+    return node;
+  }
+
+  /// Updates a sensor's name and/or description
+  /// Returns the updated sensor or null if not found
+  Future<Sensor?> updateSensor(
+    Session session,
+    String sensorId,
+    String? name,
+    String? description,
+  ) async {
+    session.log("Updating sensor: $sensorId");
+
+    // Parse the sensor ID
+    UuidValue? sensorUuid;
+    try {
+      sensorUuid = UuidValue.fromString(sensorId);
+    } catch (e) {
+      session.log("Invalid sensor ID format: $sensorId");
+      return null;
+    }
+
+    // Fetch the existing sensor
+    var sensor = await Sensor.db.findById(session, sensorUuid);
+    if (sensor == null) {
+      session.log("Sensor not found: $sensorId");
+      return null;
+    }
+
+    // Update fields
+    sensor.name = name;
+    sensor.description = description;
+    sensor.updatedAt = DateTime.now();
+
+    // Save to database
+    await Sensor.db.updateRow(session, sensor);
+
+    session.log("Sensor updated successfully: $sensorId");
+    return sensor;
+  }
 }

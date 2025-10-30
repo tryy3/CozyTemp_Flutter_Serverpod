@@ -19,6 +19,8 @@ import 'package:flutter_server_server/src/generated/temperature/models/collect_d
     as _i5;
 import 'package:flutter_server_server/src/generated/temperature/models/node.dart'
     as _i6;
+import 'package:flutter_server_server/src/generated/temperature/models/sensor.dart'
+    as _i7;
 import 'package:flutter_server_server/src/generated/protocol.dart';
 import 'package:flutter_server_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -256,6 +258,109 @@ class _TemperatureEndpoint {
           _localUniqueSession,
           _localCallContext.arguments,
         ) as _i3.Future<List<_i6.Node>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i6.Node?> getNodeHistoricalData(
+    _i1.TestSessionBuilder sessionBuilder,
+    String nodeId,
+    String timeRange,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'getNodeHistoricalData',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'getNodeHistoricalData',
+          parameters: _i1.testObjectToJson({
+            'nodeId': nodeId,
+            'timeRange': timeRange,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i6.Node?>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i6.Node?> updateNode(
+    _i1.TestSessionBuilder sessionBuilder,
+    String nodeId,
+    String? name,
+    String? description,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'updateNode',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'updateNode',
+          parameters: _i1.testObjectToJson({
+            'nodeId': nodeId,
+            'name': name,
+            'description': description,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i6.Node?>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<_i7.Sensor?> updateSensor(
+    _i1.TestSessionBuilder sessionBuilder,
+    String sensorId,
+    String? name,
+    String? description,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'updateSensor',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'updateSensor',
+          parameters: _i1.testObjectToJson({
+            'sensorId': sensorId,
+            'name': name,
+            'description': description,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<_i7.Sensor?>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

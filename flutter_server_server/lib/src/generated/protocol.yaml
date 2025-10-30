@@ -4,3 +4,6 @@ temperature:
   - getTemperatures:
   - collectData:
   - latestTemperatureData:
+  - getNodeHistoricalData:
+  - updateNode:
+  - updateSensor:

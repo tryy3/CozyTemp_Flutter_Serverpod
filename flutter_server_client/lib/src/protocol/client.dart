@@ -16,7 +16,9 @@ import 'package:flutter_server_client/src/protocol/temperature/models/collect_da
     as _i4;
 import 'package:flutter_server_client/src/protocol/temperature/models/node.dart'
     as _i5;
-import 'protocol.dart' as _i6;
+import 'package:flutter_server_client/src/protocol/temperature/models/sensor.dart'
+    as _i6;
+import 'protocol.dart' as _i7;
 
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
@@ -63,6 +65,61 @@ class EndpointTemperature extends _i1.EndpointRef {
         'latestTemperatureData',
         {},
       );
+
+  /// Fetches historical temperature data for a specific node with aggregation
+  /// [nodeId] - The UUID of the node to fetch data for
+  /// [timeRange] - Time range filter: "24h", "7d", or "all"
+  ///
+  /// Data is aggregated into time buckets to optimize performance:
+  /// - 24h: 5-minute intervals (~288 points per sensor)
+  /// - 7d: 1-hour intervals (~168 points per sensor)
+  /// - all: 1-day intervals
+  _i2.Future<_i5.Node?> getNodeHistoricalData(
+    String nodeId,
+    String timeRange,
+  ) =>
+      caller.callServerEndpoint<_i5.Node?>(
+        'temperature',
+        'getNodeHistoricalData',
+        {
+          'nodeId': nodeId,
+          'timeRange': timeRange,
+        },
+      );
+
+  /// Updates a node's name and/or description
+  /// Returns the updated node or null if not found
+  _i2.Future<_i5.Node?> updateNode(
+    String nodeId,
+    String? name,
+    String? description,
+  ) =>
+      caller.callServerEndpoint<_i5.Node?>(
+        'temperature',
+        'updateNode',
+        {
+          'nodeId': nodeId,
+          'name': name,
+          'description': description,
+        },
+      );
+
+  /// Updates a sensor's name and/or description
+  /// Returns the updated sensor or null if not found
+  _i2.Future<_i6.Sensor?> updateSensor(
+    String sensorId,
+    String? name,
+    String? description,
+  ) =>
+      caller.callServerEndpoint<_i6.Sensor?>(
+        'temperature',
+        'updateSensor',
+        {
+          'sensorId': sensorId,
+          'name': name,
+          'description': description,
+        },
+      );
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -81,7 +138,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
           host,
-          _i6.Protocol(),
+          _i7.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,
