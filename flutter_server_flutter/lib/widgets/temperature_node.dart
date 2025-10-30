@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_client/flutter_server_client.dart';
+import 'package:flutter_server_flutter/widgets/temperature_sensor.dart';
 
 class TemperatureNode extends StatelessWidget {
   /// The node to display
@@ -13,7 +14,7 @@ class TemperatureNode extends StatelessWidget {
     final sensors = node.sensors ?? [];
 
     return SizedBox(
-      width: 400, // Fixed width for consistent grid-like layout
+      width: 315, // Fixed width for consistent grid-like layout
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -49,47 +50,13 @@ class TemperatureNode extends StatelessWidget {
                 Wrap(
                   spacing: 16,
                   runSpacing: 16,
-                  children:
-                      sensors.map((sensor) => _buildSensorRow(sensor)).toList(),
+                  children: sensors
+                      .map((sensor) => TemperatureSensor(sensor: sensor))
+                      .toList(),
                 ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  /// Builds a row for each sensor showing its temperature
-  Widget _buildSensorRow(Sensor sensor) {
-    // Get the latest temperature from the raw data list
-    final rawDataList = sensor.rawDataList ?? [];
-    final latestTemp =
-        rawDataList.isNotEmpty ? rawDataList.last.temperature : null;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey[300]!),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            sensor.name ?? sensor.identifier,
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
-          if (sensor.description != null)
-            Text(
-              sensor.description!,
-              style: const TextStyle(fontSize: 11, color: Colors.grey),
-            ),
-          Text(
-            latestTemp != null ? '${latestTemp.toStringAsFixed(1)}°C' : 'N/A',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ],
       ),
     );
   }
