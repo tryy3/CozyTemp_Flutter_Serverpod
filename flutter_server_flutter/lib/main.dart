@@ -61,6 +61,18 @@ class MyHomePageState extends State<MyHomePage> {
 
   final _textEditingController = TextEditingController();
 
+  /// Loading state for temperature data
+  bool _isLoading = false;
+
+  /// Holds the latest temperature data
+  List<Node>? _temperatureData;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTemperatureData();
+  }
+
   /// Calls the `hello` method of the `greeting` endpoint. Will set either the
   /// `_resultMessage` or `_errorMessage` field, depending on if the call
   /// is successful.
@@ -101,9 +113,33 @@ class MyHomePageState extends State<MyHomePage> {
         _errorMessage = null;
         _resultMessage = 'Data collected';
       });
+      // Refresh temperature data to show the new data
+      await _loadTemperatureData();
     } catch (e) {
       setState(() {
         _errorMessage = '$e';
+      });
+    }
+  }
+
+  /// Loads the latest temperature data from the server
+  Future<void> _loadTemperatureData() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final data = await client.temperature.latestTemperatureData();
+
+      setState(() {
+        _temperatureData = data;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load temperature data: $e';
+        _isLoading = false;
       });
     }
   }
@@ -112,41 +148,177 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: TextField(
-                controller: _textEditingController,
-                decoration: const InputDecoration(hintText: 'Enter your name'),
-              ),
-            ),
-            Row(
+      body: RefreshIndicator(
+        onRefresh: _loadTemperatureData,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: ElevatedButton(
-                    onPressed: _callHello,
-                    child: const Text('Send to Server'),
+                  child: TextField(
+                    controller: _textEditingController,
+                    decoration:
+                        const InputDecoration(hintText: 'Enter your name'),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: ElevatedButton(
-                    onPressed: _collectDataTest,
-                    child: const Text('Collect Data Test'),
-                  ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: ElevatedButton(
+                        onPressed: _callHello,
+                        child: const Text('Send to Server'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: ElevatedButton(
+                        onPressed: _collectDataTest,
+                        child: const Text('Collect Data Test'),
+                      ),
+                    ),
+                  ],
                 ),
+                ResultDisplay(
+                  resultMessage: _resultMessage,
+                  errorMessage: _errorMessage,
+                ),
+                const SizedBox(height: 24),
+                _buildTemperatureDataSection(),
               ],
             ),
-            ResultDisplay(
-              resultMessage: _resultMessage,
-              errorMessage: _errorMessage,
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the temperature data section with loading states
+  Widget _buildTemperatureDataSection() {
+    if (_isLoading) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(32.0),
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (_errorMessage != null && _temperatureData == null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              const SizedBox(height: 8),
+              Text(
+                _errorMessage!,
+                style: const TextStyle(color: Colors.red),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _loadTemperatureData,
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (_temperatureData == null || _temperatureData!.isEmpty) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(32.0),
+          child: Text('No temperature data available'),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Latest Temperature Data',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        ..._temperatureData!.map((node) => _buildNodeCard(node)).toList(),
+      ],
+    );
+  }
+
+  /// Builds a card for each node with its temperature sensors
+  Widget _buildNodeCard(Node node) {
+    final sensors = node.sensors ?? [];
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Node: ${node.name ?? node.identifier}',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
+            if (node.description != null) ...[
+              const SizedBox(height: 4),
+              Text(
+                node.description!,
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+            const SizedBox(height: 12),
+            if (sensors.isEmpty)
+              const Text('No sensors available')
+            else
+              ...sensors.map((sensor) => _buildSensorRow(sensor)).toList(),
           ],
         ),
+      ),
+    );
+  }
+
+  /// Builds a row for each sensor showing its temperature
+  Widget _buildSensorRow(Sensor sensor) {
+    // Get the latest temperature from the raw data list
+    final rawDataList = sensor.rawDataList ?? [];
+    final latestTemp =
+        rawDataList.isNotEmpty ? rawDataList.last.temperature : null;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  sensor.name ?? sensor.identifier,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+                if (sensor.description != null)
+                  Text(
+                    sensor.description!,
+                    style: const TextStyle(fontSize: 11, color: Colors.grey),
+                  ),
+              ],
+            ),
+          ),
+          Text(
+            latestTemp != null ? '${latestTemp.toStringAsFixed(1)}°C' : 'N/A',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }

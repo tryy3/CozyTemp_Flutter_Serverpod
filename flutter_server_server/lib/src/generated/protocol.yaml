@@ -3,3 +3,4 @@ greeting:
 temperature:
   - getTemperatures:
   - collectData:
+  - latestTemperatureData:

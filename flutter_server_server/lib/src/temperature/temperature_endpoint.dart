@@ -45,4 +45,43 @@ class TemperatureEndpoint extends Endpoint {
       session.log("Temperature reading collection completed");
     });
   }
+
+  Future<List<Node>> latestTemperatureData(Session session) async {
+    var nodes = await Node.db.find(
+      session,
+      include: Node.include(
+        sensors: Sensor.includeList(
+          include: Sensor.include(),
+        ),
+      ),
+    );
+
+    for (var node in nodes) {
+      var sensors = node.sensors ?? [];
+      for (var sensor in sensors) {
+        // Initialize the list if it's null
+        sensor.rawDataList ??= [];
+
+        session.log(
+            "Data points for sensor ${sensor.identifier}: ${sensor.rawDataList!.length}");
+
+        var latestData = await RawData.db.findFirstRow(
+          session,
+          where: (t) => t.sensorId.equals(sensor.id!),
+          orderBy: (t) => t.createdAt,
+          orderDescending: true,
+        );
+
+        if (latestData != null) {
+          session.log("Latest data, created at: ${latestData.createdAt}");
+          // Now we can safely add to the sensor's rawDataList
+          sensor.rawDataList!.add(latestData);
+        } else {
+          session.log("No data found for sensor ${sensor.identifier}");
+        }
+      }
+    }
+
+    return nodes;
+  }
 }

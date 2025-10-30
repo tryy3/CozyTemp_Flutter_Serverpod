@@ -17,6 +17,8 @@ import 'temperature/models/collect_data_temperature.dart' as _i5;
 import 'temperature/models/node.dart' as _i6;
 import 'temperature/models/raw_data.dart' as _i7;
 import 'temperature/models/sensor.dart' as _i8;
+import 'package:flutter_server_server/src/generated/temperature/models/node.dart'
+    as _i9;
 export 'greeting.dart';
 export 'temperature/models/collect_data.dart';
 export 'temperature/models/collect_data_temperature.dart';
@@ -299,6 +301,9 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data != null
           ? (data as List).map((e) => deserialize<_i7.RawData>(e)).toList()
           : null) as T;
+    }
+    if (t == List<_i9.Node>) {
+      return (data as List).map((e) => deserialize<_i9.Node>(e)).toList() as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);
