@@ -12,44 +12,48 @@ class TemperatureNode extends StatelessWidget {
   Widget build(BuildContext context) {
     final sensors = node.sensors ?? [];
 
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Node: ${node.name ?? node.identifier}',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  // Add space between underline and decoration
-                  color: Colors.transparent,
-                  shadows: [Shadow(offset: Offset(0, -5), color: Colors.black)],
-                  decoration: TextDecoration.underline,
+    return SizedBox(
+      width: 400, // Fixed width for consistent grid-like layout
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  'Node: ${node.name ?? node.identifier}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    // Add space between underline and decoration
+                    color: Colors.transparent,
+                    shadows: [
+                      Shadow(offset: Offset(0, -5), color: Colors.black)
+                    ],
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
-            ),
-            if (node.description != null) ...[
-              const SizedBox(height: 4),
-              Text(
-                node.description!,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
+              if (node.description != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  node.description!,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+              const SizedBox(height: 12),
+              if (sensors.isEmpty)
+                const Text('No sensors available')
+              else
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  children:
+                      sensors.map((sensor) => _buildSensorRow(sensor)).toList(),
+                ),
             ],
-            const SizedBox(height: 12),
-            if (sensors.isEmpty)
-              const Text('No sensors available')
-            else
-              Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                children:
-                    sensors.map((sensor) => _buildSensorRow(sensor)).toList(),
-              ),
-          ],
+          ),
         ),
       ),
     );

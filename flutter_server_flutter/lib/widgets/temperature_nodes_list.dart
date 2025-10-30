@@ -37,7 +37,11 @@ class TemperatureNodesList extends StatelessWidget {
           ),
           const SizedBox(height: 16),
         ],
-        ...nodes.map((node) => TemperatureNode(node: node)),
+        Wrap(
+          spacing: 16,
+          runSpacing: 16,
+          children: nodes.map((node) => TemperatureNode(node: node)).toList(),
+        ),
       ],
     );
   }
