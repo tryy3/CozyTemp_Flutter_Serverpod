@@ -1,6 +1,7 @@
 import 'package:flutter_server_client/flutter_server_client.dart';
 import 'package:flutter/material.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
+import 'widgets/temperature_nodes_list.dart';
 
 /// Sets up a global client object that can be used to talk to the server from
 /// anywhere in our app. The client is generated from your server code
@@ -231,95 +232,13 @@ class MyHomePageState extends State<MyHomePage> {
       );
     }
 
-    if (_temperatureData == null || _temperatureData!.isEmpty) {
-      return const Center(
-        child: Padding(
-          padding: EdgeInsets.all(32.0),
-          child: Text('No temperature data available'),
-        ),
-      );
+    if (_temperatureData == null) {
+      return const SizedBox.shrink();
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Latest Temperature Data',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        ..._temperatureData!.map((node) => _buildNodeCard(node)).toList(),
-      ],
-    );
-  }
-
-  /// Builds a card for each node with its temperature sensors
-  Widget _buildNodeCard(Node node) {
-    final sensors = node.sensors ?? [];
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Node: ${node.name ?? node.identifier}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            if (node.description != null) ...[
-              const SizedBox(height: 4),
-              Text(
-                node.description!,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
-            const SizedBox(height: 12),
-            if (sensors.isEmpty)
-              const Text('No sensors available')
-            else
-              ...sensors.map((sensor) => _buildSensorRow(sensor)).toList(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// Builds a row for each sensor showing its temperature
-  Widget _buildSensorRow(Sensor sensor) {
-    // Get the latest temperature from the raw data list
-    final rawDataList = sensor.rawDataList ?? [];
-    final latestTemp =
-        rawDataList.isNotEmpty ? rawDataList.last.temperature : null;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  sensor.name ?? sensor.identifier,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                if (sensor.description != null)
-                  Text(
-                    sensor.description!,
-                    style: const TextStyle(fontSize: 11, color: Colors.grey),
-                  ),
-              ],
-            ),
-          ),
-          Text(
-            latestTemp != null ? '${latestTemp.toStringAsFixed(1)}°C' : 'N/A',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+    return TemperatureNodesList(
+      nodes: _temperatureData!,
+      title: 'Latest Temperature Data',
     );
   }
 }
