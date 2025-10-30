@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_client/flutter_server_client.dart';
+import 'package:flutter_server_flutter/widgets/temperature_layout_constants.dart';
 
 /// A widget that displays a single temperature sensor with its current reading
 class TemperatureSensor extends StatelessWidget {
   /// The sensor to display
   final Sensor sensor;
 
-  const TemperatureSensor({super.key, required this.sensor});
+  /// Optional width for the sensor widget
+  /// If not provided, the widget will expand to fill available space
+  final double? width;
+
+  const TemperatureSensor({
+    super.key,
+    required this.sensor,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +24,12 @@ class TemperatureSensor extends StatelessWidget {
     final latestTemp =
         rawDataList.isNotEmpty ? rawDataList.last.temperature : null;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+    final container = Container(
+      width: width,
+      padding: const EdgeInsets.symmetric(
+        horizontal: sensorPaddingHorizontal,
+        vertical: sensorPaddingVertical,
+      ),
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(8),
@@ -41,5 +54,8 @@ class TemperatureSensor extends StatelessWidget {
         ],
       ),
     );
+
+    // If no width is specified, allow the container to expand
+    return width == null ? Flexible(child: container) : container;
   }
 }

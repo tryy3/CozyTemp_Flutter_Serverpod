@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_client/flutter_server_client.dart';
 import 'package:flutter_server_flutter/widgets/temperature_node.dart';
+import 'package:flutter_server_flutter/widgets/temperature_layout_constants.dart';
 
 /// A widget that displays a list of temperature nodes with their sensors
 class TemperatureNodesList extends StatelessWidget {
@@ -31,15 +32,17 @@ class TemperatureNodesList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          Text(
-            title!,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Center(
+            child: Text(
+              title!,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(height: 16),
         ],
         Wrap(
-          spacing: 16,
-          runSpacing: 16,
+          spacing: sensorSpacing,
+          runSpacing: sensorRunSpacing,
           children: nodes.map((node) => TemperatureNode(node: node)).toList(),
         ),
       ],
