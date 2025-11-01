@@ -52,12 +52,18 @@ Widget buildTemperatureNodesListUseCase(BuildContext context) {
     ),
   );
 
-  return TemperatureNodesList(nodes: nodes, title: title);
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureNodesList(nodes: nodes, title: title),
+  );
 }
 
 @widgetbook.UseCase(name: 'empty', type: TemperatureNodesList)
 Widget buildTemperatureNodesListEmptyUseCase(BuildContext context) {
-  return const TemperatureNodesList(nodes: [], title: 'Temperature Nodes');
+  return const Padding(
+    padding: EdgeInsets.all(16.0),
+    child: TemperatureNodesList(nodes: [], title: 'Temperature Nodes'),
+  );
 }
 
 @widgetbook.UseCase(name: 'single node', type: TemperatureNodesList)
@@ -86,95 +92,10 @@ Widget buildTemperatureNodesListSingleUseCase(BuildContext context) {
     ],
   );
 
-  return TemperatureNodesList(nodes: [node], title: 'Temperature Nodes');
-}
-
-@widgetbook.UseCase(name: 'two nodes', type: TemperatureNodesList)
-Widget buildTemperatureNodesListTwoUseCase(BuildContext context) {
-  final nodes = [
-    Node(
-      identifier: 'node-001',
-      name: 'Living Room',
-      description: 'Main living area',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-001',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000001',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000001',
-              ),
-              temperature: 22.5,
-              calibration: CalibratedTemperature(temperature: 22.5),
-            ),
-          ],
-        ),
-      ],
-    ),
-    Node(
-      identifier: 'node-002',
-      name: 'Bedroom',
-      description: 'Bedroom monitoring',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-002',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000002',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000002',
-              ),
-              temperature: 19.2,
-              calibration: CalibratedTemperature(temperature: 19.2),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ];
-
-  return TemperatureNodesList(nodes: nodes, title: 'Temperature Nodes');
-}
-
-@widgetbook.UseCase(name: 'many nodes', type: TemperatureNodesList)
-Widget buildTemperatureNodesListManyUseCase(BuildContext context) {
-  final nodes = List.generate(
-    8,
-    (index) => Node(
-      identifier: 'node-${index.toString().padLeft(3, '0')}',
-      name: 'Room ${index + 1}',
-      description: 'Room ${index + 1} sensors',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-${index.toString().padLeft(3, '0')}',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-${index.toString().padLeft(12, '0')}',
-          ),
-          name: 'Temperature Sensor',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-${index.toString().padLeft(12, '0')}',
-              ),
-              temperature: 18.0 + (index * 1.5),
-              calibration: CalibratedTemperature(
-                temperature: 18.0 + (index * 1.5),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureNodesList(nodes: [node], title: 'Temperature Nodes'),
   );
-
-  return TemperatureNodesList(nodes: nodes, title: 'All Rooms');
 }
 
 @widgetbook.UseCase(name: 'multi sensor nodes', type: TemperatureNodesList)
@@ -210,123 +131,8 @@ Widget buildTemperatureNodesListMultiSensorUseCase(BuildContext context) {
     ),
   );
 
-  return TemperatureNodesList(nodes: nodes, title: 'All Zones');
-}
-
-@widgetbook.UseCase(name: 'mixed empty nodes', type: TemperatureNodesList)
-Widget buildTemperatureNodesListMixedEmptyUseCase(BuildContext context) {
-  final nodes = [
-    Node(
-      identifier: 'node-001',
-      name: 'Living Room',
-      description: 'Has sensors',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-001',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000001',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000001',
-              ),
-              temperature: 22.5,
-              calibration: CalibratedTemperature(temperature: 22.5),
-            ),
-          ],
-        ),
-      ],
-    ),
-    Node(
-      identifier: 'node-002',
-      name: 'Bedroom',
-      description: 'No sensors yet',
-      sensors: [],
-    ),
-    Node(
-      identifier: 'node-003',
-      name: 'Kitchen',
-      description: 'Has sensors',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-003',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000003',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000003',
-              ),
-              temperature: 24.1,
-              calibration: CalibratedTemperature(temperature: 24.1),
-            ),
-          ],
-        ),
-      ],
-    ),
-    Node(
-      identifier: 'node-004',
-      name: 'Bathroom',
-      description: 'No sensors yet',
-      sensors: [],
-    ),
-  ];
-
-  return TemperatureNodesList(nodes: nodes, title: 'All Rooms');
-}
-
-@widgetbook.UseCase(name: 'without title', type: TemperatureNodesList)
-Widget buildTemperatureNodesListNoTitleUseCase(BuildContext context) {
-  final nodes = [
-    Node(
-      identifier: 'node-001',
-      name: 'Living Room',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-001',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000001',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000001',
-              ),
-              temperature: 22.5,
-              calibration: CalibratedTemperature(temperature: 22.5),
-            ),
-          ],
-        ),
-      ],
-    ),
-    Node(
-      identifier: 'node-002',
-      name: 'Bedroom',
-      sensors: [
-        Sensor(
-          identifier: 'sensor-002',
-          parentNodeId: UuidValue.fromString(
-            '00000000-0000-0000-0000-000000000002',
-          ),
-          name: 'Temperature',
-          rawDataList: [
-            RawData(
-              sensorId: UuidValue.fromString(
-                '00000000-0000-0000-0000-000000000002',
-              ),
-              temperature: 19.2,
-              calibration: CalibratedTemperature(temperature: 19.2),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ];
-
-  return TemperatureNodesList(nodes: nodes);
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureNodesList(nodes: nodes, title: 'All Zones'),
+  );
 }

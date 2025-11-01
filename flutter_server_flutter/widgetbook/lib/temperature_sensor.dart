@@ -38,7 +38,10 @@ Widget buildTemperatureSensorUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
+  );
 }
 
 @widgetbook.UseCase(name: 'high temperature', type: TemperatureSensor)
@@ -57,7 +60,10 @@ Widget buildTemperatureSensorHighTempUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
+  );
 }
 
 @widgetbook.UseCase(name: 'low temperature', type: TemperatureSensor)
@@ -76,26 +82,10 @@ Widget buildTemperatureSensorLowTempUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
-}
-
-@widgetbook.UseCase(name: 'zero temperature', type: TemperatureSensor)
-Widget buildTemperatureSensorZeroTempUseCase(BuildContext context) {
-  final sensor = Sensor(
-    identifier: 'sensor-004',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Ice Point Sensor',
-    description: 'Calibration reference',
-    rawDataList: [
-      RawData(
-        sensorId: UuidValue.fromString('00000000-0000-0000-0000-000000000004'),
-        temperature: 0.0,
-        calibration: CalibratedTemperature(temperature: 0.0),
-      ),
-    ],
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
   );
-
-  return Center(child: TemperatureSensor(sensor: sensor));
 }
 
 @widgetbook.UseCase(name: 'no data', type: TemperatureSensor)
@@ -108,7 +98,10 @@ Widget buildTemperatureSensorNoDataUseCase(BuildContext context) {
     rawDataList: [],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
+  );
 }
 
 @widgetbook.UseCase(name: 'no description', type: TemperatureSensor)
@@ -126,7 +119,10 @@ Widget buildTemperatureSensorNoDescriptionUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
+  );
 }
 
 @widgetbook.UseCase(name: 'long text', type: TemperatureSensor)
@@ -146,24 +142,10 @@ Widget buildTemperatureSensorLongTextUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureSensor(sensor: sensor));
-}
-
-@widgetbook.UseCase(name: 'only identifier', type: TemperatureSensor)
-Widget buildTemperatureSensorOnlyIdentifierUseCase(BuildContext context) {
-  final sensor = Sensor(
-    identifier: 'sensor-minimal-001',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    rawDataList: [
-      RawData(
-        sensorId: UuidValue.fromString('00000000-0000-0000-0000-000000000008'),
-        temperature: 20.1,
-        calibration: CalibratedTemperature(temperature: 20.1),
-      ),
-    ],
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureSensor(sensor: sensor)),
   );
-
-  return Center(child: TemperatureSensor(sensor: sensor));
 }
 
 @widgetbook.UseCase(name: 'multiple sensors', type: TemperatureSensor)

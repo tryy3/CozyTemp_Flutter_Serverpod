@@ -1,0 +1,47 @@
+[
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.5,
+      "calibratedAt": "2025-11-01T20:58:43.779841Z"
+    },
+    "temperature": 21.5,
+    "createdAt": "2024-11-01T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.779847Z"
+    },
+    "temperature": 21.406666666666666,
+    "createdAt": "2024-11-01T09:30:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.313333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.779849Z"
+    },
+    "temperature": 21.313333333333333,
+    "createdAt": "2024-11-01T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.22,
+      "calibratedAt": "2025-11-01T20:58:43.779851Z"
+    },
+    "temperature": 21.22,
+    "createdAt": "2024-11-01T10:30:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.779854Z"
+    },
+    "temperature": 21.12666666666667,
+    "createdAt": "2024-11-01T11:00:00.000Z"
+  }
+]
