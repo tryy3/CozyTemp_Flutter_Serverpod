@@ -14,13 +14,14 @@ jobs:
             channel: stable
 
       - name: Bootstrap App
+        working-directory: flutter_server_flutter
         run: |
             flutter pub get
             # Add any other steps needed to make your
             # app widgets available for Widgetbook
 
       - name: Build Widgetbook
-        working-directory: widgetbook
+        working-directory: flutter_server_flutter/widgetbook
         run: |
             flutter pub get
             dart run build_runner build -d
@@ -30,5 +31,5 @@ jobs:
         run: dart pub global activate widgetbook_cli
 
       - name: Push Widgetbook Build
-        working-directory: widgetbook
+        working-directory: flutter_server_flutter/widgetbook
         run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }}
