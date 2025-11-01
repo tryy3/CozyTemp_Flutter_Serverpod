@@ -51,7 +51,7 @@ class TemperatureNode extends StatelessWidget {
                       child: Text(
                         'Node: ${node.name ?? node.identifier}',
                         style: const TextStyle(
-                          fontSize: 24,
+                          fontSize: 32,
                           fontWeight: FontWeight.bold,
                           // Add space between underline and decoration
                           color: Colors.transparent,
@@ -67,10 +67,10 @@ class TemperatureNode extends StatelessWidget {
                       Text(
                         node.description!,
                         style:
-                            const TextStyle(fontSize: 12, color: Colors.grey),
+                            const TextStyle(fontSize: 24, color: Colors.grey),
                       ),
                     ],
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 24),
                     if (sensors.isEmpty)
                       const Text('No sensors available')
                     else
