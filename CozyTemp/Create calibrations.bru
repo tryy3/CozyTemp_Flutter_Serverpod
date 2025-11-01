@@ -1,0 +1,23 @@
+meta {
+  name: Create calibrations
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8080/temperature
+  body: json
+  auth: inherit
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {"limit":10,"method":"getUncalibratedData"}
+}
+
+settings {
+  encodeUrl: true
+}

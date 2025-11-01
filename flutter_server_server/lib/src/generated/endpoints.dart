@@ -14,6 +14,8 @@ import '../greeting_endpoint.dart' as _i2;
 import '../temperature/temperature_endpoint.dart' as _i3;
 import 'package:flutter_server_server/src/generated/temperature/models/collect_data.dart'
     as _i4;
+import 'package:flutter_server_server/src/generated/temperature/models/calibration_input.dart'
+    as _i5;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -191,6 +193,44 @@ class Endpoints extends _i1.EndpointDispatch {
             params['sensorId'],
             params['name'],
             params['description'],
+          ),
+        ),
+        'getUncalibratedData': _i1.MethodConnector(
+          name: 'getUncalibratedData',
+          params: {
+            'limit': _i1.ParameterDescription(
+              name: 'limit',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .getUncalibratedData(
+            session,
+            params['limit'],
+          ),
+        ),
+        'createCalibratedTemperature': _i1.MethodConnector(
+          name: 'createCalibratedTemperature',
+          params: {
+            'calibrations': _i1.ParameterDescription(
+              name: 'calibrations',
+              type: _i1.getType<List<_i5.CalibrationInput>>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .createCalibratedTemperature(
+            session,
+            params['calibrations'],
           ),
         ),
       },

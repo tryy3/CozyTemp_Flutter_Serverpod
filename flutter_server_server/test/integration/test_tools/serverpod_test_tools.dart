@@ -21,6 +21,12 @@ import 'package:flutter_server_server/src/generated/temperature/models/node.dart
     as _i6;
 import 'package:flutter_server_server/src/generated/temperature/models/sensor.dart'
     as _i7;
+import 'package:flutter_server_server/src/generated/temperature/models/raw_data.dart'
+    as _i8;
+import 'package:flutter_server_server/src/generated/temperature/models/calibrated_temperature.dart'
+    as _i9;
+import 'package:flutter_server_server/src/generated/temperature/models/calibration_input.dart'
+    as _i10;
 import 'package:flutter_server_server/src/generated/protocol.dart';
 import 'package:flutter_server_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -361,6 +367,64 @@ class _TemperatureEndpoint {
           _localUniqueSession,
           _localCallContext.arguments,
         ) as _i3.Future<_i7.Sensor?>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i8.RawData>> getUncalibratedData(
+    _i1.TestSessionBuilder sessionBuilder,
+    int limit,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'getUncalibratedData',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'getUncalibratedData',
+          parameters: _i1.testObjectToJson({'limit': limit}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i8.RawData>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _i3.Future<List<_i9.CalibratedTemperature>> createCalibratedTemperature(
+    _i1.TestSessionBuilder sessionBuilder,
+    List<_i10.CalibrationInput> calibrations,
+  ) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'temperature',
+        method: 'createCalibratedTemperature',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'temperature',
+          methodName: 'createCalibratedTemperature',
+          parameters: _i1.testObjectToJson({'calibrations': calibrations}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i9.CalibratedTemperature>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

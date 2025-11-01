@@ -13,6 +13,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../../temperature/models/sensor.dart' as _i2;
+import '../../temperature/models/calibrated_temperature.dart' as _i3;
 
 /// A raw data is the raw temperature data from a sensor.
 abstract class RawData
@@ -21,6 +22,7 @@ abstract class RawData
     this.id,
     required this.sensorId,
     this.sensor,
+    this.calibration,
     required this.temperature,
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
@@ -29,6 +31,7 @@ abstract class RawData
     _i1.UuidValue? id,
     required _i1.UuidValue sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     required double temperature,
     DateTime? createdAt,
   }) = _RawDataImpl;
@@ -44,6 +47,10 @@ abstract class RawData
           ? null
           : _i2.Sensor.fromJson(
               (jsonSerialization['sensor'] as Map<String, dynamic>)),
+      calibration: jsonSerialization['calibration'] == null
+          ? null
+          : _i3.CalibratedTemperature.fromJson(
+              (jsonSerialization['calibration'] as Map<String, dynamic>)),
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
       createdAt:
           _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
@@ -61,6 +68,8 @@ abstract class RawData
 
   _i2.Sensor? sensor;
 
+  _i3.CalibratedTemperature? calibration;
+
   double temperature;
 
   DateTime createdAt;
@@ -75,6 +84,7 @@ abstract class RawData
     _i1.UuidValue? id,
     _i1.UuidValue? sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     double? temperature,
     DateTime? createdAt,
   });
@@ -84,6 +94,7 @@ abstract class RawData
       if (id != null) 'id': id?.toJson(),
       'sensorId': sensorId.toJson(),
       if (sensor != null) 'sensor': sensor?.toJson(),
+      if (calibration != null) 'calibration': calibration?.toJson(),
       'temperature': temperature,
       'createdAt': createdAt.toJson(),
     };
@@ -95,13 +106,20 @@ abstract class RawData
       if (id != null) 'id': id?.toJson(),
       'sensorId': sensorId.toJson(),
       if (sensor != null) 'sensor': sensor?.toJsonForProtocol(),
+      if (calibration != null) 'calibration': calibration?.toJsonForProtocol(),
       'temperature': temperature,
       'createdAt': createdAt.toJson(),
     };
   }
 
-  static RawDataInclude include({_i2.SensorInclude? sensor}) {
-    return RawDataInclude._(sensor: sensor);
+  static RawDataInclude include({
+    _i2.SensorInclude? sensor,
+    _i3.CalibratedTemperatureInclude? calibration,
+  }) {
+    return RawDataInclude._(
+      sensor: sensor,
+      calibration: calibration,
+    );
   }
 
   static RawDataIncludeList includeList({
@@ -137,12 +155,14 @@ class _RawDataImpl extends RawData {
     _i1.UuidValue? id,
     required _i1.UuidValue sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     required double temperature,
     DateTime? createdAt,
   }) : super._(
           id: id,
           sensorId: sensorId,
           sensor: sensor,
+          calibration: calibration,
           temperature: temperature,
           createdAt: createdAt,
         );
@@ -155,6 +175,7 @@ class _RawDataImpl extends RawData {
     Object? id = _Undefined,
     _i1.UuidValue? sensorId,
     Object? sensor = _Undefined,
+    Object? calibration = _Undefined,
     double? temperature,
     DateTime? createdAt,
   }) {
@@ -162,6 +183,9 @@ class _RawDataImpl extends RawData {
       id: id is _i1.UuidValue? ? id : this.id,
       sensorId: sensorId ?? this.sensorId,
       sensor: sensor is _i2.Sensor? ? sensor : this.sensor?.copyWith(),
+      calibration: calibration is _i3.CalibratedTemperature?
+          ? calibration
+          : this.calibration?.copyWith(),
       temperature: temperature ?? this.temperature,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -189,6 +213,8 @@ class RawDataTable extends _i1.Table<_i1.UuidValue?> {
 
   _i2.SensorTable? _sensor;
 
+  _i3.CalibratedTemperatureTable? _calibration;
+
   late final _i1.ColumnDouble temperature;
 
   late final _i1.ColumnDateTime createdAt;
@@ -206,6 +232,19 @@ class RawDataTable extends _i1.Table<_i1.UuidValue?> {
     return _sensor!;
   }
 
+  _i3.CalibratedTemperatureTable get calibration {
+    if (_calibration != null) return _calibration!;
+    _calibration = _i1.createRelationTable(
+      relationFieldName: 'calibration',
+      field: RawData.t.id,
+      foreignField: _i3.CalibratedTemperature.t.rawDataId,
+      tableRelation: tableRelation,
+      createTable: (foreignTableRelation) =>
+          _i3.CalibratedTemperatureTable(tableRelation: foreignTableRelation),
+    );
+    return _calibration!;
+  }
+
   @override
   List<_i1.Column> get columns => [
         id,
@@ -219,19 +258,31 @@ class RawDataTable extends _i1.Table<_i1.UuidValue?> {
     if (relationField == 'sensor') {
       return sensor;
     }
+    if (relationField == 'calibration') {
+      return calibration;
+    }
     return null;
   }
 }
 
 class RawDataInclude extends _i1.IncludeObject {
-  RawDataInclude._({_i2.SensorInclude? sensor}) {
+  RawDataInclude._({
+    _i2.SensorInclude? sensor,
+    _i3.CalibratedTemperatureInclude? calibration,
+  }) {
     _sensor = sensor;
+    _calibration = calibration;
   }
 
   _i2.SensorInclude? _sensor;
 
+  _i3.CalibratedTemperatureInclude? _calibration;
+
   @override
-  Map<String, _i1.Include?> get includes => {'sensor': _sensor};
+  Map<String, _i1.Include?> get includes => {
+        'sensor': _sensor,
+        'calibration': _calibration,
+      };
 
   @override
   _i1.Table<_i1.UuidValue?> get table => RawData.t;
@@ -261,6 +312,8 @@ class RawDataRepository {
   const RawDataRepository._();
 
   final attachRow = const RawDataAttachRowRepository._();
+
+  final detachRow = const RawDataDetachRowRepository._();
 
   /// Returns a list of [RawData]s matching the given query parameters.
   ///
@@ -500,6 +553,63 @@ class RawDataAttachRowRepository {
     await session.db.updateRow<RawData>(
       $rawData,
       columns: [RawData.t.sensorId],
+      transaction: transaction,
+    );
+  }
+
+  /// Creates a relation between the given [RawData] and [CalibratedTemperature]
+  /// by setting the [RawData]'s foreign key `id` to refer to the [CalibratedTemperature].
+  Future<void> calibration(
+    _i1.Session session,
+    RawData rawData,
+    _i3.CalibratedTemperature calibration, {
+    _i1.Transaction? transaction,
+  }) async {
+    if (calibration.id == null) {
+      throw ArgumentError.notNull('calibration.id');
+    }
+    if (rawData.id == null) {
+      throw ArgumentError.notNull('rawData.id');
+    }
+
+    var $calibration = calibration.copyWith(rawDataId: rawData.id);
+    await session.db.updateRow<_i3.CalibratedTemperature>(
+      $calibration,
+      columns: [_i3.CalibratedTemperature.t.rawDataId],
+      transaction: transaction,
+    );
+  }
+}
+
+class RawDataDetachRowRepository {
+  const RawDataDetachRowRepository._();
+
+  /// Detaches the relation between this [RawData] and the [CalibratedTemperature] set in `calibration`
+  /// by setting the [RawData]'s foreign key `id` to `null`.
+  ///
+  /// This removes the association between the two models without deleting
+  /// the related record.
+  Future<void> calibration(
+    _i1.Session session,
+    RawData rawdata, {
+    _i1.Transaction? transaction,
+  }) async {
+    var $calibration = rawdata.calibration;
+
+    if ($calibration == null) {
+      throw ArgumentError.notNull('rawdata.calibration');
+    }
+    if ($calibration.id == null) {
+      throw ArgumentError.notNull('rawdata.calibration.id');
+    }
+    if (rawdata.id == null) {
+      throw ArgumentError.notNull('rawdata.id');
+    }
+
+    var $$calibration = $calibration.copyWith(rawDataId: null);
+    await session.db.updateRow<_i3.CalibratedTemperature>(
+      $$calibration,
+      columns: [_i3.CalibratedTemperature.t.rawDataId],
       transaction: transaction,
     );
   }

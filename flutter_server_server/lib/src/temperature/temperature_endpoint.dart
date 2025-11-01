@@ -269,4 +269,103 @@ class TemperatureEndpoint extends Endpoint {
     session.log("Sensor updated successfully: $sensorId");
     return sensor;
   }
+
+  /// Fetches uncalibrated raw temperature data
+  /// [limit] - Maximum number of records to return
+  /// Returns the newest uncalibrated data points first
+  Future<List<RawData>> getUncalibratedData(
+    Session session,
+    int limit,
+  ) async {
+    session.log("Fetching uncalibrated data with limit: $limit");
+
+    // Find RawData where calibration is null (LEFT JOIN where calibrated_temperature.id IS NULL)
+    final rawData = await RawData.db.find(
+      session,
+      where: (t) => t.calibration.id.equals(null),
+      orderBy: (t) => t.createdAt,
+      orderDescending: true,
+      limit: limit,
+    );
+
+    session.log("Found ${rawData.length} uncalibrated data points");
+    return rawData;
+  }
+
+  /// Creates calibrated temperature readings for multiple raw data points (bulk insert)
+  /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
+  /// Returns a list of successfully created CalibratedTemperature records
+  /// Skips any rawData that doesn't exist or already has a calibration
+  Future<List<CalibratedTemperature>> createCalibratedTemperature(
+    Session session,
+    List<CalibrationInput> calibrations,
+  ) async {
+    session.log("Bulk creating ${calibrations.length} calibrated temperatures");
+
+    final List<CalibratedTemperature> created = [];
+    final List<String> errors = [];
+
+    await session.db.transaction((transaction) async {
+      for (var i = 0; i < calibrations.length; i++) {
+        final calibration = calibrations[i];
+
+        // Parse the raw data ID
+        UuidValue? rawDataUuid;
+        try {
+          rawDataUuid = UuidValue.fromString(calibration.rawDataId);
+        } catch (e) {
+          errors.add(
+              "Item $i: Invalid rawData ID format: ${calibration.rawDataId}");
+          continue;
+        }
+
+        // Verify the RawData exists
+        final rawData = await RawData.db.findById(
+          session,
+          rawDataUuid,
+          transaction: transaction,
+        );
+        if (rawData == null) {
+          errors.add("Item $i: RawData not found: ${calibration.rawDataId}");
+          continue;
+        }
+
+        // Check if calibration already exists
+        final existing = await CalibratedTemperature.db.findFirstRow(
+          session,
+          where: (t) => t.rawDataId.equals(rawDataUuid),
+          transaction: transaction,
+        );
+
+        if (existing != null) {
+          errors.add(
+              "Item $i: Calibration already exists for RawData: ${calibration.rawDataId}");
+          continue;
+        }
+
+        // Create the calibrated temperature
+        final calibrated = await CalibratedTemperature.db.insertRow(
+          session,
+          CalibratedTemperature(
+            rawDataId: rawDataUuid,
+            temperature: calibration.temperature,
+          ),
+          transaction: transaction,
+        );
+
+        created.add(calibrated);
+      }
+    });
+
+    if (errors.isNotEmpty) {
+      session.log("Encountered ${errors.length} errors during bulk creation:");
+      for (var error in errors) {
+        session.log("  - $error");
+      }
+    }
+
+    session
+        .log("Successfully created ${created.length} calibrated temperatures");
+    return created;
+  }
 }

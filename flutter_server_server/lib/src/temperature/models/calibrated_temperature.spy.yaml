@@ -1,0 +1,22 @@
+### Calibrated temperature data adjusted from raw sensor readings
+class: CalibratedTemperature
+table: calibrated_temperature
+
+fields:
+    ## Database ID of the calibrated data
+    id: UuidValue?, defaultPersist=random
+    ## The raw data this calibration is based on (child side of relation)
+    rawDataId: UuidValue?,
+    rawData: RawData?, relation(name=calibration_raw_data, field=rawDataId)
+    
+    ## The calibrated temperature value
+    temperature: double # Required
+    
+    ## When this calibration was performed
+    calibratedAt: DateTime, default=now
+
+indexes:
+    raw_data_unique:
+        fields: rawDataId
+        unique: true
+

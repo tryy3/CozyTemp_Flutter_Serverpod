@@ -12,14 +12,24 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'greeting.dart' as _i3;
-import 'temperature/models/collect_data.dart' as _i4;
-import 'temperature/models/collect_data_temperature.dart' as _i5;
-import 'temperature/models/node.dart' as _i6;
-import 'temperature/models/raw_data.dart' as _i7;
-import 'temperature/models/sensor.dart' as _i8;
+import 'temperature/models/calibrated_temperature.dart' as _i4;
+import 'temperature/models/calibration_input.dart' as _i5;
+import 'temperature/models/collect_data.dart' as _i6;
+import 'temperature/models/collect_data_temperature.dart' as _i7;
+import 'temperature/models/node.dart' as _i8;
+import 'temperature/models/raw_data.dart' as _i9;
+import 'temperature/models/sensor.dart' as _i10;
 import 'package:flutter_server_server/src/generated/temperature/models/node.dart'
-    as _i9;
+    as _i11;
+import 'package:flutter_server_server/src/generated/temperature/models/raw_data.dart'
+    as _i12;
+import 'package:flutter_server_server/src/generated/temperature/models/calibrated_temperature.dart'
+    as _i13;
+import 'package:flutter_server_server/src/generated/temperature/models/calibration_input.dart'
+    as _i14;
 export 'greeting.dart';
+export 'temperature/models/calibrated_temperature.dart';
+export 'temperature/models/calibration_input.dart';
 export 'temperature/models/collect_data.dart';
 export 'temperature/models/collect_data_temperature.dart';
 export 'temperature/models/node.dart';
@@ -34,6 +44,81 @@ class Protocol extends _i1.SerializationManagerServer {
   static final Protocol _instance = Protocol._();
 
   static final List<_i2.TableDefinition> targetTableDefinitions = [
+    _i2.TableDefinition(
+      name: 'calibrated_temperature',
+      dartName: 'CalibratedTemperature',
+      schema: 'public',
+      module: 'flutter_server',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: false,
+          dartType: 'UuidValue?',
+          columnDefault: 'gen_random_uuid()',
+        ),
+        _i2.ColumnDefinition(
+          name: 'rawDataId',
+          columnType: _i2.ColumnType.uuid,
+          isNullable: true,
+          dartType: 'UuidValue?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'temperature',
+          columnType: _i2.ColumnType.doublePrecision,
+          isNullable: false,
+          dartType: 'double',
+        ),
+        _i2.ColumnDefinition(
+          name: 'calibratedAt',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+          columnDefault: 'CURRENT_TIMESTAMP',
+        ),
+      ],
+      foreignKeys: [
+        _i2.ForeignKeyDefinition(
+          constraintName: 'calibrated_temperature_fk_0',
+          columns: ['rawDataId'],
+          referenceTable: 'raw_data',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        )
+      ],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'calibrated_temperature_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            )
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'raw_data_unique',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'rawDataId',
+            )
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
     _i2.TableDefinition(
       name: 'nodes',
       dartName: 'Node',
@@ -253,57 +338,84 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i3.Greeting) {
       return _i3.Greeting.fromJson(data) as T;
     }
-    if (t == _i4.CollectData) {
-      return _i4.CollectData.fromJson(data) as T;
+    if (t == _i4.CalibratedTemperature) {
+      return _i4.CalibratedTemperature.fromJson(data) as T;
     }
-    if (t == _i5.CollectDataTemperature) {
-      return _i5.CollectDataTemperature.fromJson(data) as T;
+    if (t == _i5.CalibrationInput) {
+      return _i5.CalibrationInput.fromJson(data) as T;
     }
-    if (t == _i6.Node) {
-      return _i6.Node.fromJson(data) as T;
+    if (t == _i6.CollectData) {
+      return _i6.CollectData.fromJson(data) as T;
     }
-    if (t == _i7.RawData) {
-      return _i7.RawData.fromJson(data) as T;
+    if (t == _i7.CollectDataTemperature) {
+      return _i7.CollectDataTemperature.fromJson(data) as T;
     }
-    if (t == _i8.Sensor) {
-      return _i8.Sensor.fromJson(data) as T;
+    if (t == _i8.Node) {
+      return _i8.Node.fromJson(data) as T;
+    }
+    if (t == _i9.RawData) {
+      return _i9.RawData.fromJson(data) as T;
+    }
+    if (t == _i10.Sensor) {
+      return _i10.Sensor.fromJson(data) as T;
     }
     if (t == _i1.getType<_i3.Greeting?>()) {
       return (data != null ? _i3.Greeting.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i4.CollectData?>()) {
-      return (data != null ? _i4.CollectData.fromJson(data) : null) as T;
-    }
-    if (t == _i1.getType<_i5.CollectDataTemperature?>()) {
-      return (data != null ? _i5.CollectDataTemperature.fromJson(data) : null)
+    if (t == _i1.getType<_i4.CalibratedTemperature?>()) {
+      return (data != null ? _i4.CalibratedTemperature.fromJson(data) : null)
           as T;
     }
-    if (t == _i1.getType<_i6.Node?>()) {
-      return (data != null ? _i6.Node.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i5.CalibrationInput?>()) {
+      return (data != null ? _i5.CalibrationInput.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i7.RawData?>()) {
-      return (data != null ? _i7.RawData.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i6.CollectData?>()) {
+      return (data != null ? _i6.CollectData.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i8.Sensor?>()) {
-      return (data != null ? _i8.Sensor.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i7.CollectDataTemperature?>()) {
+      return (data != null ? _i7.CollectDataTemperature.fromJson(data) : null)
+          as T;
     }
-    if (t == List<_i5.CollectDataTemperature>) {
+    if (t == _i1.getType<_i8.Node?>()) {
+      return (data != null ? _i8.Node.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i9.RawData?>()) {
+      return (data != null ? _i9.RawData.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i10.Sensor?>()) {
+      return (data != null ? _i10.Sensor.fromJson(data) : null) as T;
+    }
+    if (t == List<_i7.CollectDataTemperature>) {
       return (data as List)
-          .map((e) => deserialize<_i5.CollectDataTemperature>(e))
+          .map((e) => deserialize<_i7.CollectDataTemperature>(e))
           .toList() as T;
     }
-    if (t == _i1.getType<List<_i8.Sensor>?>()) {
+    if (t == _i1.getType<List<_i10.Sensor>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i8.Sensor>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i10.Sensor>(e)).toList()
           : null) as T;
     }
-    if (t == _i1.getType<List<_i7.RawData>?>()) {
+    if (t == _i1.getType<List<_i9.RawData>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i7.RawData>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i9.RawData>(e)).toList()
           : null) as T;
     }
-    if (t == List<_i9.Node>) {
-      return (data as List).map((e) => deserialize<_i9.Node>(e)).toList() as T;
+    if (t == List<_i11.Node>) {
+      return (data as List).map((e) => deserialize<_i11.Node>(e)).toList() as T;
+    }
+    if (t == List<_i12.RawData>) {
+      return (data as List).map((e) => deserialize<_i12.RawData>(e)).toList()
+          as T;
+    }
+    if (t == List<_i13.CalibratedTemperature>) {
+      return (data as List)
+          .map((e) => deserialize<_i13.CalibratedTemperature>(e))
+          .toList() as T;
+    }
+    if (t == List<_i14.CalibrationInput>) {
+      return (data as List)
+          .map((e) => deserialize<_i14.CalibrationInput>(e))
+          .toList() as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);
@@ -318,19 +430,25 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i3.Greeting) {
       return 'Greeting';
     }
-    if (data is _i4.CollectData) {
+    if (data is _i4.CalibratedTemperature) {
+      return 'CalibratedTemperature';
+    }
+    if (data is _i5.CalibrationInput) {
+      return 'CalibrationInput';
+    }
+    if (data is _i6.CollectData) {
       return 'CollectData';
     }
-    if (data is _i5.CollectDataTemperature) {
+    if (data is _i7.CollectDataTemperature) {
       return 'CollectDataTemperature';
     }
-    if (data is _i6.Node) {
+    if (data is _i8.Node) {
       return 'Node';
     }
-    if (data is _i7.RawData) {
+    if (data is _i9.RawData) {
       return 'RawData';
     }
-    if (data is _i8.Sensor) {
+    if (data is _i10.Sensor) {
       return 'Sensor';
     }
     className = _i2.Protocol().getClassNameForObject(data);
@@ -349,20 +467,26 @@ class Protocol extends _i1.SerializationManagerServer {
     if (dataClassName == 'Greeting') {
       return deserialize<_i3.Greeting>(data['data']);
     }
+    if (dataClassName == 'CalibratedTemperature') {
+      return deserialize<_i4.CalibratedTemperature>(data['data']);
+    }
+    if (dataClassName == 'CalibrationInput') {
+      return deserialize<_i5.CalibrationInput>(data['data']);
+    }
     if (dataClassName == 'CollectData') {
-      return deserialize<_i4.CollectData>(data['data']);
+      return deserialize<_i6.CollectData>(data['data']);
     }
     if (dataClassName == 'CollectDataTemperature') {
-      return deserialize<_i5.CollectDataTemperature>(data['data']);
+      return deserialize<_i7.CollectDataTemperature>(data['data']);
     }
     if (dataClassName == 'Node') {
-      return deserialize<_i6.Node>(data['data']);
+      return deserialize<_i8.Node>(data['data']);
     }
     if (dataClassName == 'RawData') {
-      return deserialize<_i7.RawData>(data['data']);
+      return deserialize<_i9.RawData>(data['data']);
     }
     if (dataClassName == 'Sensor') {
-      return deserialize<_i8.Sensor>(data['data']);
+      return deserialize<_i10.Sensor>(data['data']);
     }
     if (dataClassName.startsWith('serverpod.')) {
       data['className'] = dataClassName.substring(10);
@@ -380,12 +504,14 @@ class Protocol extends _i1.SerializationManagerServer {
       }
     }
     switch (t) {
-      case _i6.Node:
-        return _i6.Node.t;
-      case _i7.RawData:
-        return _i7.RawData.t;
-      case _i8.Sensor:
-        return _i8.Sensor.t;
+      case _i4.CalibratedTemperature:
+        return _i4.CalibratedTemperature.t;
+      case _i8.Node:
+        return _i8.Node.t;
+      case _i9.RawData:
+        return _i9.RawData.t;
+      case _i10.Sensor:
+        return _i10.Sensor.t;
     }
     return null;
   }

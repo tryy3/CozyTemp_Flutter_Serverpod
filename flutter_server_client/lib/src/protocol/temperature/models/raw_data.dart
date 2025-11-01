@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import '../../temperature/models/sensor.dart' as _i2;
+import '../../temperature/models/calibrated_temperature.dart' as _i3;
 
 /// A raw data is the raw temperature data from a sensor.
 abstract class RawData implements _i1.SerializableModel {
@@ -18,6 +19,7 @@ abstract class RawData implements _i1.SerializableModel {
     this.id,
     required this.sensorId,
     this.sensor,
+    this.calibration,
     required this.temperature,
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
@@ -26,6 +28,7 @@ abstract class RawData implements _i1.SerializableModel {
     _i1.UuidValue? id,
     required _i1.UuidValue sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     required double temperature,
     DateTime? createdAt,
   }) = _RawDataImpl;
@@ -41,6 +44,10 @@ abstract class RawData implements _i1.SerializableModel {
           ? null
           : _i2.Sensor.fromJson(
               (jsonSerialization['sensor'] as Map<String, dynamic>)),
+      calibration: jsonSerialization['calibration'] == null
+          ? null
+          : _i3.CalibratedTemperature.fromJson(
+              (jsonSerialization['calibration'] as Map<String, dynamic>)),
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
       createdAt:
           _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
@@ -56,6 +63,8 @@ abstract class RawData implements _i1.SerializableModel {
 
   _i2.Sensor? sensor;
 
+  _i3.CalibratedTemperature? calibration;
+
   double temperature;
 
   DateTime createdAt;
@@ -67,6 +76,7 @@ abstract class RawData implements _i1.SerializableModel {
     _i1.UuidValue? id,
     _i1.UuidValue? sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     double? temperature,
     DateTime? createdAt,
   });
@@ -76,6 +86,7 @@ abstract class RawData implements _i1.SerializableModel {
       if (id != null) 'id': id?.toJson(),
       'sensorId': sensorId.toJson(),
       if (sensor != null) 'sensor': sensor?.toJson(),
+      if (calibration != null) 'calibration': calibration?.toJson(),
       'temperature': temperature,
       'createdAt': createdAt.toJson(),
     };
@@ -94,12 +105,14 @@ class _RawDataImpl extends RawData {
     _i1.UuidValue? id,
     required _i1.UuidValue sensorId,
     _i2.Sensor? sensor,
+    _i3.CalibratedTemperature? calibration,
     required double temperature,
     DateTime? createdAt,
   }) : super._(
           id: id,
           sensorId: sensorId,
           sensor: sensor,
+          calibration: calibration,
           temperature: temperature,
           createdAt: createdAt,
         );
@@ -112,6 +125,7 @@ class _RawDataImpl extends RawData {
     Object? id = _Undefined,
     _i1.UuidValue? sensorId,
     Object? sensor = _Undefined,
+    Object? calibration = _Undefined,
     double? temperature,
     DateTime? createdAt,
   }) {
@@ -119,6 +133,9 @@ class _RawDataImpl extends RawData {
       id: id is _i1.UuidValue? ? id : this.id,
       sensorId: sensorId ?? this.sensorId,
       sensor: sensor is _i2.Sensor? ? sensor : this.sensor?.copyWith(),
+      calibration: calibration is _i3.CalibratedTemperature?
+          ? calibration
+          : this.calibration?.copyWith(),
       temperature: temperature ?? this.temperature,
       createdAt: createdAt ?? this.createdAt,
     );

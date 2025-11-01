@@ -7,6 +7,8 @@ fields:
     id: UuidValue?, defaultPersist=random
     ## The sensor that the raw data is from
     sensor: Sensor?, relation(name=sensor_raw_data)
+    ## The calibrated temperature data for this raw data (parent side of relation)
+    calibration: CalibratedTemperature?, relation(optional, name=calibration_raw_data)
 
     ## The raw data
     temperature: double # Required

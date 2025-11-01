@@ -18,7 +18,13 @@ import 'package:flutter_server_client/src/protocol/temperature/models/node.dart'
     as _i5;
 import 'package:flutter_server_client/src/protocol/temperature/models/sensor.dart'
     as _i6;
-import 'protocol.dart' as _i7;
+import 'package:flutter_server_client/src/protocol/temperature/models/raw_data.dart'
+    as _i7;
+import 'package:flutter_server_client/src/protocol/temperature/models/calibrated_temperature.dart'
+    as _i8;
+import 'package:flutter_server_client/src/protocol/temperature/models/calibration_input.dart'
+    as _i9;
+import 'protocol.dart' as _i10;
 
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
@@ -120,6 +126,28 @@ class EndpointTemperature extends _i1.EndpointRef {
           'description': description,
         },
       );
+
+  /// Fetches uncalibrated raw temperature data
+  /// [limit] - Maximum number of records to return
+  /// Returns the newest uncalibrated data points first
+  _i2.Future<List<_i7.RawData>> getUncalibratedData(int limit) =>
+      caller.callServerEndpoint<List<_i7.RawData>>(
+        'temperature',
+        'getUncalibratedData',
+        {'limit': limit},
+      );
+
+  /// Creates calibrated temperature readings for multiple raw data points (bulk insert)
+  /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
+  /// Returns a list of successfully created CalibratedTemperature records
+  /// Skips any rawData that doesn't exist or already has a calibration
+  _i2.Future<List<_i8.CalibratedTemperature>> createCalibratedTemperature(
+          List<_i9.CalibrationInput> calibrations) =>
+      caller.callServerEndpoint<List<_i8.CalibratedTemperature>>(
+        'temperature',
+        'createCalibratedTemperature',
+        {'calibrations': calibrations},
+      );
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -138,7 +166,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
           host,
-          _i7.Protocol(),
+          _i10.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,

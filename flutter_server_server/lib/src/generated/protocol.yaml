@@ -7,3 +7,5 @@ temperature:
   - getNodeHistoricalData:
   - updateNode:
   - updateSensor:
+  - getUncalibratedData:
+  - createCalibratedTemperature:

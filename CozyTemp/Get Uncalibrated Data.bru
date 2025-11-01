@@ -1,0 +1,23 @@
+meta {
+  name: Get Uncalibrated Data
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8080/temperature
+  body: json
+  auth: inherit
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {"ingredients":"test","method":"getTemperatures"}
+}
+
+settings {
+  encodeUrl: true
+}
