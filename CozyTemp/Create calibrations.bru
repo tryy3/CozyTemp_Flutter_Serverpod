@@ -15,7 +15,15 @@ headers {
 }
 
 body:json {
-  {"limit":10,"method":"getUncalibratedData"}
+  {
+    "calibrations": [
+      {
+        "rawDataId": "e2325b6b-7b6b-4dc2-99b9-3b553b9fb76f",
+        "temperature": 8
+      }
+    ],
+    "method": "createCalibratedTemperature"
+  }
 }
 
 settings {

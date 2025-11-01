@@ -24,6 +24,7 @@ void main() {
   final serverUrl =
       serverUrlFromEnv.isEmpty ? 'http://$localhost:8080/' : serverUrlFromEnv;
 
+  print('serverUrl: $serverUrl');
   client = Client(serverUrl)
     ..connectivityMonitor = FlutterConnectivityMonitor();
 

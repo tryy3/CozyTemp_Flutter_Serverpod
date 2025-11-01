@@ -303,78 +303,46 @@ class TemperatureEndpoint extends Endpoint {
 
   /// Creates calibrated temperature readings for multiple raw data points (bulk insert)
   /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
-  /// Returns a list of successfully created CalibratedTemperature records
-  /// Skips any rawData that doesn't exist or already has a calibration
+  /// Returns true on success
+  ///
+  /// Uses Serverpod's built-in batch insert which is atomic (all-or-nothing).
+  /// PostgreSQL constraints will enforce:
+  /// - Foreign key constraint ensures rawDataId exists in raw_data table
+  /// - Unique constraint on rawDataId prevents duplicate calibrations
+  /// If any constraint is violated, the entire operation fails and an error is thrown
   Future<bool> createCalibratedTemperature(
     Session session,
     List<CalibrationInput> calibrations,
   ) async {
     session.log("Bulk creating ${calibrations.length} calibrated temperatures");
 
-    final List<CalibratedTemperature> created = [];
-    final List<String> errors = [];
+    if (calibrations.isEmpty) {
+      session.log("No calibrations to create");
+      return true;
+    }
 
-    await session.db.transaction((transaction) async {
-      for (var i = 0; i < calibrations.length; i++) {
-        final calibration = calibrations[i];
+    // Parse UUIDs and build CalibratedTemperature objects
+    final List<CalibratedTemperature> calibrationsToInsert = [];
 
-        // Parse the raw data ID
-        UuidValue? rawDataUuid;
-        try {
-          rawDataUuid = UuidValue.fromString(calibration.rawDataId);
-        } catch (e) {
-          errors.add(
-              "Item $i: Invalid rawData ID format: ${calibration.rawDataId}");
-          continue;
-        }
-
-        // Verify the RawData exists
-        final rawData = await RawData.db.findById(
-          session,
-          rawDataUuid,
-          transaction: transaction,
-        );
-        if (rawData == null) {
-          errors.add("Item $i: RawData not found: ${calibration.rawDataId}");
-          continue;
-        }
-
-        // Check if calibration already exists
-        final existing = await CalibratedTemperature.db.findFirstRow(
-          session,
-          where: (t) => t.rawDataId.equals(rawDataUuid),
-          transaction: transaction,
-        );
-
-        if (existing != null) {
-          errors.add(
-              "Item $i: Calibration already exists for RawData: ${calibration.rawDataId}");
-          continue;
-        }
-
-        // Create the calibrated temperature
-        final calibrated = await CalibratedTemperature.db.insertRow(
-          session,
-          CalibratedTemperature(
-            rawDataId: rawDataUuid,
-            temperature: calibration.temperature,
-          ),
-          transaction: transaction,
-        );
-
-        created.add(calibrated);
-      }
-    });
-
-    if (errors.isNotEmpty) {
-      session.log("Encountered ${errors.length} errors during bulk creation:");
-      for (var error in errors) {
-        session.log("  - $error");
+    for (var i = 0; i < calibrations.length; i++) {
+      try {
+        final uuid = UuidValue.fromString(calibrations[i].rawDataId);
+        calibrationsToInsert.add(CalibratedTemperature(
+          rawDataId: uuid,
+          temperature: calibrations[i].temperature,
+        ));
+      } catch (e) {
+        session.log("Invalid UUID at index $i: ${calibrations[i].rawDataId}");
+        throw Exception(
+            "Invalid rawData ID format at index $i: ${calibrations[i].rawDataId}");
       }
     }
 
-    session
-        .log("Successfully created ${created.length} calibrated temperatures");
+    // Use Serverpod's built-in batch insert - atomic operation
+    await CalibratedTemperature.db.insert(session, calibrationsToInsert);
+    session.log(
+        "Successfully bulk inserted ${calibrationsToInsert.length} calibrations");
+
     return true;
   }
 }

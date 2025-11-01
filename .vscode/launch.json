@@ -17,10 +17,22 @@
             "type": "dart"
         },
         {
-            "name": "flutter_server_flutter",
+            "name": "flutter_server_flutter (Local)",
             "cwd": "flutter_server_flutter",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define", "SERVER_URL=https://api.cozytemp.tryy3.dev/"
+            ]
+        },
+        {
+            "name": "flutter_server_flutter (Production)",
+            "cwd": "flutter_server_flutter",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define", "SERVER_URL=https://api.cozytemp.tryy3.dev/"
+            ]
         },
         {
             "name": "flutter_server_flutter (profile mode)",
@@ -34,7 +46,10 @@
             "cwd": "flutter_server_flutter",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "env": {
+                "SERVER_URL": "https://api.cozytemp.tryy3.dev"
+            }
         },
         {
             "name": "flutter_server_server",

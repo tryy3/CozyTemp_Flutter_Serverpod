@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_client/flutter_server_client.dart';
 import 'package:flutter_server_flutter/widgets/temperature_layout_constants.dart';
-import 'package:intl/intl.dart';
 
 /// A widget that displays a single temperature sensor with its current reading
 class TemperatureSensor extends StatelessWidget {

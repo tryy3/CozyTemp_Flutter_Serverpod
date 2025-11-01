@@ -137,8 +137,13 @@ class EndpointTemperature extends _i1.EndpointRef {
 
   /// Creates calibrated temperature readings for multiple raw data points (bulk insert)
   /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
-  /// Returns a list of successfully created CalibratedTemperature records
-  /// Skips any rawData that doesn't exist or already has a calibration
+  /// Returns true on success
+  ///
+  /// Uses Serverpod's built-in batch insert which is atomic (all-or-nothing).
+  /// PostgreSQL constraints will enforce:
+  /// - Foreign key constraint ensures rawDataId exists in raw_data table
+  /// - Unique constraint on rawDataId prevents duplicate calibrations
+  /// If any constraint is violated, the entire operation fails and an error is thrown
   _i2.Future<bool> createCalibratedTemperature(
           List<_i8.CalibrationInput> calibrations) =>
       caller.callServerEndpoint<bool>(
