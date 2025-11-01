@@ -6,22 +6,22 @@
 
 # Configuration for the main API server.
 apiServer:
-  port: 8080
-  publicHost: api.examplepod.com
+  port: 9000
+  publicHost: api.cozytemp.tryy3.dev
   publicPort: 443
   publicScheme: https
 
 # Configuration for the Insights server.
 insightsServer:
-  port: 8081
-  publicHost: insights.examplepod.com
+  port: 9001
+  publicHost: insights.cozytemp.tryy3.dev
   publicPort: 443
   publicScheme: https
 
 # Configuration for the web server.
 webServer:
-  port: 8082
-  publicHost: app.examplepod.com
+  port: 9002
+  publicHost: app.cozytemp.tryy3.dev
   publicPort: 443
   publicScheme: https
 
