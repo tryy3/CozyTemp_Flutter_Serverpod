@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
+// ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -192,8 +193,30 @@ class _RawDataImpl extends RawData {
   }
 }
 
+class RawDataUpdateTable extends _i1.UpdateTable<RawDataTable> {
+  RawDataUpdateTable(super.table);
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> sensorId(_i1.UuidValue value) =>
+      _i1.ColumnValue(
+        table.sensorId,
+        value,
+      );
+
+  _i1.ColumnValue<double, double> temperature(double value) => _i1.ColumnValue(
+        table.temperature,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> createdAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.createdAt,
+        value,
+      );
+}
+
 class RawDataTable extends _i1.Table<_i1.UuidValue?> {
   RawDataTable({super.tableRelation}) : super(tableName: 'raw_data') {
+    updateTable = RawDataUpdateTable(this);
     sensorId = _i1.ColumnUuid(
       'sensorId',
       this,
@@ -208,6 +231,8 @@ class RawDataTable extends _i1.Table<_i1.UuidValue?> {
       hasDefault: true,
     );
   }
+
+  late final RawDataUpdateTable updateTable;
 
   late final _i1.ColumnUuid sensorId;
 
@@ -477,6 +502,46 @@ class RawDataRepository {
     );
   }
 
+  /// Updates a single [RawData] by its [id] with the specified [columnValues].
+  /// Returns the updated row or null if no row with the given id exists.
+  Future<RawData?> updateById(
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<RawDataUpdateTable> columnValues,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateById<RawData>(
+      id,
+      columnValues: columnValues(RawData.t.updateTable),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates all [RawData]s matching the [where] expression with the specified [columnValues].
+  /// Returns the list of updated rows.
+  Future<List<RawData>> updateWhere(
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<RawDataUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<RawDataTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<RawDataTable>? orderBy,
+    _i1.OrderByListBuilder<RawDataTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateWhere<RawData>(
+      columnValues: columnValues(RawData.t.updateTable),
+      where: where(RawData.t),
+      limit: limit,
+      offset: offset,
+      orderBy: orderBy?.call(RawData.t),
+      orderByList: orderByList?.call(RawData.t),
+      orderDescending: orderDescending,
+      transaction: transaction,
+    );
+  }
+
   /// Deletes all [RawData]s in the list and returns the deleted rows.
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
@@ -591,19 +656,19 @@ class RawDataDetachRowRepository {
   /// the related record.
   Future<void> calibration(
     _i1.Session session,
-    RawData rawdata, {
+    RawData rawData, {
     _i1.Transaction? transaction,
   }) async {
-    var $calibration = rawdata.calibration;
+    var $calibration = rawData.calibration;
 
     if ($calibration == null) {
-      throw ArgumentError.notNull('rawdata.calibration');
+      throw ArgumentError.notNull('rawData.calibration');
     }
     if ($calibration.id == null) {
-      throw ArgumentError.notNull('rawdata.calibration.id');
+      throw ArgumentError.notNull('rawData.calibration.id');
     }
-    if (rawdata.id == null) {
-      throw ArgumentError.notNull('rawdata.id');
+    if (rawData.id == null) {
+      throw ArgumentError.notNull('rawData.id');
     }
 
     var $$calibration = $calibration.copyWith(rawDataId: null);

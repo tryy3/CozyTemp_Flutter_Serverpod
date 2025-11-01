@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
+// ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -238,8 +239,47 @@ class _SensorImpl extends Sensor {
   }
 }
 
+class SensorUpdateTable extends _i1.UpdateTable<SensorTable> {
+  SensorUpdateTable(super.table);
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> parentNodeId(
+          _i1.UuidValue value) =>
+      _i1.ColumnValue(
+        table.parentNodeId,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> identifier(String value) => _i1.ColumnValue(
+        table.identifier,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> name(String? value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> description(String? value) => _i1.ColumnValue(
+        table.description,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> updatedAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.updatedAt,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> createdAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.createdAt,
+        value,
+      );
+}
+
 class SensorTable extends _i1.Table<_i1.UuidValue?> {
   SensorTable({super.tableRelation}) : super(tableName: 'sensors') {
+    updateTable = SensorUpdateTable(this);
     parentNodeId = _i1.ColumnUuid(
       'parentNodeId',
       this,
@@ -267,6 +307,8 @@ class SensorTable extends _i1.Table<_i1.UuidValue?> {
       hasDefault: true,
     );
   }
+
+  late final SensorUpdateTable updateTable;
 
   late final _i1.ColumnUuid parentNodeId;
 
@@ -566,6 +608,46 @@ class SensorRepository {
     return session.db.updateRow<Sensor>(
       row,
       columns: columns?.call(Sensor.t),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates a single [Sensor] by its [id] with the specified [columnValues].
+  /// Returns the updated row or null if no row with the given id exists.
+  Future<Sensor?> updateById(
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<SensorUpdateTable> columnValues,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateById<Sensor>(
+      id,
+      columnValues: columnValues(Sensor.t.updateTable),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates all [Sensor]s matching the [where] expression with the specified [columnValues].
+  /// Returns the list of updated rows.
+  Future<List<Sensor>> updateWhere(
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<SensorUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<SensorTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<SensorTable>? orderBy,
+    _i1.OrderByListBuilder<SensorTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateWhere<Sensor>(
+      columnValues: columnValues(Sensor.t.updateTable),
+      where: where(Sensor.t),
+      limit: limit,
+      offset: offset,
+      orderBy: orderBy?.call(Sensor.t),
+      orderByList: orderByList?.call(Sensor.t),
+      orderDescending: orderDescending,
       transaction: transaction,
     );
   }

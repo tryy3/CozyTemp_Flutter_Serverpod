@@ -281,6 +281,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  relic:
+    dependency: transitive
+    description:
+      name: relic
+      sha256: dff54d40758cac583f9916a26306eb0b1f12f95edda5660787f080566d082159
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.0"
   retry:
     dependency: transitive
     description:
@@ -293,42 +301,42 @@ packages:
     dependency: "direct main"
     description:
       name: serverpod
-      sha256: e9d57fa4185c2d5ed093745fbc4ca4e8b8dc351d00c2fc7a76bd1aabd509ee6e
+      sha256: de7442c711303dff582beff64a9f30718d43afd1cf4e883b9dfd27915f187404
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_lints:
     dependency: transitive
     description:
       name: serverpod_lints
-      sha256: d1dd6ebe72eb63ad89986814025cd9d59225ac00d2e0c214a76043c839e709d4
+      sha256: "796d21865bc98e9a1f22158d74da93833ed96623aab0d32693e41137ab8244e2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_serialization:
     dependency: transitive
     description:
       name: serverpod_serialization
-      sha256: e68bee9f9e5d609ae6249365826748c43742fd05080bae8549eabf939294271c
+      sha256: "29444fc90bec881d72577ccbbdd0f7510a9b898ce8b33a66626a362fc0365606"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_shared:
     dependency: transitive
     description:
       name: serverpod_shared
-      sha256: "5a35101167050fdb2213407248bc0063c0eea523606da35b9f29cf567ee13a48"
+      sha256: "8e1e18607cf2f156f44da06d560e8f27fbc3345e92b6f4d801ac9a9d56ec464e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_test:
     dependency: "direct dev"
     description:
       name: serverpod_test
-      sha256: "63b166b2c3f2d5ae6f536c7794f6004f2415b4296770efd3cf958bb8d438221a"
+      sha256: "3df6fe554b750367671b540f649c80f1a6fe0118e32b5dce9c0de17229af58e3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   shelf:
     dependency: transitive
     description:
