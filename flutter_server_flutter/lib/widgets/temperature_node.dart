@@ -51,7 +51,7 @@ class TemperatureNode extends StatelessWidget {
                       child: Text(
                         'Node: ${node.name ?? node.identifier}',
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                           // Add space between underline and decoration
                           color: Colors.transparent,
