@@ -53,10 +53,10 @@ packages:
     dependency: transitive
     description:
       name: connectivity_plus
-      sha256: b5e72753cf63becce2c61fd04dfe0f1c430cc5278b53a1342dc5ad839eab29ec
+      sha256: "33bae12a398f841c6cda09d1064212957265869104c478e5ad51e2fb26c3973c"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.5"
+    version: "7.0.0"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -179,10 +179,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.0"
+    version: "0.20.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -275,26 +275,26 @@ packages:
     dependency: transitive
     description:
       name: serverpod_client
-      sha256: f1f9695e06b12c4ed6bfafba9e54c64b8154c6aa2cb0526ac4f8c9e7c0a6aed1
+      sha256: "4aa9e9e92bf9f9975ca88bbbad2f43e2bd3239b5b7ad3f0f7547154d3a22f287"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_flutter:
     dependency: "direct main"
     description:
       name: serverpod_flutter
-      sha256: fe756b793c85b67196be89e9c505730ab9b6430eab7455b1d4938e1ed963142f
+      sha256: "9280f6899e6e9e6a8bf232a37c709c00f8530468853180ab75bf15c518257cc6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   serverpod_serialization:
     dependency: transitive
     description:
       name: serverpod_serialization
-      sha256: e68bee9f9e5d609ae6249365826748c43742fd05080bae8549eabf939294271c
+      sha256: "29444fc90bec881d72577ccbbdd0f7510a9b898ce8b33a66626a362fc0365606"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.2"
+    version: "3.0.0-alpha.3"
   sky_engine:
     dependency: transitive
     description: flutter

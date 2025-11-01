@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
+// ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -201,8 +202,40 @@ class _NodeImpl extends Node {
   }
 }
 
+class NodeUpdateTable extends _i1.UpdateTable<NodeTable> {
+  NodeUpdateTable(super.table);
+
+  _i1.ColumnValue<String, String> identifier(String value) => _i1.ColumnValue(
+        table.identifier,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> name(String? value) => _i1.ColumnValue(
+        table.name,
+        value,
+      );
+
+  _i1.ColumnValue<String, String> description(String? value) => _i1.ColumnValue(
+        table.description,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> updatedAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.updatedAt,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> createdAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.createdAt,
+        value,
+      );
+}
+
 class NodeTable extends _i1.Table<_i1.UuidValue?> {
   NodeTable({super.tableRelation}) : super(tableName: 'nodes') {
+    updateTable = NodeUpdateTable(this);
     identifier = _i1.ColumnString(
       'identifier',
       this,
@@ -226,6 +259,8 @@ class NodeTable extends _i1.Table<_i1.UuidValue?> {
       hasDefault: true,
     );
   }
+
+  late final NodeUpdateTable updateTable;
 
   _i2.SensorTable? ___sensors;
 
@@ -499,6 +534,46 @@ class NodeRepository {
     return session.db.updateRow<Node>(
       row,
       columns: columns?.call(Node.t),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates a single [Node] by its [id] with the specified [columnValues].
+  /// Returns the updated row or null if no row with the given id exists.
+  Future<Node?> updateById(
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<NodeUpdateTable> columnValues,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateById<Node>(
+      id,
+      columnValues: columnValues(Node.t.updateTable),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates all [Node]s matching the [where] expression with the specified [columnValues].
+  /// Returns the list of updated rows.
+  Future<List<Node>> updateWhere(
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<NodeUpdateTable> columnValues,
+    required _i1.WhereExpressionBuilder<NodeTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<NodeTable>? orderBy,
+    _i1.OrderByListBuilder<NodeTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateWhere<Node>(
+      columnValues: columnValues(Node.t.updateTable),
+      where: where(Node.t),
+      limit: limit,
+      offset: offset,
+      orderBy: orderBy?.call(Node.t),
+      orderByList: orderByList?.call(Node.t),
+      orderDescending: orderDescending,
       transaction: transaction,
     );
   }

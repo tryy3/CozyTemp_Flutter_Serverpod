@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
 // ignore_for_file: use_super_parameters
+// ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -170,9 +171,33 @@ class _CalibratedTemperatureImpl extends CalibratedTemperature {
   }
 }
 
+class CalibratedTemperatureUpdateTable
+    extends _i1.UpdateTable<CalibratedTemperatureTable> {
+  CalibratedTemperatureUpdateTable(super.table);
+
+  _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> rawDataId(
+          _i1.UuidValue? value) =>
+      _i1.ColumnValue(
+        table.rawDataId,
+        value,
+      );
+
+  _i1.ColumnValue<double, double> temperature(double value) => _i1.ColumnValue(
+        table.temperature,
+        value,
+      );
+
+  _i1.ColumnValue<DateTime, DateTime> calibratedAt(DateTime value) =>
+      _i1.ColumnValue(
+        table.calibratedAt,
+        value,
+      );
+}
+
 class CalibratedTemperatureTable extends _i1.Table<_i1.UuidValue?> {
   CalibratedTemperatureTable({super.tableRelation})
       : super(tableName: 'calibrated_temperature') {
+    updateTable = CalibratedTemperatureUpdateTable(this);
     rawDataId = _i1.ColumnUuid(
       'rawDataId',
       this,
@@ -187,6 +212,8 @@ class CalibratedTemperatureTable extends _i1.Table<_i1.UuidValue?> {
       hasDefault: true,
     );
   }
+
+  late final CalibratedTemperatureUpdateTable updateTable;
 
   late final _i1.ColumnUuid rawDataId;
 
@@ -429,6 +456,48 @@ class CalibratedTemperatureRepository {
     );
   }
 
+  /// Updates a single [CalibratedTemperature] by its [id] with the specified [columnValues].
+  /// Returns the updated row or null if no row with the given id exists.
+  Future<CalibratedTemperature?> updateById(
+    _i1.Session session,
+    _i1.UuidValue id, {
+    required _i1.ColumnValueListBuilder<CalibratedTemperatureUpdateTable>
+        columnValues,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateById<CalibratedTemperature>(
+      id,
+      columnValues: columnValues(CalibratedTemperature.t.updateTable),
+      transaction: transaction,
+    );
+  }
+
+  /// Updates all [CalibratedTemperature]s matching the [where] expression with the specified [columnValues].
+  /// Returns the list of updated rows.
+  Future<List<CalibratedTemperature>> updateWhere(
+    _i1.Session session, {
+    required _i1.ColumnValueListBuilder<CalibratedTemperatureUpdateTable>
+        columnValues,
+    required _i1.WhereExpressionBuilder<CalibratedTemperatureTable> where,
+    int? limit,
+    int? offset,
+    _i1.OrderByBuilder<CalibratedTemperatureTable>? orderBy,
+    _i1.OrderByListBuilder<CalibratedTemperatureTable>? orderByList,
+    bool orderDescending = false,
+    _i1.Transaction? transaction,
+  }) async {
+    return session.db.updateWhere<CalibratedTemperature>(
+      columnValues: columnValues(CalibratedTemperature.t.updateTable),
+      where: where(CalibratedTemperature.t),
+      limit: limit,
+      offset: offset,
+      orderBy: orderBy?.call(CalibratedTemperature.t),
+      orderByList: orderByList?.call(CalibratedTemperature.t),
+      orderDescending: orderDescending,
+      transaction: transaction,
+    );
+  }
+
   /// Deletes all [CalibratedTemperature]s in the list and returns the deleted rows.
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
@@ -521,17 +590,17 @@ class CalibratedTemperatureDetachRowRepository {
   /// the related record.
   Future<void> rawData(
     _i1.Session session,
-    CalibratedTemperature calibratedtemperature, {
+    CalibratedTemperature calibratedTemperature, {
     _i1.Transaction? transaction,
   }) async {
-    if (calibratedtemperature.id == null) {
-      throw ArgumentError.notNull('calibratedtemperature.id');
+    if (calibratedTemperature.id == null) {
+      throw ArgumentError.notNull('calibratedTemperature.id');
     }
 
-    var $calibratedtemperature =
-        calibratedtemperature.copyWith(rawDataId: null);
+    var $calibratedTemperature =
+        calibratedTemperature.copyWith(rawDataId: null);
     await session.db.updateRow<CalibratedTemperature>(
-      $calibratedtemperature,
+      $calibratedTemperature,
       columns: [CalibratedTemperature.t.rawDataId],
       transaction: transaction,
     );
