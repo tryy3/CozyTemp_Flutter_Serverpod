@@ -23,10 +23,8 @@ import 'package:flutter_server_server/src/generated/temperature/models/sensor.da
     as _i7;
 import 'package:flutter_server_server/src/generated/temperature/models/raw_data.dart'
     as _i8;
-import 'package:flutter_server_server/src/generated/temperature/models/calibrated_temperature.dart'
-    as _i9;
 import 'package:flutter_server_server/src/generated/temperature/models/calibration_input.dart'
-    as _i10;
+    as _i9;
 import 'package:flutter_server_server/src/generated/protocol.dart';
 import 'package:flutter_server_server/src/generated/endpoints.dart';
 export 'package:serverpod_test/serverpod_test_public_exports.dart';
@@ -403,9 +401,9 @@ class _TemperatureEndpoint {
     });
   }
 
-  _i3.Future<List<_i9.CalibratedTemperature>> createCalibratedTemperature(
+  _i3.Future<bool> createCalibratedTemperature(
     _i1.TestSessionBuilder sessionBuilder,
-    List<_i10.CalibrationInput> calibrations,
+    List<_i9.CalibrationInput> calibrations,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
@@ -424,7 +422,7 @@ class _TemperatureEndpoint {
         var _localReturnValue = await (_localCallContext.method.call(
           _localUniqueSession,
           _localCallContext.arguments,
-        ) as _i3.Future<List<_i9.CalibratedTemperature>>);
+        ) as _i3.Future<bool>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

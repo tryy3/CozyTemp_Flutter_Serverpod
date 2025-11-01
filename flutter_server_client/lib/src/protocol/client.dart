@@ -20,11 +20,9 @@ import 'package:flutter_server_client/src/protocol/temperature/models/sensor.dar
     as _i6;
 import 'package:flutter_server_client/src/protocol/temperature/models/raw_data.dart'
     as _i7;
-import 'package:flutter_server_client/src/protocol/temperature/models/calibrated_temperature.dart'
-    as _i8;
 import 'package:flutter_server_client/src/protocol/temperature/models/calibration_input.dart'
-    as _i9;
-import 'protocol.dart' as _i10;
+    as _i8;
+import 'protocol.dart' as _i9;
 
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
@@ -141,9 +139,9 @@ class EndpointTemperature extends _i1.EndpointRef {
   /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
   /// Returns a list of successfully created CalibratedTemperature records
   /// Skips any rawData that doesn't exist or already has a calibration
-  _i2.Future<List<_i8.CalibratedTemperature>> createCalibratedTemperature(
-          List<_i9.CalibrationInput> calibrations) =>
-      caller.callServerEndpoint<List<_i8.CalibratedTemperature>>(
+  _i2.Future<bool> createCalibratedTemperature(
+          List<_i8.CalibrationInput> calibrations) =>
+      caller.callServerEndpoint<bool>(
         'temperature',
         'createCalibratedTemperature',
         {'calibrations': calibrations},
@@ -166,7 +164,7 @@ class Client extends _i1.ServerpodClientShared {
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
           host,
-          _i10.Protocol(),
+          _i9.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,

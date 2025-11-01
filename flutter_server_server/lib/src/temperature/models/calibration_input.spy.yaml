@@ -1,6 +1,5 @@
 ### Input data for creating a calibrated temperature reading
 class: CalibrationInput
-serverOnly: true
 
 fields:
     ## The UUID of the raw data to calibrate

@@ -65,19 +65,28 @@ class TemperatureEndpoint extends Endpoint {
         session.log(
             "Data points for sensor ${sensor.identifier}: ${sensor.rawDataList!.length}");
 
+        // Fetch latest RawData that HAS calibration (only show calibrated data)
         var latestData = await RawData.db.findFirstRow(
           session,
-          where: (t) => t.sensorId.equals(sensor.id!),
+          where: (t) =>
+              t.sensorId.equals(sensor.id!) & t.calibration.id.notEquals(null),
           orderBy: (t) => t.createdAt,
           orderDescending: true,
+          include: RawData.include(
+            calibration: CalibratedTemperature.include(),
+          ),
         );
 
-        if (latestData != null) {
-          session.log("Latest data, created at: ${latestData.createdAt}");
+        if (latestData != null && latestData.calibration != null) {
+          session.log(
+              "Latest calibrated data, created at: ${latestData.createdAt}");
+          session
+              .log("  - Calibration: ${latestData.calibration!.temperature}°C");
           // Now we can safely add to the sensor's rawDataList
           sensor.rawDataList!.add(latestData);
         } else {
-          session.log("No data found for sensor ${sensor.identifier}");
+          session
+              .log("No calibrated data found for sensor ${sensor.identifier}");
         }
       }
     }
@@ -296,7 +305,7 @@ class TemperatureEndpoint extends Endpoint {
   /// [calibrations] - List of CalibrationInput containing rawDataId and temperature
   /// Returns a list of successfully created CalibratedTemperature records
   /// Skips any rawData that doesn't exist or already has a calibration
-  Future<List<CalibratedTemperature>> createCalibratedTemperature(
+  Future<bool> createCalibratedTemperature(
     Session session,
     List<CalibrationInput> calibrations,
   ) async {
@@ -366,6 +375,6 @@ class TemperatureEndpoint extends Endpoint {
 
     session
         .log("Successfully created ${created.length} calibrated temperatures");
-    return created;
+    return true;
   }
 }

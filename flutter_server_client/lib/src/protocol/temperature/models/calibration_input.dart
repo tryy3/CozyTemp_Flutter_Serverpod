@@ -9,11 +9,10 @@
 // ignore_for_file: use_super_parameters
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:serverpod/serverpod.dart' as _i1;
+import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 /// Input data for creating a calibrated temperature reading
-abstract class CalibrationInput
-    implements _i1.SerializableModel, _i1.ProtocolSerialization {
+abstract class CalibrationInput implements _i1.SerializableModel {
   CalibrationInput._({
     required this.rawDataId,
     required this.temperature,
@@ -44,14 +43,6 @@ abstract class CalibrationInput
   });
   @override
   Map<String, dynamic> toJson() {
-    return {
-      'rawDataId': rawDataId,
-      'temperature': temperature,
-    };
-  }
-
-  @override
-  Map<String, dynamic> toJsonForProtocol() {
     return {
       'rawDataId': rawDataId,
       'temperature': temperature,

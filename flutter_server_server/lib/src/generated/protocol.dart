@@ -23,10 +23,8 @@ import 'package:flutter_server_server/src/generated/temperature/models/node.dart
     as _i11;
 import 'package:flutter_server_server/src/generated/temperature/models/raw_data.dart'
     as _i12;
-import 'package:flutter_server_server/src/generated/temperature/models/calibrated_temperature.dart'
-    as _i13;
 import 'package:flutter_server_server/src/generated/temperature/models/calibration_input.dart'
-    as _i14;
+    as _i13;
 export 'greeting.dart';
 export 'temperature/models/calibrated_temperature.dart';
 export 'temperature/models/calibration_input.dart';
@@ -407,14 +405,9 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data as List).map((e) => deserialize<_i12.RawData>(e)).toList()
           as T;
     }
-    if (t == List<_i13.CalibratedTemperature>) {
+    if (t == List<_i13.CalibrationInput>) {
       return (data as List)
-          .map((e) => deserialize<_i13.CalibratedTemperature>(e))
-          .toList() as T;
-    }
-    if (t == List<_i14.CalibrationInput>) {
-      return (data as List)
-          .map((e) => deserialize<_i14.CalibrationInput>(e))
+          .map((e) => deserialize<_i13.CalibrationInput>(e))
           .toList() as T;
     }
     try {
