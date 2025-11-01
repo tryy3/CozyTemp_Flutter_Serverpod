@@ -1,0 +1,1514 @@
+[
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.747617Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-25T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747626Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-25T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747629Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-25T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.747632Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-25T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.747635Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-25T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747637Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-25T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.747640Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-25T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747642Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-25T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747645Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-10-25T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.747647Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-10-25T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747649Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-10-25T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747652Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-10-25T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.747654Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-10-25T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747656Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-10-25T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747659Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-10-26T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.747661Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-10-26T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747664Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-10-26T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747666Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-10-26T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.78,
+      "calibratedAt": "2025-11-01T20:58:43.747668Z"
+    },
+    "temperature": 19.78,
+    "createdAt": "2024-10-26T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747670Z"
+    },
+    "temperature": 19.406666666666666,
+    "createdAt": "2024-10-26T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 23.033333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747673Z"
+    },
+    "temperature": 23.033333333333335,
+    "createdAt": "2024-10-26T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.66,
+      "calibratedAt": "2025-11-01T20:58:43.747675Z"
+    },
+    "temperature": 22.66,
+    "createdAt": "2024-10-26T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.286666666666665,
+      "calibratedAt": "2025-11-01T20:58:43.747677Z"
+    },
+    "temperature": 22.286666666666665,
+    "createdAt": "2024-10-26T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.913333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747680Z"
+    },
+    "temperature": 21.913333333333334,
+    "createdAt": "2024-10-26T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.54,
+      "calibratedAt": "2025-11-01T20:58:43.747682Z"
+    },
+    "temperature": 21.54,
+    "createdAt": "2024-10-26T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.166666666666668,
+      "calibratedAt": "2025-11-01T20:58:43.747685Z"
+    },
+    "temperature": 21.166666666666668,
+    "createdAt": "2024-10-26T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.793333333333337,
+      "calibratedAt": "2025-11-01T20:58:43.747687Z"
+    },
+    "temperature": 20.793333333333337,
+    "createdAt": "2024-10-26T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.419999999999998,
+      "calibratedAt": "2025-11-01T20:58:43.747689Z"
+    },
+    "temperature": 20.419999999999998,
+    "createdAt": "2024-10-26T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.046666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747694Z"
+    },
+    "temperature": 20.046666666666667,
+    "createdAt": "2024-10-26T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.673333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747696Z"
+    },
+    "temperature": 19.673333333333332,
+    "createdAt": "2024-10-26T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.747699Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-26T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747701Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-26T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747704Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-26T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.747706Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-26T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.747709Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-26T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747711Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-26T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.747714Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-26T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747716Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-26T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747718Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-10-27T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.747721Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-10-27T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747723Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-10-27T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747726Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-10-27T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.747728Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-10-27T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747731Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-10-27T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747733Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-10-27T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.747735Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-10-27T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747738Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-10-27T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747741Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-10-27T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.78,
+      "calibratedAt": "2025-11-01T20:58:43.747743Z"
+    },
+    "temperature": 19.78,
+    "createdAt": "2024-10-27T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747746Z"
+    },
+    "temperature": 19.406666666666666,
+    "createdAt": "2024-10-27T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 23.033333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747748Z"
+    },
+    "temperature": 23.033333333333335,
+    "createdAt": "2024-10-27T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.66,
+      "calibratedAt": "2025-11-01T20:58:43.747751Z"
+    },
+    "temperature": 22.66,
+    "createdAt": "2024-10-27T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.286666666666665,
+      "calibratedAt": "2025-11-01T20:58:43.747753Z"
+    },
+    "temperature": 22.286666666666665,
+    "createdAt": "2024-10-27T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.913333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747756Z"
+    },
+    "temperature": 21.913333333333334,
+    "createdAt": "2024-10-27T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.54,
+      "calibratedAt": "2025-11-01T20:58:43.747758Z"
+    },
+    "temperature": 21.54,
+    "createdAt": "2024-10-27T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.166666666666668,
+      "calibratedAt": "2025-11-01T20:58:43.747761Z"
+    },
+    "temperature": 21.166666666666668,
+    "createdAt": "2024-10-27T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.793333333333337,
+      "calibratedAt": "2025-11-01T20:58:43.747763Z"
+    },
+    "temperature": 20.793333333333337,
+    "createdAt": "2024-10-27T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.419999999999998,
+      "calibratedAt": "2025-11-01T20:58:43.747766Z"
+    },
+    "temperature": 20.419999999999998,
+    "createdAt": "2024-10-27T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.046666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747769Z"
+    },
+    "temperature": 20.046666666666667,
+    "createdAt": "2024-10-27T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.673333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747771Z"
+    },
+    "temperature": 19.673333333333332,
+    "createdAt": "2024-10-27T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.747774Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-27T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747776Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-27T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747779Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-28T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.747781Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-28T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.747785Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-28T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747788Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-28T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.747790Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-28T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747793Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-28T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747795Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-10-28T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.747798Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-10-28T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747800Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-10-28T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747803Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-10-28T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.747805Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-10-28T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747808Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-10-28T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747811Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-10-28T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.747813Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-10-28T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747816Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-10-28T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747818Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-10-28T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.78,
+      "calibratedAt": "2025-11-01T20:58:43.747821Z"
+    },
+    "temperature": 19.78,
+    "createdAt": "2024-10-28T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747823Z"
+    },
+    "temperature": 19.406666666666666,
+    "createdAt": "2024-10-28T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 23.033333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747826Z"
+    },
+    "temperature": 23.033333333333335,
+    "createdAt": "2024-10-28T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.66,
+      "calibratedAt": "2025-11-01T20:58:43.747828Z"
+    },
+    "temperature": 22.66,
+    "createdAt": "2024-10-28T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.286666666666665,
+      "calibratedAt": "2025-11-01T20:58:43.747831Z"
+    },
+    "temperature": 22.286666666666665,
+    "createdAt": "2024-10-28T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.913333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747833Z"
+    },
+    "temperature": 21.913333333333334,
+    "createdAt": "2024-10-28T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.54,
+      "calibratedAt": "2025-11-01T20:58:43.747836Z"
+    },
+    "temperature": 21.54,
+    "createdAt": "2024-10-28T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.166666666666668,
+      "calibratedAt": "2025-11-01T20:58:43.747838Z"
+    },
+    "temperature": 21.166666666666668,
+    "createdAt": "2024-10-28T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.793333333333337,
+      "calibratedAt": "2025-11-01T20:58:43.747841Z"
+    },
+    "temperature": 20.793333333333337,
+    "createdAt": "2024-10-29T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.419999999999998,
+      "calibratedAt": "2025-11-01T20:58:43.747844Z"
+    },
+    "temperature": 20.419999999999998,
+    "createdAt": "2024-10-29T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.046666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747846Z"
+    },
+    "temperature": 20.046666666666667,
+    "createdAt": "2024-10-29T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.673333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747849Z"
+    },
+    "temperature": 19.673333333333332,
+    "createdAt": "2024-10-29T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.747851Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-29T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747854Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-29T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747856Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-29T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.747858Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-29T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.747861Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-29T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747863Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-29T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.747866Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-29T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747869Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-29T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747871Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-10-29T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.747874Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-10-29T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747876Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-10-29T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747879Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-10-29T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.747882Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-10-29T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747884Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-10-29T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747887Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-10-29T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.747889Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-10-29T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747892Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-10-29T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747894Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-10-29T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.78,
+      "calibratedAt": "2025-11-01T20:58:43.747897Z"
+    },
+    "temperature": 19.78,
+    "createdAt": "2024-10-29T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747900Z"
+    },
+    "temperature": 19.406666666666666,
+    "createdAt": "2024-10-29T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 23.033333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747902Z"
+    },
+    "temperature": 23.033333333333335,
+    "createdAt": "2024-10-30T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.66,
+      "calibratedAt": "2025-11-01T20:58:43.747905Z"
+    },
+    "temperature": 22.66,
+    "createdAt": "2024-10-30T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.286666666666665,
+      "calibratedAt": "2025-11-01T20:58:43.747907Z"
+    },
+    "temperature": 22.286666666666665,
+    "createdAt": "2024-10-30T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.913333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747910Z"
+    },
+    "temperature": 21.913333333333334,
+    "createdAt": "2024-10-30T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.54,
+      "calibratedAt": "2025-11-01T20:58:43.747912Z"
+    },
+    "temperature": 21.54,
+    "createdAt": "2024-10-30T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.166666666666668,
+      "calibratedAt": "2025-11-01T20:58:43.747915Z"
+    },
+    "temperature": 21.166666666666668,
+    "createdAt": "2024-10-30T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.793333333333337,
+      "calibratedAt": "2025-11-01T20:58:43.747917Z"
+    },
+    "temperature": 20.793333333333337,
+    "createdAt": "2024-10-30T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.419999999999998,
+      "calibratedAt": "2025-11-01T20:58:43.747920Z"
+    },
+    "temperature": 20.419999999999998,
+    "createdAt": "2024-10-30T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.046666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747922Z"
+    },
+    "temperature": 20.046666666666667,
+    "createdAt": "2024-10-30T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.673333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747925Z"
+    },
+    "temperature": 19.673333333333332,
+    "createdAt": "2024-10-30T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.747928Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-30T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747930Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-30T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747933Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-30T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.747935Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-30T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.747938Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-30T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747940Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-30T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.747943Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-30T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747945Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-30T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747950Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-10-30T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.747952Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-10-30T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747955Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-10-30T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747958Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-10-30T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.747960Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-10-30T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747963Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-10-30T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.747965Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-10-31T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.747968Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-10-31T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.747970Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-10-31T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.747973Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-10-31T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.78,
+      "calibratedAt": "2025-11-01T20:58:43.747975Z"
+    },
+    "temperature": 19.78,
+    "createdAt": "2024-10-31T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.406666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.747978Z"
+    },
+    "temperature": 19.406666666666666,
+    "createdAt": "2024-10-31T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 23.033333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.747980Z"
+    },
+    "temperature": 23.033333333333335,
+    "createdAt": "2024-10-31T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.66,
+      "calibratedAt": "2025-11-01T20:58:43.747983Z"
+    },
+    "temperature": 22.66,
+    "createdAt": "2024-10-31T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.286666666666665,
+      "calibratedAt": "2025-11-01T20:58:43.747985Z"
+    },
+    "temperature": 22.286666666666665,
+    "createdAt": "2024-10-31T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.913333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.747988Z"
+    },
+    "temperature": 21.913333333333334,
+    "createdAt": "2024-10-31T09:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.54,
+      "calibratedAt": "2025-11-01T20:58:43.747990Z"
+    },
+    "temperature": 21.54,
+    "createdAt": "2024-10-31T10:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.166666666666668,
+      "calibratedAt": "2025-11-01T20:58:43.747993Z"
+    },
+    "temperature": 21.166666666666668,
+    "createdAt": "2024-10-31T11:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.793333333333337,
+      "calibratedAt": "2025-11-01T20:58:43.747995Z"
+    },
+    "temperature": 20.793333333333337,
+    "createdAt": "2024-10-31T12:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.419999999999998,
+      "calibratedAt": "2025-11-01T20:58:43.747998Z"
+    },
+    "temperature": 20.419999999999998,
+    "createdAt": "2024-10-31T13:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.046666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.748001Z"
+    },
+    "temperature": 20.046666666666667,
+    "createdAt": "2024-10-31T14:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.673333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.748003Z"
+    },
+    "temperature": 19.673333333333332,
+    "createdAt": "2024-10-31T15:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.5,
+      "calibratedAt": "2025-11-01T20:58:43.748006Z"
+    },
+    "temperature": 22.5,
+    "createdAt": "2024-10-31T16:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.12666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.748008Z"
+    },
+    "temperature": 22.12666666666667,
+    "createdAt": "2024-10-31T17:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.753333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.748010Z"
+    },
+    "temperature": 21.753333333333334,
+    "createdAt": "2024-10-31T18:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.38,
+      "calibratedAt": "2025-11-01T20:58:43.748012Z"
+    },
+    "temperature": 21.38,
+    "createdAt": "2024-10-31T19:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.006666666666664,
+      "calibratedAt": "2025-11-01T20:58:43.748015Z"
+    },
+    "temperature": 21.006666666666664,
+    "createdAt": "2024-10-31T20:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.633333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.748017Z"
+    },
+    "temperature": 20.633333333333333,
+    "createdAt": "2024-10-31T21:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.26,
+      "calibratedAt": "2025-11-01T20:58:43.748019Z"
+    },
+    "temperature": 20.26,
+    "createdAt": "2024-10-31T22:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.886666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.748022Z"
+    },
+    "temperature": 19.886666666666667,
+    "createdAt": "2024-10-31T23:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.513333333333335,
+      "calibratedAt": "2025-11-01T20:58:43.748024Z"
+    },
+    "temperature": 19.513333333333335,
+    "createdAt": "2024-11-01T00:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 19.139999999999997,
+      "calibratedAt": "2025-11-01T20:58:43.748026Z"
+    },
+    "temperature": 19.139999999999997,
+    "createdAt": "2024-11-01T01:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.766666666666666,
+      "calibratedAt": "2025-11-01T20:58:43.748028Z"
+    },
+    "temperature": 22.766666666666666,
+    "createdAt": "2024-11-01T02:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.393333333333334,
+      "calibratedAt": "2025-11-01T20:58:43.748029Z"
+    },
+    "temperature": 22.393333333333334,
+    "createdAt": "2024-11-01T03:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 22.02,
+      "calibratedAt": "2025-11-01T20:58:43.748031Z"
+    },
+    "temperature": 22.02,
+    "createdAt": "2024-11-01T04:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.64666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.748032Z"
+    },
+    "temperature": 21.64666666666667,
+    "createdAt": "2024-11-01T05:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 21.273333333333333,
+      "calibratedAt": "2025-11-01T20:58:43.748034Z"
+    },
+    "temperature": 21.273333333333333,
+    "createdAt": "2024-11-01T06:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.9,
+      "calibratedAt": "2025-11-01T20:58:43.748035Z"
+    },
+    "temperature": 20.9,
+    "createdAt": "2024-11-01T07:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.526666666666667,
+      "calibratedAt": "2025-11-01T20:58:43.748036Z"
+    },
+    "temperature": 20.526666666666667,
+    "createdAt": "2024-11-01T08:00:00.000Z"
+  },
+  {
+    "sensorId": "00000000-0000-0000-0000-000000000001",
+    "calibration": {
+      "temperature": 20.153333333333332,
+      "calibratedAt": "2025-11-01T20:58:43.748038Z"
+    },
+    "temperature": 20.153333333333332,
+    "createdAt": "2024-11-01T09:00:00.000Z"
+  }
+]

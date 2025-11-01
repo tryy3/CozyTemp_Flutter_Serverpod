@@ -12,7 +12,10 @@ Widget buildTemperatureNodeNoSensorsUseCase(BuildContext context) {
     sensors: [],
   );
 
-  return Center(child: TemperatureNode(node: node));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureNode(node: node)),
+  );
 }
 
 @widgetbook.UseCase(name: 'One Sensor', type: TemperatureNode)
@@ -42,7 +45,10 @@ Widget buildTemperatureNodeOneSensorUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureNode(node: node));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureNode(node: node)),
+  );
 }
 
 @widgetbook.UseCase(name: 'Many Sensors', type: TemperatureNode)
@@ -75,10 +81,10 @@ Widget buildTemperatureNodeManySensorsUseCase(BuildContext context) {
     ),
   );
 
-  return Center(
-    child: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureNode(node: node),
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(
+      child: SingleChildScrollView(child: TemperatureNode(node: node)),
     ),
   );
 }
@@ -136,7 +142,10 @@ Widget buildTemperatureNodeInactiveSensorsUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureNode(node: node));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureNode(node: node)),
+  );
 }
 
 @widgetbook.UseCase(name: 'Long Text', type: TemperatureNode)
@@ -166,5 +175,8 @@ Widget buildTemperatureNodeLongTextUseCase(BuildContext context) {
     ],
   );
 
-  return Center(child: TemperatureNode(node: node));
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Center(child: TemperatureNode(node: node)),
+  );
 }

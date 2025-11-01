@@ -3,6 +3,8 @@
 /// This file contains shared sizing and spacing values to ensure
 /// consistent layout across temperature node and sensor widgets.
 
+// ignore_for_file: dangling_library_doc_comments
+
 /// Minimum width for each node card
 const double minNodeWidth = 280.0;
 

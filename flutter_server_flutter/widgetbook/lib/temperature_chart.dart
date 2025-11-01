@@ -36,7 +36,7 @@ List<RawData> generateTemperatureData({
 
 @widgetbook.UseCase(name: 'default', type: TemperatureChart)
 Widget buildTemperatureChartUseCase(BuildContext context) {
-  final timeRange = context.knobs.list(
+  final timeRange = context.knobs.object.dropdown(
     label: 'timeRange',
     options: ['24h', '7d', 'all'],
     initialOption: '24h',
@@ -85,127 +85,10 @@ Widget buildTemperatureChartUseCase(BuildContext context) {
     ),
   );
 
-  return TemperatureChart(sensor: sensor, timeRange: timeRange);
-}
-
-@widgetbook.UseCase(name: '24h view', type: TemperatureChart)
-Widget buildTemperatureChart24hUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-001',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Living Room',
-    description: 'Temperature over the last 24 hours',
-    rawDataList: generateTemperatureData(
-      count: 288,
-      startTime: now.subtract(const Duration(hours: 24)),
-      interval: const Duration(minutes: 5),
-      baseTemp: 22.0,
-      variation: 3.0,
-    ),
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureChart(sensor: sensor, timeRange: timeRange),
   );
-
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
-}
-
-@widgetbook.UseCase(name: '7d view', type: TemperatureChart)
-Widget buildTemperatureChart7dUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-002',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Bedroom',
-    description: 'Temperature over the last 7 days',
-    rawDataList: generateTemperatureData(
-      count: 168,
-      startTime: now.subtract(const Duration(days: 7)),
-      interval: const Duration(hours: 1),
-      baseTemp: 20.5,
-      variation: 4.0,
-    ),
-  );
-
-  return TemperatureChart(sensor: sensor, timeRange: '7d');
-}
-
-@widgetbook.UseCase(name: 'all time view', type: TemperatureChart)
-Widget buildTemperatureChartAllTimeUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-003',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Kitchen',
-    description: 'Temperature over the last 30 days',
-    rawDataList: generateTemperatureData(
-      count: 30,
-      startTime: now.subtract(const Duration(days: 30)),
-      interval: const Duration(days: 1),
-      baseTemp: 23.0,
-      variation: 5.0,
-    ),
-  );
-
-  return TemperatureChart(sensor: sensor, timeRange: 'all');
-}
-
-@widgetbook.UseCase(name: 'high temperature', type: TemperatureChart)
-Widget buildTemperatureChartHighTempUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-004',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Server Room',
-    description: 'High temperature environment',
-    rawDataList: generateTemperatureData(
-      count: 288,
-      startTime: now.subtract(const Duration(hours: 24)),
-      interval: const Duration(minutes: 5),
-      baseTemp: 45.0,
-      variation: 5.0,
-    ),
-  );
-
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
-}
-
-@widgetbook.UseCase(name: 'low temperature', type: TemperatureChart)
-Widget buildTemperatureChartLowTempUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-005',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Freezer',
-    description: 'Sub-zero temperatures',
-    rawDataList: generateTemperatureData(
-      count: 288,
-      startTime: now.subtract(const Duration(hours: 24)),
-      interval: const Duration(minutes: 5),
-      baseTemp: -18.0,
-      variation: 2.0,
-    ),
-  );
-
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
-}
-
-@widgetbook.UseCase(name: 'stable temperature', type: TemperatureChart)
-Widget buildTemperatureChartStableUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensor = Sensor(
-    identifier: 'sensor-006',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Climate Controlled Room',
-    description: 'Minimal temperature variation',
-    rawDataList: generateTemperatureData(
-      count: 288,
-      startTime: now.subtract(const Duration(hours: 24)),
-      interval: const Duration(minutes: 5),
-      baseTemp: 22.0,
-      variation: 0.2,
-    ),
-  );
-
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
 @widgetbook.UseCase(name: 'few data points', type: TemperatureChart)
@@ -225,7 +108,10 @@ Widget buildTemperatureChartFewPointsUseCase(BuildContext context) {
     ),
   );
 
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureChart(sensor: sensor, timeRange: '24h'),
+  );
 }
 
 @widgetbook.UseCase(name: 'no data', type: TemperatureChart)
@@ -238,7 +124,10 @@ Widget buildTemperatureChartNoDataUseCase(BuildContext context) {
     rawDataList: [],
   );
 
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureChart(sensor: sensor, timeRange: '24h'),
+  );
 }
 
 @widgetbook.UseCase(name: 'no description', type: TemperatureChart)
@@ -257,38 +146,8 @@ Widget buildTemperatureChartNoDescriptionUseCase(BuildContext context) {
     ),
   );
 
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
-}
-
-@widgetbook.UseCase(name: 'rising trend', type: TemperatureChart)
-Widget buildTemperatureChartRisingTrendUseCase(BuildContext context) {
-  final now = DateTime.now();
-  final sensorId = UuidValue.fromString('00000000-0000-0000-0000-000000000001');
-
-  final data = <RawData>[];
-  for (int i = 0; i < 288; i++) {
-    final time = now
-        .subtract(const Duration(hours: 24))
-        .add(Duration(minutes: 5 * i));
-    final temp = 18.0 + (i / 288.0) * 8.0;
-
-    data.add(
-      RawData(
-        sensorId: sensorId,
-        temperature: temp,
-        createdAt: time,
-        calibration: CalibratedTemperature(temperature: temp),
-      ),
-    );
-  }
-
-  final sensor = Sensor(
-    identifier: 'sensor-010',
-    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
-    name: 'Heating Zone',
-    description: 'Temperature increasing throughout the day',
-    rawDataList: data,
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TemperatureChart(sensor: sensor, timeRange: '24h'),
   );
-
-  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }

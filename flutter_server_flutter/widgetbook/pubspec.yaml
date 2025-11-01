@@ -13,6 +13,8 @@ dependencies:
   widgetbook_annotation: ^3.8.0
   flutter_server_flutter:
     path: ../
+  flutter_server_client:
+    path: ../../flutter_server_client
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +26,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/test_data/

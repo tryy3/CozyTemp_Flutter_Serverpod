@@ -263,7 +263,7 @@ packages:
     source: hosted
     version: "5.0.0"
   flutter_server_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../flutter_server_client"
       relative: true
