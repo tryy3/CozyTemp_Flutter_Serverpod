@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_server_client/flutter_server_client.dart';
 import 'package:flutter_server_flutter/widgets/temperature_chart.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-/// Helper function to generate sample temperature data
 List<RawData> generateTemperatureData({
   required int count,
   required DateTime startTime,
@@ -16,20 +16,80 @@ List<RawData> generateTemperatureData({
 
   for (int i = 0; i < count; i++) {
     final time = startTime.add(interval * i);
-    // Add some variation to make it look realistic
     final temp =
         baseTemp +
         (variation * (0.5 - (i % 10) / 10.0)) +
         (variation * 0.2 * ((i % 30) / 30.0));
 
-    data.add(RawData(sensorId: sensorId, temperature: temp, createdAt: time));
+    data.add(
+      RawData(
+        sensorId: sensorId,
+        temperature: temp,
+        createdAt: time,
+        calibration: CalibratedTemperature(temperature: temp),
+      ),
+    );
   }
 
   return data;
 }
 
-@widgetbook.UseCase(name: '24h View - Normal Trend', type: TemperatureChart)
-Widget chart24hNormalUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'default', type: TemperatureChart)
+Widget buildTemperatureChartUseCase(BuildContext context) {
+  final timeRange = context.knobs.list(
+    label: 'timeRange',
+    options: ['24h', '7d', 'all'],
+    initialOption: '24h',
+  );
+
+  final baseTemp = context.knobs.double.slider(
+    label: 'baseTemp',
+    initialValue: 22.0,
+    min: -20.0,
+    max: 50.0,
+    divisions: 140,
+  );
+
+  final variation = context.knobs.double.slider(
+    label: 'variation',
+    initialValue: 3.0,
+    min: 0.0,
+    max: 10.0,
+    divisions: 20,
+  );
+
+  final now = DateTime.now();
+  final count = timeRange == '24h' ? 288 : (timeRange == '7d' ? 168 : 30);
+  final interval = timeRange == '24h'
+      ? const Duration(minutes: 5)
+      : (timeRange == '7d'
+            ? const Duration(hours: 1)
+            : const Duration(days: 1));
+  final startTime = timeRange == '24h'
+      ? now.subtract(const Duration(hours: 24))
+      : (timeRange == '7d'
+            ? now.subtract(const Duration(days: 7))
+            : now.subtract(const Duration(days: 30)));
+
+  final sensor = Sensor(
+    identifier: 'sensor-001',
+    parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
+    name: 'Interactive Chart',
+    description: 'Adjust parameters to explore the chart',
+    rawDataList: generateTemperatureData(
+      count: count,
+      startTime: startTime,
+      interval: interval,
+      baseTemp: baseTemp,
+      variation: variation,
+    ),
+  );
+
+  return TemperatureChart(sensor: sensor, timeRange: timeRange);
+}
+
+@widgetbook.UseCase(name: '24h view', type: TemperatureChart)
+Widget buildTemperatureChart24hUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-001',
@@ -37,7 +97,7 @@ Widget chart24hNormalUseCase(BuildContext context) {
     name: 'Living Room',
     description: 'Temperature over the last 24 hours',
     rawDataList: generateTemperatureData(
-      count: 288, // 5-minute intervals for 24 hours
+      count: 288,
       startTime: now.subtract(const Duration(hours: 24)),
       interval: const Duration(minutes: 5),
       baseTemp: 22.0,
@@ -45,16 +105,11 @@ Widget chart24hNormalUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: '7d View - Weekly Trend', type: TemperatureChart)
-Widget chart7dWeeklyUseCase(BuildContext context) {
+@widgetbook.UseCase(name: '7d view', type: TemperatureChart)
+Widget buildTemperatureChart7dUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-002',
@@ -62,7 +117,7 @@ Widget chart7dWeeklyUseCase(BuildContext context) {
     name: 'Bedroom',
     description: 'Temperature over the last 7 days',
     rawDataList: generateTemperatureData(
-      count: 168, // 1-hour intervals for 7 days
+      count: 168,
       startTime: now.subtract(const Duration(days: 7)),
       interval: const Duration(hours: 1),
       baseTemp: 20.5,
@@ -70,16 +125,11 @@ Widget chart7dWeeklyUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '7d'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '7d');
 }
 
-@widgetbook.UseCase(name: 'All Time - Monthly View', type: TemperatureChart)
-Widget chartAllTimeUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'all time view', type: TemperatureChart)
+Widget buildTemperatureChartAllTimeUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-003',
@@ -87,7 +137,7 @@ Widget chartAllTimeUseCase(BuildContext context) {
     name: 'Kitchen',
     description: 'Temperature over the last 30 days',
     rawDataList: generateTemperatureData(
-      count: 30, // Daily intervals for 30 days
+      count: 30,
       startTime: now.subtract(const Duration(days: 30)),
       interval: const Duration(days: 1),
       baseTemp: 23.0,
@@ -95,16 +145,11 @@ Widget chartAllTimeUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: 'all'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: 'all');
 }
 
-@widgetbook.UseCase(name: 'High Temperature Range', type: TemperatureChart)
-Widget chartHighTempUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'high temperature', type: TemperatureChart)
+Widget buildTemperatureChartHighTempUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-004',
@@ -120,16 +165,11 @@ Widget chartHighTempUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'Low Temperature Range', type: TemperatureChart)
-Widget chartLowTempUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'low temperature', type: TemperatureChart)
+Widget buildTemperatureChartLowTempUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-005',
@@ -145,16 +185,11 @@ Widget chartLowTempUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'Very Stable Temperature', type: TemperatureChart)
-Widget chartStableTempUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'stable temperature', type: TemperatureChart)
+Widget buildTemperatureChartStableUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-006',
@@ -170,16 +205,11 @@ Widget chartStableTempUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'Few Data Points', type: TemperatureChart)
-Widget chartFewPointsUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'few data points', type: TemperatureChart)
+Widget buildTemperatureChartFewPointsUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-007',
@@ -195,16 +225,11 @@ Widget chartFewPointsUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'No Data Available', type: TemperatureChart)
-Widget chartNoDataUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'no data', type: TemperatureChart)
+Widget buildTemperatureChartNoDataUseCase(BuildContext context) {
   final sensor = Sensor(
     identifier: 'sensor-008',
     parentNodeId: UuidValue.fromString('00000000-0000-0000-0000-000000000001'),
@@ -213,16 +238,11 @@ Widget chartNoDataUseCase(BuildContext context) {
     rawDataList: [],
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'Sensor Without Description', type: TemperatureChart)
-Widget chartNoDescriptionUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'no description', type: TemperatureChart)
+Widget buildTemperatureChartNoDescriptionUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensor = Sensor(
     identifier: 'sensor-009',
@@ -237,28 +257,29 @@ Widget chartNoDescriptionUseCase(BuildContext context) {
     ),
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }
 
-@widgetbook.UseCase(name: 'Rising Temperature Trend', type: TemperatureChart)
-Widget chartRisingTrendUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'rising trend', type: TemperatureChart)
+Widget buildTemperatureChartRisingTrendUseCase(BuildContext context) {
   final now = DateTime.now();
   final sensorId = UuidValue.fromString('00000000-0000-0000-0000-000000000001');
 
-  // Create a rising trend
   final data = <RawData>[];
   for (int i = 0; i < 288; i++) {
     final time = now
         .subtract(const Duration(hours: 24))
         .add(Duration(minutes: 5 * i));
-    final temp = 18.0 + (i / 288.0) * 8.0; // Rise from 18°C to 26°C
+    final temp = 18.0 + (i / 288.0) * 8.0;
 
-    data.add(RawData(sensorId: sensorId, temperature: temp, createdAt: time));
+    data.add(
+      RawData(
+        sensorId: sensorId,
+        temperature: temp,
+        createdAt: time,
+        calibration: CalibratedTemperature(temperature: temp),
+      ),
+    );
   }
 
   final sensor = Sensor(
@@ -269,10 +290,5 @@ Widget chartRisingTrendUseCase(BuildContext context) {
     rawDataList: data,
   );
 
-  return Scaffold(
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: TemperatureChart(sensor: sensor, timeRange: '24h'),
-    ),
-  );
+  return TemperatureChart(sensor: sensor, timeRange: '24h');
 }

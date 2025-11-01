@@ -19,16 +19,19 @@ class WidgetbookApp extends StatelessWidget {
       // Use the generated directories variable
       directories: directories,
       addons: [
+        ViewportAddon([
+          Viewports.none,
+          AndroidViewports.samsungGalaxyS20,
+          LinuxViewports.desktop,
+        ]),
         MaterialThemeAddon(
           themes: [
             WidgetbookTheme(name: 'Light', data: ThemeData.light()),
             WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
           ],
         ),
-        DeviceFrameAddon(
-          devices: [Devices.ios.iPhone13, Devices.android.samsungGalaxyS20],
-        ),
-        TextScaleAddon(scales: [1.0, 1.5, 2.0]),
+        TextScaleAddon(),
+        AlignmentAddon(),
       ],
     );
   }
