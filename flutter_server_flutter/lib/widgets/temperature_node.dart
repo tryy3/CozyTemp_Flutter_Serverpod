@@ -52,7 +52,7 @@ class TemperatureNode extends StatelessWidget {
                   children: [
                     Center(
                       child: Text(
-                        'Node: ${node.name ?? node.identifier}',
+                        node.name ?? node.identifier,
                         style: textTheme.headlineLarge,
                       ),
                     ),

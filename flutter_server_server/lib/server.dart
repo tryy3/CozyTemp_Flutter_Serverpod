@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_server_server/src/birthday_reminder.dart';
-import 'package:flutter_server_server/src/web/routes/api.dart';
+// import 'package:flutter_server_server/src/web/routes/api.dart';
 import 'package:serverpod/serverpod.dart';
 
 import 'package:flutter_server_server/src/web/routes/root.dart';

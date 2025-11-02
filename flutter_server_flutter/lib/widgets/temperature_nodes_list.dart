@@ -8,13 +8,9 @@ class TemperatureNodesList extends StatelessWidget {
   /// The list of nodes to display
   final List<Node> nodes;
 
-  /// Optional title to display above the list
-  final String? title;
-
   const TemperatureNodesList({
     super.key,
     required this.nodes,
-    this.title,
   });
 
   @override
@@ -40,15 +36,13 @@ class TemperatureNodesList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (title != null) ...[
-          Center(
-            child: Text(
-              title!,
-              style: textTheme.headlineLarge,
-            ),
+        Center(
+          child: Text(
+            'Temperature Readings',
+            style: textTheme.headlineLarge,
           ),
-          const SizedBox(height: 16),
-        ],
+        ),
+        const SizedBox(height: 16),
         Wrap(
           spacing: sensorSpacing,
           runSpacing: sensorRunSpacing,

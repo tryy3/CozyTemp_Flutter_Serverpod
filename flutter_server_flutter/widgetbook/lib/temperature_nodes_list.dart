@@ -14,15 +14,6 @@ Widget buildTemperatureNodesListUseCase(BuildContext context) {
     divisions: 9,
   );
 
-  final showTitle = context.knobs.boolean(
-    label: 'showTitle',
-    initialValue: true,
-  );
-
-  final title = showTitle
-      ? context.knobs.string(label: 'title', initialValue: 'Temperature Nodes')
-      : null;
-
   final nodes = List.generate(
     nodeCount,
     (index) => Node(
@@ -54,7 +45,7 @@ Widget buildTemperatureNodesListUseCase(BuildContext context) {
 
   return Padding(
     padding: const EdgeInsets.all(16.0),
-    child: TemperatureNodesList(nodes: nodes, title: title),
+    child: TemperatureNodesList(nodes: nodes),
   );
 }
 
@@ -62,7 +53,7 @@ Widget buildTemperatureNodesListUseCase(BuildContext context) {
 Widget buildTemperatureNodesListEmptyUseCase(BuildContext context) {
   return const Padding(
     padding: EdgeInsets.all(16.0),
-    child: TemperatureNodesList(nodes: [], title: 'Temperature Nodes'),
+    child: TemperatureNodesList(nodes: []),
   );
 }
 
@@ -94,7 +85,7 @@ Widget buildTemperatureNodesListSingleUseCase(BuildContext context) {
 
   return Padding(
     padding: const EdgeInsets.all(16.0),
-    child: TemperatureNodesList(nodes: [node], title: 'Temperature Nodes'),
+    child: TemperatureNodesList(nodes: [node]),
   );
 }
 
@@ -133,6 +124,6 @@ Widget buildTemperatureNodesListMultiSensorUseCase(BuildContext context) {
 
   return Padding(
     padding: const EdgeInsets.all(16.0),
-    child: TemperatureNodesList(nodes: nodes, title: 'All Zones'),
+    child: TemperatureNodesList(nodes: nodes),
   );
 }
