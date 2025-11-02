@@ -19,11 +19,20 @@ class TemperatureNodesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
+
     if (nodes.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(32.0),
-          child: Text('No temperature data available'),
+          padding: const EdgeInsets.all(32.0),
+          child: Text(
+            'No temperature data available',
+            style: textTheme.bodyLarge?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
+            ),
+          ),
         ),
       );
     }
@@ -35,7 +44,7 @@ class TemperatureNodesList extends StatelessWidget {
           Center(
             child: Text(
               title!,
-              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              style: textTheme.headlineLarge,
             ),
           ),
           const SizedBox(height: 16),
