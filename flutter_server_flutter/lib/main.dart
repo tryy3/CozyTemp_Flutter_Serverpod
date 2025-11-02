@@ -2,6 +2,8 @@ import 'package:flutter_server_client/flutter_server_client.dart';
 import 'package:flutter/material.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'widgets/temperature_nodes_list.dart';
+import 'theme/app_theme.dart';
+import 'theme/theme_controller.dart';
 
 /// Sets up a global client object that can be used to talk to the server from
 /// anywhere in our app. The client is generated from your server code
@@ -14,7 +16,16 @@ late final Client client;
 
 late String serverUrl;
 
-void main() {
+/// Global theme controller
+final themeController = ThemeController();
+
+void main() async {
+  // Ensure Flutter is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize theme controller
+  await themeController.initialize();
+
   // When you are running the app on a physical device, you need to set the
   // server URL to the IP address of your computer. You can find the IP
   // address by running `ipconfig` on Windows or `ifconfig` on Mac/Linux.
@@ -35,10 +46,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Serverpod Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyHomePage(title: 'Serverpod Example'),
+    return ListenableBuilder(
+      listenable: themeController,
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'CozyTemp',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeController.themeMode,
+          home: const MyHomePage(title: 'CozyTemp'),
+        );
+      },
     );
   }
 }
@@ -194,10 +212,47 @@ class MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _loadTemperatureData,
-        tooltip: 'Refresh temperature data',
-        child: const Icon(Icons.refresh),
+      floatingActionButton: _buildFloatingMenu(),
+    );
+  }
+
+  /// Builds a floating action button with a menu for actions
+  Widget _buildFloatingMenu() {
+    return PopupMenuButton<String>(
+      onSelected: (value) {
+        switch (value) {
+          case 'refresh':
+            _loadTemperatureData();
+          case 'theme':
+            themeController.toggleTheme();
+        }
+      },
+      itemBuilder: (context) => [
+        const PopupMenuItem(
+          value: 'refresh',
+          child: Row(
+            children: [
+              Icon(Icons.refresh),
+              SizedBox(width: 12),
+              Text('Refresh'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'theme',
+          child: Row(
+            children: [
+              Icon(themeController.themeModeIcon),
+              SizedBox(width: 12),
+              Text('Theme: ${themeController.themeModeLabel}'),
+            ],
+          ),
+        ),
+      ],
+      child: FloatingActionButton(
+        onPressed: null,
+        tooltip: 'Actions',
+        child: const Icon(Icons.more_vert),
       ),
     );
   }
@@ -219,11 +274,17 @@ class MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              Icon(
+                Icons.error_outline,
+                size: 48,
+                color: Theme.of(context).colorScheme.error,
+              ),
               const SizedBox(height: 8),
               Text(
                 _errorMessage!,
-                style: const TextStyle(color: Colors.red),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.error,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -258,24 +319,43 @@ class ResultDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final tempColors = theme.extension<TemperatureColors>();
+
     String text;
     Color backgroundColor;
+    Color textColor;
+
     if (errorMessage != null) {
-      backgroundColor = Colors.red[300]!;
+      backgroundColor = colorScheme.errorContainer;
+      textColor = colorScheme.onErrorContainer;
       text = errorMessage!;
     } else if (resultMessage != null) {
-      backgroundColor = Colors.green[300]!;
+      backgroundColor = tempColors?.success?.withValues(alpha: 0.2) ??
+          colorScheme.primaryContainer;
+      textColor = tempColors?.success ?? colorScheme.onPrimaryContainer;
       text = resultMessage!;
     } else {
-      backgroundColor = Colors.grey[300]!;
+      backgroundColor = colorScheme.surfaceContainerHighest;
+      textColor = colorScheme.onSurface.withValues(alpha: 0.6);
       text = 'No server response yet.';
     }
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 50),
       child: Container(
-        color: backgroundColor,
-        child: Center(child: Text(text)),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: const EdgeInsets.all(12),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(color: textColor),
+          ),
+        ),
       ),
     );
   }

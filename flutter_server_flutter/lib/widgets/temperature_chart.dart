@@ -19,6 +19,9 @@ class TemperatureChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
     final rawData = sensor.rawDataList ?? [];
 
     if (rawData.isEmpty) {
@@ -29,15 +32,14 @@ class TemperatureChart extends StatelessWidget {
             children: [
               Text(
                 sensor.name ?? sensor.identifier,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: textTheme.titleMedium,
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'No temperature data available',
-                style: TextStyle(color: Colors.grey),
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
               ),
             ],
           ),
@@ -82,16 +84,15 @@ class TemperatureChart extends StatelessWidget {
           children: [
             Text(
               sensor.name ?? sensor.identifier,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: textTheme.titleMedium,
             ),
             if (sensor.description != null) ...[
               const SizedBox(height: 4),
               Text(
                 sensor.description!,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                style: textTheme.labelMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
               ),
             ],
             const SizedBox(height: 16),
@@ -105,7 +106,7 @@ class TemperatureChart extends StatelessWidget {
                     LineChartBarData(
                       spots: spots,
                       isCurved: true,
-                      color: Colors.blue,
+                      color: colorScheme.primary,
                       barWidth: 2,
                       dotData: FlDotData(
                         show: spots.length <=
@@ -113,7 +114,7 @@ class TemperatureChart extends StatelessWidget {
                       ),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Colors.blue.withValues(alpha: 0.1),
+                        color: colorScheme.primary.withValues(alpha: 0.1),
                       ),
                     ),
                   ],
@@ -125,7 +126,7 @@ class TemperatureChart extends StatelessWidget {
                         getTitlesWidget: (value, meta) {
                           return Text(
                             '${value.toStringAsFixed(1)}°C',
-                            style: const TextStyle(fontSize: 10),
+                            style: textTheme.labelSmall,
                           );
                         },
                       ),
@@ -158,7 +159,7 @@ class TemperatureChart extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
                               DateFormat(format).format(date),
-                              style: const TextStyle(fontSize: 10),
+                              style: textTheme.labelSmall,
                             ),
                           );
                         },
@@ -169,13 +170,28 @@ class TemperatureChart extends StatelessWidget {
                     show: true,
                     drawVerticalLine: true,
                     horizontalInterval: (maxTemp - minTemp) / 5,
+                    getDrawingHorizontalLine: (value) {
+                      return FlLine(
+                        color: colorScheme.outlineVariant,
+                        strokeWidth: 1,
+                      );
+                    },
+                    getDrawingVerticalLine: (value) {
+                      return FlLine(
+                        color: colorScheme.outlineVariant,
+                        strokeWidth: 1,
+                      );
+                    },
                   ),
                   borderData: FlBorderData(
                     show: true,
-                    border: Border.all(color: Colors.grey[300]!),
+                    border: Border.all(
+                      color: colorScheme.outlineVariant,
+                    ),
                   ),
                   lineTouchData: LineTouchData(
                     touchTooltipData: LineTouchTooltipData(
+                      getTooltipColor: (spot) => colorScheme.inverseSurface,
                       getTooltipItems: (touchedSpots) {
                         return touchedSpots.map((spot) {
                           final date = DateTime.fromMillisecondsSinceEpoch(
@@ -183,7 +199,7 @@ class TemperatureChart extends StatelessWidget {
                           final temp = spot.y.toStringAsFixed(1);
                           return LineTooltipItem(
                             '${DateFormat('MMM dd, HH:mm').format(date)}\n$temp°C',
-                            const TextStyle(color: Colors.white),
+                            TextStyle(color: colorScheme.onInverseSurface),
                           );
                         }).toList();
                       },

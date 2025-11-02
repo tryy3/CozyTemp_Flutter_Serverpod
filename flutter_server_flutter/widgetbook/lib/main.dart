@@ -1,6 +1,8 @@
+import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+import 'package:flutter_server_flutter/theme/app_theme.dart';
 
 // Import the generated file
 import 'main.directories.g.dart';
@@ -9,7 +11,12 @@ void main() {
   runApp(const WidgetbookApp());
 }
 
-@widgetbook.App()
+@widgetbook.App(
+  cloudAddonsConfigs: {
+    'Dark Mode': [widgetbook.ThemeAddonConfig('Dark')],
+    'Light Mode': [widgetbook.ThemeAddonConfig('Light')],
+  },
+)
 class WidgetbookApp extends StatelessWidget {
   const WidgetbookApp({super.key});
 
@@ -26,12 +33,16 @@ class WidgetbookApp extends StatelessWidget {
         ]),
         MaterialThemeAddon(
           themes: [
-            WidgetbookTheme(name: 'Light', data: ThemeData.light()),
-            WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
+            WidgetbookTheme(name: 'Dark', data: AppTheme.darkTheme),
+            WidgetbookTheme(name: 'Light', data: AppTheme.lightTheme),
           ],
         ),
         TextScaleAddon(),
         AlignmentAddon(),
+        BuilderAddon(
+          name: 'Accessibility',
+          builder: (context, child) => AccessibilityTools(child: child),
+        ),
       ],
     );
   }
