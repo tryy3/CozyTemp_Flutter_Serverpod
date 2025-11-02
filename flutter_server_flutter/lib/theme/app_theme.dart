@@ -12,6 +12,177 @@ class AppTheme {
   /// Teal/cyan is chosen for its association with temperature and monitoring
   static const Color _seedColor = Color(0xFF00838F); // Teal/cyan
 
+  // ==================== Common Theme Properties ====================
+  // These properties are shared between light and dark themes.
+  // Edit these values to change both themes simultaneously.
+
+  /// Common text theme used across all themes
+  /// Edit font sizes and weights here to affect both light and dark themes
+  static const TextTheme _textTheme = TextTheme(
+    displayLarge: TextStyle(
+      fontSize: 57,
+      fontWeight: FontWeight.bold,
+      letterSpacing: -0.25,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 45,
+      fontWeight: FontWeight.bold,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineLarge: TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16,
+      height: 1.5,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14,
+      height: 1.4,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12,
+      height: 1.4,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 11,
+    ),
+  );
+
+  // Common border radius values
+  static const double _cardBorderRadius = 12;
+  static const double _buttonBorderRadius = 8;
+  static const double _dialogBorderRadius = 16;
+  static const double _inputBorderRadius = 8;
+  static const double _fabBorderRadius = 16;
+
+  // Common elevation values
+  static const double _cardElevation = 2;
+  static const double _buttonElevation = 2;
+  static const double _dialogElevation = 8;
+  static const double _fabElevation = 4;
+  static const double _appBarElevation = 0;
+
+  // Common padding values
+  static const EdgeInsets _buttonPadding =
+      EdgeInsets.symmetric(horizontal: 24, vertical: 12);
+  static const EdgeInsets _textButtonPadding =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 8);
+  static const EdgeInsets _inputContentPadding =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+
+  // ==================== Theme Builders ====================
+
+  /// Build card theme with theme-specific colors
+  static CardThemeData _buildCardTheme(Brightness brightness) {
+    return CardThemeData(
+      elevation: _cardElevation,
+      shadowColor: Colors.black.withValues(
+        alpha: brightness == Brightness.light ? 0.15 : 0.3,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_cardBorderRadius),
+      ),
+    );
+  }
+
+  /// Build app bar theme with color scheme
+  static AppBarTheme _buildAppBarTheme(ColorScheme colorScheme) {
+    return AppBarTheme(
+      centerTitle: false,
+      elevation: _appBarElevation,
+      backgroundColor: colorScheme.surface,
+      foregroundColor: colorScheme.onSurface,
+    );
+  }
+
+  /// Build elevated button theme
+  static ElevatedButtonThemeData _buildElevatedButtonTheme() {
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: _buttonElevation,
+        padding: _buttonPadding,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(_buttonBorderRadius),
+        ),
+      ),
+    );
+  }
+
+  /// Build text button theme
+  static TextButtonThemeData _buildTextButtonTheme() {
+    return TextButtonThemeData(
+      style: TextButton.styleFrom(
+        padding: _textButtonPadding,
+      ),
+    );
+  }
+
+  /// Build dialog theme
+  static DialogThemeData _buildDialogTheme() {
+    return DialogThemeData(
+      elevation: _dialogElevation,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_dialogBorderRadius),
+      ),
+    );
+  }
+
+  /// Build input decoration theme
+  static InputDecorationTheme _buildInputDecorationTheme() {
+    return InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(_inputBorderRadius),
+      ),
+      filled: true,
+      contentPadding: _inputContentPadding,
+    );
+  }
+
+  /// Build floating action button theme
+  static FloatingActionButtonThemeData _buildFloatingActionButtonTheme() {
+    return FloatingActionButtonThemeData(
+      elevation: _fabElevation,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_fabBorderRadius),
+      ),
+    );
+  }
+
+  // ==================== Theme Getters ====================
+
   /// Light theme configuration
   static ThemeData get lightTheme {
     final colorScheme = ColorScheme.fromSeed(
@@ -22,135 +193,14 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-
-      // Text theme with proper hierarchy
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontSize: 57,
-          fontWeight: FontWeight.bold,
-          letterSpacing: -0.25,
-        ),
-        displayMedium: TextStyle(
-          fontSize: 45,
-          fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineLarge: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineSmall: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        titleLarge: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-        titleSmall: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          height: 1.5,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          height: 1.4,
-        ),
-        bodySmall: TextStyle(
-          fontSize: 12,
-          height: 1.4,
-        ),
-        labelLarge: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        labelMedium: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        labelSmall: TextStyle(
-          fontSize: 11,
-        ),
-      ),
-
-      // Card theme
-      cardTheme: CardThemeData(
-        elevation: 2,
-        shadowColor: Colors.black.withValues(alpha: 0.15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-
-      // App bar theme
-      appBarTheme: AppBarTheme(
-        centerTitle: false,
-        elevation: 0,
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-      ),
-
-      // Elevated button theme
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          elevation: 2,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
-
-      // Text button theme
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        ),
-      ),
-
-      // Dialog theme
-      dialogTheme: DialogThemeData(
-        elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-
-      // Input decoration theme
-      inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        filled: true,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
-      ),
-
-      // Floating action button theme
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-
-      // Extensions
+      textTheme: _textTheme,
+      cardTheme: _buildCardTheme(Brightness.light),
+      appBarTheme: _buildAppBarTheme(colorScheme),
+      elevatedButtonTheme: _buildElevatedButtonTheme(),
+      textButtonTheme: _buildTextButtonTheme(),
+      dialogTheme: _buildDialogTheme(),
+      inputDecorationTheme: _buildInputDecorationTheme(),
+      floatingActionButtonTheme: _buildFloatingActionButtonTheme(),
       extensions: <ThemeExtension<dynamic>>[
         TemperatureColors.light(colorScheme),
       ],
@@ -167,135 +217,14 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-
-      // Text theme (same hierarchy as light)
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontSize: 57,
-          fontWeight: FontWeight.bold,
-          letterSpacing: -0.25,
-        ),
-        displayMedium: TextStyle(
-          fontSize: 45,
-          fontWeight: FontWeight.bold,
-        ),
-        displaySmall: TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineLarge: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-        ),
-        headlineSmall: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        titleLarge: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-        titleSmall: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          height: 1.5,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          height: 1.4,
-        ),
-        bodySmall: TextStyle(
-          fontSize: 12,
-          height: 1.4,
-        ),
-        labelLarge: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-        labelMedium: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        labelSmall: TextStyle(
-          fontSize: 11,
-        ),
-      ),
-
-      // Card theme
-      cardTheme: CardThemeData(
-        elevation: 2,
-        shadowColor: Colors.black.withValues(alpha: 0.3),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-
-      // App bar theme
-      appBarTheme: AppBarTheme(
-        centerTitle: false,
-        elevation: 0,
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-      ),
-
-      // Elevated button theme
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          elevation: 2,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
-
-      // Text button theme
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        ),
-      ),
-
-      // Dialog theme
-      dialogTheme: DialogThemeData(
-        elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-
-      // Input decoration theme
-      inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        filled: true,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
-      ),
-
-      // Floating action button theme
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-
-      // Extensions
+      textTheme: _textTheme,
+      cardTheme: _buildCardTheme(Brightness.dark),
+      appBarTheme: _buildAppBarTheme(colorScheme),
+      elevatedButtonTheme: _buildElevatedButtonTheme(),
+      textButtonTheme: _buildTextButtonTheme(),
+      dialogTheme: _buildDialogTheme(),
+      inputDecorationTheme: _buildInputDecorationTheme(),
+      floatingActionButtonTheme: _buildFloatingActionButtonTheme(),
       extensions: <ThemeExtension<dynamic>>[
         TemperatureColors.dark(colorScheme),
       ],

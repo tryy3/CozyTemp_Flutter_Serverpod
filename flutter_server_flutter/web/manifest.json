@@ -1,11 +1,11 @@
 {
-    "name": "flutter_server_flutter",
-    "short_name": "flutter_server_flutter",
+    "name": "CozyTemp",
+    "short_name": "CozyTemp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Temperature monitoring application",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

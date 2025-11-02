@@ -374,36 +374,39 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
             ),
           )
         else
-          ...sensors.map((sensor) => Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Column(
-                  children: [
-                    Row(
+          ...sensors.map(
+            (sensor) => Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TemperatureChart(
+                          sensor: sensor,
+                          timeRange: _selectedTimeRange,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Expanded(
-                          child: TemperatureChart(
-                            sensor: sensor,
-                            timeRange: _selectedTimeRange,
-                          ),
+                        TextButton.icon(
+                          onPressed: () => _editSensor(sensor),
+                          icon: const Icon(Icons.edit, size: 16),
+                          label: const Text('Edit Sensor'),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton.icon(
-                            onPressed: () => _editSensor(sensor),
-                            icon: const Icon(Icons.edit, size: 16),
-                            label: const Text('Edit Sensor'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        const SizedBox(height: 16),
       ],
     );
   }
