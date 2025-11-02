@@ -12,7 +12,7 @@ services:
       - flutter_server_data:/var/lib/postgresql/data
 
   redis:
-    image: redis:6.2.6
+    image: redis:6.2.20
     ports:
       - "8091:6379"
     command: redis-server --requirepass "3aFpVdCitrYYi0iVFpeN3jZ4WKmfqSnt"
@@ -32,7 +32,7 @@ services:
       - flutter_server_test_data:/var/lib/postgresql/data
 
   redis_test:
-    image: redis:6.2.6
+    image: redis:6.2.20
     ports:
       - "9091:6379"
     command: redis-server --requirepass "n-0mq-D1RDuzLi5t9E-z6aU1769XCf3H"
