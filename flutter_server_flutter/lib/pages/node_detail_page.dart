@@ -225,11 +225,17 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              Icon(
+                Icons.error_outline,
+                size: 48,
+                color: Theme.of(context).colorScheme.error,
+              ),
               const SizedBox(height: 16),
               Text(
                 _errorMessage!,
-                style: const TextStyle(color: Colors.red),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.error,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -263,19 +269,21 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
                         children: [
                           Text(
                             node.name ?? node.identifier,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           if (node.name != null) ...[
                             const SizedBox(height: 4),
                             Text(
                               'ID: ${node.identifier}',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withValues(alpha: 0.6),
+                                  ),
                             ),
                           ],
                         ],
@@ -292,16 +300,13 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
                   const SizedBox(height: 8),
                   Text(
                     node.description!,
-                    style: const TextStyle(fontSize: 14),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
                 const SizedBox(height: 16),
                 Text(
                   'Sensors: ${sensors.length}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
@@ -313,9 +318,9 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
         // Time range selector
         Row(
           children: [
-            const Text(
+            Text(
               'Time Range:',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -352,11 +357,19 @@ class _NodeDetailPageState extends State<NodeDetailPage> {
             ),
           )
         else if (sensors.isEmpty)
-          const Card(
+          Card(
             child: Padding(
-              padding: EdgeInsets.all(32.0),
+              padding: const EdgeInsets.all(32.0),
               child: Center(
-                child: Text('No sensors available'),
+                child: Text(
+                  'No sensors available',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withValues(alpha: 0.6),
+                      ),
+                ),
               ),
             ),
           )

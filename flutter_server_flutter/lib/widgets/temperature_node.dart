@@ -13,6 +13,9 @@ class TemperatureNode extends StatelessWidget {
   /// Builds a card for each node with its temperature sensors
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
     final sensors = node.sensors ?? [];
 
     return ConstrainedBox(
@@ -50,29 +53,28 @@ class TemperatureNode extends StatelessWidget {
                     Center(
                       child: Text(
                         'Node: ${node.name ?? node.identifier}',
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          // Add space between underline and decoration
-                          color: Colors.transparent,
-                          shadows: [
-                            Shadow(offset: Offset(0, -5), color: Colors.black)
-                          ],
-                          decoration: TextDecoration.underline,
-                        ),
+                        style: textTheme.headlineLarge,
                       ),
                     ),
                     if (node.description != null) ...[
                       const SizedBox(height: 4),
-                      Text(
-                        node.description!,
-                        style:
-                            const TextStyle(fontSize: 24, color: Colors.grey),
+                      Center(
+                        child: Text(
+                          node.description!,
+                          style: textTheme.titleMedium?.copyWith(
+                            color: colorScheme.onSurface.withValues(alpha: 0.6),
+                          ),
+                        ),
                       ),
                     ],
                     const SizedBox(height: 24),
                     if (sensors.isEmpty)
-                      const Text('No sensors available')
+                      Text(
+                        'No sensors available',
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.6),
+                        ),
+                      )
                     else
                       Wrap(
                         spacing: sensorSpacing,
