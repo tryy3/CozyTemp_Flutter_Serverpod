@@ -32,7 +32,9 @@ class TemperatureEndpoint extends Endpoint {
         var sensor = await Sensor.db.findOrCreate(
           session,
           Sensor(identifier: data.sensorIdentifier, parentNodeId: node.id!),
-          where: (t) => t.identifier.equals(data.sensorIdentifier),
+          where: (t) =>
+              t.identifier.equals(data.sensorIdentifier) &
+              t.parentNodeId.equals(node.id),
           transaction: transaction,
         );
 
