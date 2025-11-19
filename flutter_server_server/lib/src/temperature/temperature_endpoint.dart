@@ -330,8 +330,8 @@ class TemperatureEndpoint extends Endpoint {
     List<RawData> rawData = [];
     for (var row in result) {
       rawData.add(RawData(
-        id: row[0] as UuidValue,
-        sensorId: row[1] as UuidValue,
+        id: UuidValue.fromString(row[0] as String),
+        sensorId: UuidValue.fromString(row[1] as String),
         temperature: row[2] as double,
         createdAt: row[3] as DateTime,
       ));
