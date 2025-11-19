@@ -306,15 +306,36 @@ class TemperatureEndpoint extends Endpoint {
     session.log("Fetching uncalibrated data with limit: $limit");
 
     // Find RawData where calibration is null (LEFT JOIN where calibrated_temperature.id IS NULL)
-    final rawData = await RawData.db.find(
-      session,
-      where: (t) => t.calibration.id.equals(null),
-      orderBy: (t) => t.createdAt,
-      orderDescending: true,
-      limit: limit,
-    );
+    // final rawData = await RawData.db.find(
+    //   session,
+    //   where: (t) => t.calibration.id.equals(null),
+    //   orderBy: (t) => t.createdAt,
+    //   orderDescending: true,
+    //   limit: limit,
+    // );
+    final sql = '''
+      SELECT "id", "sensorId", "temperature", "createdAt"
+      FROM raw_data rd
+      WHERE NOT EXISTS (
+        SELECT 1
+        FROM calibrated_temperature ct
+        WHERE ct."rawDataId" = rd."id"
+      )
+      ORDER BY rd."createdAt" DESC
+      LIMIT @limit
+    ''';
+    final result = await session.db
+        .unsafeQuery(sql, parameters: QueryParameters.named({'limit': limit}));
 
-    session.log("Found ${rawData.length} uncalibrated data points");
+    List<RawData> rawData = [];
+    for (var row in result) {
+      rawData.add(RawData(
+        id: row[0] as UuidValue,
+        sensorId: row[1] as UuidValue,
+        temperature: row[2] as double,
+        createdAt: row[3] as DateTime,
+      ));
+    }
     return rawData;
   }
 
