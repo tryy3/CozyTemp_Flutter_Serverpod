@@ -49,6 +49,21 @@ class TemperatureEndpoint extends Endpoint {
   }
 
   Future<List<Node>> latestTemperatureData(Session session) async {
+    // var nodes = await Node.db.find(
+    //   session,
+    //   include: Node.include(
+    //     sensors: Sensor.includeList(
+    //       include: Sensor.include(
+    //         rawDataList: RawData.includeList(
+    //           limit: 1,
+    //           orderBy: (t) => t.createdAt,
+    //           orderDescending: true,
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
+
     var nodes = await Node.db.find(
       session,
       include: Node.include(

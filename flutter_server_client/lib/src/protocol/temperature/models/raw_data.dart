@@ -39,19 +39,23 @@ abstract class RawData implements _i1.SerializableModel {
       id: jsonSerialization['id'] == null
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
-      sensorId:
-          _i1.UuidValueJsonExtension.fromJson(jsonSerialization['sensorId']),
+      sensorId: _i1.UuidValueJsonExtension.fromJson(
+        jsonSerialization['sensorId'],
+      ),
       sensor: jsonSerialization['sensor'] == null
           ? null
           : _i2.Sensor.fromJson(
-              (jsonSerialization['sensor'] as Map<String, dynamic>)),
+              (jsonSerialization['sensor'] as Map<String, dynamic>),
+            ),
       calibration: jsonSerialization['calibration'] == null
           ? null
           : _i3.CalibratedTemperature.fromJson(
-              (jsonSerialization['calibration'] as Map<String, dynamic>)),
+              (jsonSerialization['calibration'] as Map<String, dynamic>),
+            ),
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
-      createdAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      createdAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['createdAt'],
+      ),
     );
   }
 
@@ -110,13 +114,13 @@ class _RawDataImpl extends RawData {
     required double temperature,
     DateTime? createdAt,
   }) : super._(
-          id: id,
-          sensorId: sensorId,
-          sensor: sensor,
-          calibration: calibration,
-          temperature: temperature,
-          createdAt: createdAt,
-        );
+         id: id,
+         sensorId: sensorId,
+         sensor: sensor,
+         calibration: calibration,
+         temperature: temperature,
+         createdAt: createdAt,
+       );
 
   /// Returns a shallow copy of this [RawData]
   /// with some or all fields replaced by the given arguments.

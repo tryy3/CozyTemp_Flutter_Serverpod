@@ -28,8 +28,11 @@ abstract class CollectData implements _i1.SerializableModel {
     return CollectData(
       nodeIdentifier: jsonSerialization['nodeIdentifier'] as String,
       data: (jsonSerialization['data'] as List)
-          .map((e) =>
-              _i2.CollectDataTemperature.fromJson((e as Map<String, dynamic>)))
+          .map(
+            (e) => _i2.CollectDataTemperature.fromJson(
+              (e as Map<String, dynamic>),
+            ),
+          )
           .toList(),
     );
   }
@@ -64,9 +67,9 @@ class _CollectDataImpl extends CollectData {
     required String nodeIdentifier,
     required List<_i2.CollectDataTemperature> data,
   }) : super._(
-          nodeIdentifier: nodeIdentifier,
-          data: data,
-        );
+         nodeIdentifier: nodeIdentifier,
+         data: data,
+       );
 
   /// Returns a shallow copy of this [CollectData]
   /// with some or all fields replaced by the given arguments.

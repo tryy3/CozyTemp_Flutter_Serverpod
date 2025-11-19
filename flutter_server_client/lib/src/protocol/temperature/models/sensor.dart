@@ -26,8 +26,8 @@ abstract class Sensor implements _i1.SerializableModel {
     this.description,
     DateTime? updatedAt,
     DateTime? createdAt,
-  })  : updatedAt = updatedAt ?? DateTime.now(),
-        createdAt = createdAt ?? DateTime.now();
+  }) : updatedAt = updatedAt ?? DateTime.now(),
+       createdAt = createdAt ?? DateTime.now();
 
   factory Sensor({
     _i1.UuidValue? id,
@@ -47,21 +47,25 @@ abstract class Sensor implements _i1.SerializableModel {
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       parentNodeId: _i1.UuidValueJsonExtension.fromJson(
-          jsonSerialization['parentNodeId']),
+        jsonSerialization['parentNodeId'],
+      ),
       parentNode: jsonSerialization['parentNode'] == null
           ? null
           : _i2.Node.fromJson(
-              (jsonSerialization['parentNode'] as Map<String, dynamic>)),
+              (jsonSerialization['parentNode'] as Map<String, dynamic>),
+            ),
       rawDataList: (jsonSerialization['rawDataList'] as List?)
           ?.map((e) => _i3.RawData.fromJson((e as Map<String, dynamic>)))
           .toList(),
       identifier: jsonSerialization['identifier'] as String,
       name: jsonSerialization['name'] as String?,
       description: jsonSerialization['description'] as String?,
-      updatedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['updatedAt']),
-      createdAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      updatedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['updatedAt'],
+      ),
+      createdAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['createdAt'],
+      ),
     );
   }
 
@@ -141,16 +145,16 @@ class _SensorImpl extends Sensor {
     DateTime? updatedAt,
     DateTime? createdAt,
   }) : super._(
-          id: id,
-          parentNodeId: parentNodeId,
-          parentNode: parentNode,
-          rawDataList: rawDataList,
-          identifier: identifier,
-          name: name,
-          description: description,
-          updatedAt: updatedAt,
-          createdAt: createdAt,
-        );
+         id: id,
+         parentNodeId: parentNodeId,
+         parentNode: parentNode,
+         rawDataList: rawDataList,
+         identifier: identifier,
+         name: name,
+         description: description,
+         updatedAt: updatedAt,
+         createdAt: createdAt,
+       );
 
   /// Returns a shallow copy of this [Sensor]
   /// with some or all fields replaced by the given arguments.
@@ -170,8 +174,9 @@ class _SensorImpl extends Sensor {
     return Sensor(
       id: id is _i1.UuidValue? ? id : this.id,
       parentNodeId: parentNodeId ?? this.parentNodeId,
-      parentNode:
-          parentNode is _i2.Node? ? parentNode : this.parentNode?.copyWith(),
+      parentNode: parentNode is _i2.Node?
+          ? parentNode
+          : this.parentNode?.copyWith(),
       rawDataList: rawDataList is List<_i3.RawData>?
           ? rawDataList
           : this.rawDataList?.map((e0) => e0.copyWith()).toList(),

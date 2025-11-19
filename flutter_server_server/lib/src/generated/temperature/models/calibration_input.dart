@@ -70,9 +70,9 @@ class _CalibrationInputImpl extends CalibrationInput {
     required String rawDataId,
     required double temperature,
   }) : super._(
-          rawDataId: rawDataId,
-          temperature: temperature,
-        );
+         rawDataId: rawDataId,
+         temperature: temperature,
+       );
 
   /// Returns a shallow copy of this [CalibrationInput]
   /// with some or all fields replaced by the given arguments.

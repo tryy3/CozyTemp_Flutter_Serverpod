@@ -100,18 +100,21 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == List<_i6.CollectDataTemperature>) {
       return (data as List)
-          .map((e) => deserialize<_i6.CollectDataTemperature>(e))
-          .toList() as T;
+              .map((e) => deserialize<_i6.CollectDataTemperature>(e))
+              .toList()
+          as T;
     }
     if (t == _i1.getType<List<_i9.Sensor>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i9.Sensor>(e)).toList()
-          : null) as T;
+              ? (data as List).map((e) => deserialize<_i9.Sensor>(e)).toList()
+              : null)
+          as T;
     }
     if (t == _i1.getType<List<_i8.RawData>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i8.RawData>(e)).toList()
-          : null) as T;
+              ? (data as List).map((e) => deserialize<_i8.RawData>(e)).toList()
+              : null)
+          as T;
     }
     if (t == List<_i10.Node>) {
       return (data as List).map((e) => deserialize<_i10.Node>(e)).toList() as T;
@@ -122,8 +125,9 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == List<_i12.CalibrationInput>) {
       return (data as List)
-          .map((e) => deserialize<_i12.CalibrationInput>(e))
-          .toList() as T;
+              .map((e) => deserialize<_i12.CalibrationInput>(e))
+              .toList()
+          as T;
     }
     return super.deserialize<T>(data, t);
   }

@@ -29,8 +29,8 @@ abstract class Sensor
     this.description,
     DateTime? updatedAt,
     DateTime? createdAt,
-  })  : updatedAt = updatedAt ?? DateTime.now(),
-        createdAt = createdAt ?? DateTime.now();
+  }) : updatedAt = updatedAt ?? DateTime.now(),
+       createdAt = createdAt ?? DateTime.now();
 
   factory Sensor({
     _i1.UuidValue? id,
@@ -50,21 +50,25 @@ abstract class Sensor
           ? null
           : _i1.UuidValueJsonExtension.fromJson(jsonSerialization['id']),
       parentNodeId: _i1.UuidValueJsonExtension.fromJson(
-          jsonSerialization['parentNodeId']),
+        jsonSerialization['parentNodeId'],
+      ),
       parentNode: jsonSerialization['parentNode'] == null
           ? null
           : _i2.Node.fromJson(
-              (jsonSerialization['parentNode'] as Map<String, dynamic>)),
+              (jsonSerialization['parentNode'] as Map<String, dynamic>),
+            ),
       rawDataList: (jsonSerialization['rawDataList'] as List?)
           ?.map((e) => _i3.RawData.fromJson((e as Map<String, dynamic>)))
           .toList(),
       identifier: jsonSerialization['identifier'] as String,
       name: jsonSerialization['name'] as String?,
       description: jsonSerialization['description'] as String?,
-      updatedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['updatedAt']),
-      createdAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      updatedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['updatedAt'],
+      ),
+      createdAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['createdAt'],
+      ),
     );
   }
 
@@ -136,8 +140,9 @@ abstract class Sensor
       'parentNodeId': parentNodeId.toJson(),
       if (parentNode != null) 'parentNode': parentNode?.toJsonForProtocol(),
       if (rawDataList != null)
-        'rawDataList':
-            rawDataList?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
+        'rawDataList': rawDataList?.toJson(
+          valueToJson: (v) => v.toJsonForProtocol(),
+        ),
       'identifier': identifier,
       if (name != null) 'name': name,
       if (description != null) 'description': description,
@@ -196,16 +201,16 @@ class _SensorImpl extends Sensor {
     DateTime? updatedAt,
     DateTime? createdAt,
   }) : super._(
-          id: id,
-          parentNodeId: parentNodeId,
-          parentNode: parentNode,
-          rawDataList: rawDataList,
-          identifier: identifier,
-          name: name,
-          description: description,
-          updatedAt: updatedAt,
-          createdAt: createdAt,
-        );
+         id: id,
+         parentNodeId: parentNodeId,
+         parentNode: parentNode,
+         rawDataList: rawDataList,
+         identifier: identifier,
+         name: name,
+         description: description,
+         updatedAt: updatedAt,
+         createdAt: createdAt,
+       );
 
   /// Returns a shallow copy of this [Sensor]
   /// with some or all fields replaced by the given arguments.
@@ -225,8 +230,9 @@ class _SensorImpl extends Sensor {
     return Sensor(
       id: id is _i1.UuidValue? ? id : this.id,
       parentNodeId: parentNodeId ?? this.parentNodeId,
-      parentNode:
-          parentNode is _i2.Node? ? parentNode : this.parentNode?.copyWith(),
+      parentNode: parentNode is _i2.Node?
+          ? parentNode
+          : this.parentNode?.copyWith(),
       rawDataList: rawDataList is List<_i3.RawData>?
           ? rawDataList
           : this.rawDataList?.map((e0) => e0.copyWith()).toList(),
@@ -243,26 +249,26 @@ class SensorUpdateTable extends _i1.UpdateTable<SensorTable> {
   SensorUpdateTable(super.table);
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> parentNodeId(
-          _i1.UuidValue value) =>
-      _i1.ColumnValue(
-        table.parentNodeId,
-        value,
-      );
+    _i1.UuidValue value,
+  ) => _i1.ColumnValue(
+    table.parentNodeId,
+    value,
+  );
 
   _i1.ColumnValue<String, String> identifier(String value) => _i1.ColumnValue(
-        table.identifier,
-        value,
-      );
+    table.identifier,
+    value,
+  );
 
   _i1.ColumnValue<String, String> name(String? value) => _i1.ColumnValue(
-        table.name,
-        value,
-      );
+    table.name,
+    value,
+  );
 
   _i1.ColumnValue<String, String> description(String? value) => _i1.ColumnValue(
-        table.description,
-        value,
-      );
+    table.description,
+    value,
+  );
 
   _i1.ColumnValue<DateTime, DateTime> updatedAt(DateTime value) =>
       _i1.ColumnValue(
@@ -372,21 +378,22 @@ class SensorTable extends _i1.Table<_i1.UuidValue?> {
     _rawDataList = _i1.ManyRelation<_i3.RawDataTable>(
       tableWithRelations: relationTable,
       table: _i3.RawDataTable(
-          tableRelation: relationTable.tableRelation!.lastRelation),
+        tableRelation: relationTable.tableRelation!.lastRelation,
+      ),
     );
     return _rawDataList!;
   }
 
   @override
   List<_i1.Column> get columns => [
-        id,
-        parentNodeId,
-        identifier,
-        name,
-        description,
-        updatedAt,
-        createdAt,
-      ];
+    id,
+    parentNodeId,
+    identifier,
+    name,
+    description,
+    updatedAt,
+    createdAt,
+  ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {
@@ -415,9 +422,9 @@ class SensorInclude extends _i1.IncludeObject {
 
   @override
   Map<String, _i1.Include?> get includes => {
-        'parentNode': _parentNode,
-        'rawDataList': _rawDataList,
-      };
+    'parentNode': _parentNode,
+    'rawDataList': _rawDataList,
+  };
 
   @override
   _i1.Table<_i1.UuidValue?> get table => Sensor.t;

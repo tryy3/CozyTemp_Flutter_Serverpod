@@ -23,8 +23,8 @@ abstract class Node implements _i1.SerializableModel {
     this.description,
     DateTime? updatedAt,
     DateTime? createdAt,
-  })  : updatedAt = updatedAt ?? DateTime.now(),
-        createdAt = createdAt ?? DateTime.now();
+  }) : updatedAt = updatedAt ?? DateTime.now(),
+       createdAt = createdAt ?? DateTime.now();
 
   factory Node({
     _i1.UuidValue? id,
@@ -47,10 +47,12 @@ abstract class Node implements _i1.SerializableModel {
       identifier: jsonSerialization['identifier'] as String,
       name: jsonSerialization['name'] as String?,
       description: jsonSerialization['description'] as String?,
-      updatedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['updatedAt']),
-      createdAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      updatedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['updatedAt'],
+      ),
+      createdAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['createdAt'],
+      ),
     );
   }
 
@@ -120,14 +122,14 @@ class _NodeImpl extends Node {
     DateTime? updatedAt,
     DateTime? createdAt,
   }) : super._(
-          id: id,
-          sensors: sensors,
-          identifier: identifier,
-          name: name,
-          description: description,
-          updatedAt: updatedAt,
-          createdAt: createdAt,
-        );
+         id: id,
+         sensors: sensors,
+         identifier: identifier,
+         name: name,
+         description: description,
+         updatedAt: updatedAt,
+         createdAt: createdAt,
+       );
 
   /// Returns a shallow copy of this [Node]
   /// with some or all fields replaced by the given arguments.

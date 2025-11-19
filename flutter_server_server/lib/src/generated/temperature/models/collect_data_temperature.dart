@@ -25,7 +25,8 @@ abstract class CollectDataTemperature
   }) = _CollectDataTemperatureImpl;
 
   factory CollectDataTemperature.fromJson(
-      Map<String, dynamic> jsonSerialization) {
+    Map<String, dynamic> jsonSerialization,
+  ) {
     return CollectDataTemperature(
       sensorIdentifier: jsonSerialization['sensorIdentifier'] as String,
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
@@ -70,9 +71,9 @@ class _CollectDataTemperatureImpl extends CollectDataTemperature {
     required String sensorIdentifier,
     required double temperature,
   }) : super._(
-          sensorIdentifier: sensorIdentifier,
-          temperature: temperature,
-        );
+         sensorIdentifier: sensorIdentifier,
+         temperature: temperature,
+       );
 
   /// Returns a shallow copy of this [CollectDataTemperature]
   /// with some or all fields replaced by the given arguments.

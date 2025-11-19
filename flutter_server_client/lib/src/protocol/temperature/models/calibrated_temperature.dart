@@ -32,7 +32,8 @@ abstract class CalibratedTemperature implements _i1.SerializableModel {
   }) = _CalibratedTemperatureImpl;
 
   factory CalibratedTemperature.fromJson(
-      Map<String, dynamic> jsonSerialization) {
+    Map<String, dynamic> jsonSerialization,
+  ) {
     return CalibratedTemperature(
       id: jsonSerialization['id'] == null
           ? null
@@ -43,10 +44,12 @@ abstract class CalibratedTemperature implements _i1.SerializableModel {
       rawData: jsonSerialization['rawData'] == null
           ? null
           : _i2.RawData.fromJson(
-              (jsonSerialization['rawData'] as Map<String, dynamic>)),
+              (jsonSerialization['rawData'] as Map<String, dynamic>),
+            ),
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
-      calibratedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['calibratedAt']),
+      calibratedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['calibratedAt'],
+      ),
     );
   }
 
@@ -100,12 +103,12 @@ class _CalibratedTemperatureImpl extends CalibratedTemperature {
     required double temperature,
     DateTime? calibratedAt,
   }) : super._(
-          id: id,
-          rawDataId: rawDataId,
-          rawData: rawData,
-          temperature: temperature,
-          calibratedAt: calibratedAt,
-        );
+         id: id,
+         rawDataId: rawDataId,
+         rawData: rawData,
+         temperature: temperature,
+         calibratedAt: calibratedAt,
+       );
 
   /// Returns a shallow copy of this [CalibratedTemperature]
   /// with some or all fields replaced by the given arguments.

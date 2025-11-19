@@ -15,3 +15,9 @@ fields:
 
     ## The time the raw data was created
     createdAt: DateTime, default=now # Automatically set by the server
+
+indexes:
+  raw_data_sensor_time_idx:
+    fields: sensorId, createdAt
+  raw_data_created_at_idx:
+    fields: createdAt

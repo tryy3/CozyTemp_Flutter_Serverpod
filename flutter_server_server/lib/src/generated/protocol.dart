@@ -86,7 +86,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: _i2.ForeignKeyAction.noAction,
           onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
-        )
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -96,7 +96,7 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'id',
-            )
+            ),
           ],
           type: 'btree',
           isUnique: true,
@@ -109,7 +109,7 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'rawDataId',
-            )
+            ),
           ],
           type: 'btree',
           isUnique: true,
@@ -173,12 +173,25 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'id',
-            )
+            ),
           ],
           type: 'btree',
           isUnique: true,
           isPrimary: true,
-        )
+        ),
+        _i2.IndexDefinition(
+          indexName: 'node_identifier_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'identifier',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
       ],
       managed: true,
     ),
@@ -225,7 +238,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: _i2.ForeignKeyAction.noAction,
           onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
-        )
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -235,12 +248,42 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'id',
-            )
+            ),
           ],
           type: 'btree',
           isUnique: true,
           isPrimary: true,
-        )
+        ),
+        _i2.IndexDefinition(
+          indexName: 'raw_data_sensor_time_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'sensorId',
+            ),
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'createdAt',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _i2.IndexDefinition(
+          indexName: 'raw_data_created_at_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'createdAt',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
       ],
       managed: true,
     ),
@@ -306,7 +349,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: _i2.ForeignKeyAction.noAction,
           onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
-        )
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -316,12 +359,29 @@ class Protocol extends _i1.SerializationManagerServer {
             _i2.IndexElementDefinition(
               type: _i2.IndexElementDefinitionType.column,
               definition: 'id',
-            )
+            ),
           ],
           type: 'btree',
           isUnique: true,
           isPrimary: true,
-        )
+        ),
+        _i2.IndexDefinition(
+          indexName: 'sensor_identifier_node_idx',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'identifier',
+            ),
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'parentNodeId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
       ],
       managed: true,
     ),
@@ -386,18 +446,21 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == List<_i7.CollectDataTemperature>) {
       return (data as List)
-          .map((e) => deserialize<_i7.CollectDataTemperature>(e))
-          .toList() as T;
+              .map((e) => deserialize<_i7.CollectDataTemperature>(e))
+              .toList()
+          as T;
     }
     if (t == _i1.getType<List<_i10.Sensor>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i10.Sensor>(e)).toList()
-          : null) as T;
+              ? (data as List).map((e) => deserialize<_i10.Sensor>(e)).toList()
+              : null)
+          as T;
     }
     if (t == _i1.getType<List<_i9.RawData>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i9.RawData>(e)).toList()
-          : null) as T;
+              ? (data as List).map((e) => deserialize<_i9.RawData>(e)).toList()
+              : null)
+          as T;
     }
     if (t == List<_i11.Node>) {
       return (data as List).map((e) => deserialize<_i11.Node>(e)).toList() as T;
@@ -408,8 +471,9 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == List<_i13.CalibrationInput>) {
       return (data as List)
-          .map((e) => deserialize<_i13.CalibrationInput>(e))
-          .toList() as T;
+              .map((e) => deserialize<_i13.CalibrationInput>(e))
+              .toList()
+          as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);

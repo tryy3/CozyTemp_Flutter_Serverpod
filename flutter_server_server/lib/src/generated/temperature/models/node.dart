@@ -26,8 +26,8 @@ abstract class Node
     this.description,
     DateTime? updatedAt,
     DateTime? createdAt,
-  })  : updatedAt = updatedAt ?? DateTime.now(),
-        createdAt = createdAt ?? DateTime.now();
+  }) : updatedAt = updatedAt ?? DateTime.now(),
+       createdAt = createdAt ?? DateTime.now();
 
   factory Node({
     _i1.UuidValue? id,
@@ -50,10 +50,12 @@ abstract class Node
       identifier: jsonSerialization['identifier'] as String,
       name: jsonSerialization['name'] as String?,
       description: jsonSerialization['description'] as String?,
-      updatedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['updatedAt']),
-      createdAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['createdAt']),
+      updatedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['updatedAt'],
+      ),
+      createdAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['createdAt'],
+      ),
     );
   }
 
@@ -166,14 +168,14 @@ class _NodeImpl extends Node {
     DateTime? updatedAt,
     DateTime? createdAt,
   }) : super._(
-          id: id,
-          sensors: sensors,
-          identifier: identifier,
-          name: name,
-          description: description,
-          updatedAt: updatedAt,
-          createdAt: createdAt,
-        );
+         id: id,
+         sensors: sensors,
+         identifier: identifier,
+         name: name,
+         description: description,
+         updatedAt: updatedAt,
+         createdAt: createdAt,
+       );
 
   /// Returns a shallow copy of this [Node]
   /// with some or all fields replaced by the given arguments.
@@ -206,19 +208,19 @@ class NodeUpdateTable extends _i1.UpdateTable<NodeTable> {
   NodeUpdateTable(super.table);
 
   _i1.ColumnValue<String, String> identifier(String value) => _i1.ColumnValue(
-        table.identifier,
-        value,
-      );
+    table.identifier,
+    value,
+  );
 
   _i1.ColumnValue<String, String> name(String? value) => _i1.ColumnValue(
-        table.name,
-        value,
-      );
+    table.name,
+    value,
+  );
 
   _i1.ColumnValue<String, String> description(String? value) => _i1.ColumnValue(
-        table.description,
-        value,
-      );
+    table.description,
+    value,
+  );
 
   _i1.ColumnValue<DateTime, DateTime> updatedAt(DateTime value) =>
       _i1.ColumnValue(
@@ -307,20 +309,21 @@ class NodeTable extends _i1.Table<_i1.UuidValue?> {
     _sensors = _i1.ManyRelation<_i2.SensorTable>(
       tableWithRelations: relationTable,
       table: _i2.SensorTable(
-          tableRelation: relationTable.tableRelation!.lastRelation),
+        tableRelation: relationTable.tableRelation!.lastRelation,
+      ),
     );
     return _sensors!;
   }
 
   @override
   List<_i1.Column> get columns => [
-        id,
-        identifier,
-        name,
-        description,
-        updatedAt,
-        createdAt,
-      ];
+    id,
+    identifier,
+    name,
+    description,
+    updatedAt,
+    createdAt,
+  ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {

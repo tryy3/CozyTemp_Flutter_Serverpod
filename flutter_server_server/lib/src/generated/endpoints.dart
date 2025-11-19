@@ -46,17 +46,17 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'name',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['greeting'] as _i2.GreetingEndpoint).hello(
-            session,
-            params['name'],
-          ),
-        )
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['greeting'] as _i2.GreetingEndpoint).hello(
+                session,
+                params['name'],
+              ),
+        ),
       },
     );
     connectors['temperature'] = _i1.EndpointConnector(
@@ -70,17 +70,17 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'ingredients',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .getTemperatures(
-            session,
-            params['ingredients'],
-          ),
+                    session,
+                    params['ingredients'],
+                  ),
         ),
         'collectData': _i1.MethodConnector(
           name: 'collectData',
@@ -89,25 +89,26 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'collectData',
               type: _i1.getType<_i4.CollectData>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint).collectData(
-            session,
-            params['collectData'],
-          ),
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .collectData(
+                    session,
+                    params['collectData'],
+                  ),
         ),
         'latestTemperatureData': _i1.MethodConnector(
           name: 'latestTemperatureData',
           params: {},
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .latestTemperatureData(session),
         ),
         'getNodeHistoricalData': _i1.MethodConnector(
@@ -124,16 +125,16 @@ class Endpoints extends _i1.EndpointDispatch {
               nullable: false,
             ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .getNodeHistoricalData(
-            session,
-            params['nodeId'],
-            params['timeRange'],
-          ),
+                    session,
+                    params['nodeId'],
+                    params['timeRange'],
+                  ),
         ),
         'updateNode': _i1.MethodConnector(
           name: 'updateNode',
@@ -154,16 +155,17 @@ class Endpoints extends _i1.EndpointDispatch {
               nullable: true,
             ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint).updateNode(
-            session,
-            params['nodeId'],
-            params['name'],
-            params['description'],
-          ),
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
+                  .updateNode(
+                    session,
+                    params['nodeId'],
+                    params['name'],
+                    params['description'],
+                  ),
         ),
         'updateSensor': _i1.MethodConnector(
           name: 'updateSensor',
@@ -184,17 +186,17 @@ class Endpoints extends _i1.EndpointDispatch {
               nullable: true,
             ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .updateSensor(
-            session,
-            params['sensorId'],
-            params['name'],
-            params['description'],
-          ),
+                    session,
+                    params['sensorId'],
+                    params['name'],
+                    params['description'],
+                  ),
         ),
         'getUncalibratedData': _i1.MethodConnector(
           name: 'getUncalibratedData',
@@ -203,17 +205,17 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'limit',
               type: _i1.getType<int>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .getUncalibratedData(
-            session,
-            params['limit'],
-          ),
+                    session,
+                    params['limit'],
+                  ),
         ),
         'createCalibratedTemperature': _i1.MethodConnector(
           name: 'createCalibratedTemperature',
@@ -222,17 +224,17 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'calibrations',
               type: _i1.getType<List<_i5.CalibrationInput>>(),
               nullable: false,
-            )
+            ),
           },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['temperature'] as _i3.TemperatureEndpoint)
+          call:
+              (
+                _i1.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['temperature'] as _i3.TemperatureEndpoint)
                   .createCalibratedTemperature(
-            session,
-            params['calibrations'],
-          ),
+                    session,
+                    params['calibrations'],
+                  ),
         ),
       },
     );

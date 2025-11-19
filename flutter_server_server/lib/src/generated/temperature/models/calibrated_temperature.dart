@@ -35,7 +35,8 @@ abstract class CalibratedTemperature
   }) = _CalibratedTemperatureImpl;
 
   factory CalibratedTemperature.fromJson(
-      Map<String, dynamic> jsonSerialization) {
+    Map<String, dynamic> jsonSerialization,
+  ) {
     return CalibratedTemperature(
       id: jsonSerialization['id'] == null
           ? null
@@ -46,10 +47,12 @@ abstract class CalibratedTemperature
       rawData: jsonSerialization['rawData'] == null
           ? null
           : _i2.RawData.fromJson(
-              (jsonSerialization['rawData'] as Map<String, dynamic>)),
+              (jsonSerialization['rawData'] as Map<String, dynamic>),
+            ),
       temperature: (jsonSerialization['temperature'] as num).toDouble(),
-      calibratedAt:
-          _i1.DateTimeJsonExtension.fromJson(jsonSerialization['calibratedAt']),
+      calibratedAt: _i1.DateTimeJsonExtension.fromJson(
+        jsonSerialization['calibratedAt'],
+      ),
     );
   }
 
@@ -143,12 +146,12 @@ class _CalibratedTemperatureImpl extends CalibratedTemperature {
     required double temperature,
     DateTime? calibratedAt,
   }) : super._(
-          id: id,
-          rawDataId: rawDataId,
-          rawData: rawData,
-          temperature: temperature,
-          calibratedAt: calibratedAt,
-        );
+         id: id,
+         rawDataId: rawDataId,
+         rawData: rawData,
+         temperature: temperature,
+         calibratedAt: calibratedAt,
+       );
 
   /// Returns a shallow copy of this [CalibratedTemperature]
   /// with some or all fields replaced by the given arguments.
@@ -176,16 +179,16 @@ class CalibratedTemperatureUpdateTable
   CalibratedTemperatureUpdateTable(super.table);
 
   _i1.ColumnValue<_i1.UuidValue, _i1.UuidValue> rawDataId(
-          _i1.UuidValue? value) =>
-      _i1.ColumnValue(
-        table.rawDataId,
-        value,
-      );
+    _i1.UuidValue? value,
+  ) => _i1.ColumnValue(
+    table.rawDataId,
+    value,
+  );
 
   _i1.ColumnValue<double, double> temperature(double value) => _i1.ColumnValue(
-        table.temperature,
-        value,
-      );
+    table.temperature,
+    value,
+  );
 
   _i1.ColumnValue<DateTime, DateTime> calibratedAt(DateTime value) =>
       _i1.ColumnValue(
@@ -196,7 +199,7 @@ class CalibratedTemperatureUpdateTable
 
 class CalibratedTemperatureTable extends _i1.Table<_i1.UuidValue?> {
   CalibratedTemperatureTable({super.tableRelation})
-      : super(tableName: 'calibrated_temperature') {
+    : super(tableName: 'calibrated_temperature') {
     updateTable = CalibratedTemperatureUpdateTable(this);
     rawDataId = _i1.ColumnUuid(
       'rawDataId',
@@ -238,11 +241,11 @@ class CalibratedTemperatureTable extends _i1.Table<_i1.UuidValue?> {
 
   @override
   List<_i1.Column> get columns => [
-        id,
-        rawDataId,
-        temperature,
-        calibratedAt,
-      ];
+    id,
+    rawDataId,
+    temperature,
+    calibratedAt,
+  ];
 
   @override
   _i1.Table? getRelationTable(String relationField) {
@@ -462,7 +465,7 @@ class CalibratedTemperatureRepository {
     _i1.Session session,
     _i1.UuidValue id, {
     required _i1.ColumnValueListBuilder<CalibratedTemperatureUpdateTable>
-        columnValues,
+    columnValues,
     _i1.Transaction? transaction,
   }) async {
     return session.db.updateById<CalibratedTemperature>(
@@ -477,7 +480,7 @@ class CalibratedTemperatureRepository {
   Future<List<CalibratedTemperature>> updateWhere(
     _i1.Session session, {
     required _i1.ColumnValueListBuilder<CalibratedTemperatureUpdateTable>
-        columnValues,
+    columnValues,
     required _i1.WhereExpressionBuilder<CalibratedTemperatureTable> where,
     int? limit,
     int? offset,
@@ -570,8 +573,9 @@ class CalibratedTemperatureAttachRowRepository {
       throw ArgumentError.notNull('rawData.id');
     }
 
-    var $calibratedTemperature =
-        calibratedTemperature.copyWith(rawDataId: rawData.id);
+    var $calibratedTemperature = calibratedTemperature.copyWith(
+      rawDataId: rawData.id,
+    );
     await session.db.updateRow<CalibratedTemperature>(
       $calibratedTemperature,
       columns: [CalibratedTemperature.t.rawDataId],
@@ -597,8 +601,9 @@ class CalibratedTemperatureDetachRowRepository {
       throw ArgumentError.notNull('calibratedTemperature.id');
     }
 
-    var $calibratedTemperature =
-        calibratedTemperature.copyWith(rawDataId: null);
+    var $calibratedTemperature = calibratedTemperature.copyWith(
+      rawDataId: null,
+    );
     await session.db.updateRow<CalibratedTemperature>(
       $calibratedTemperature,
       columns: [CalibratedTemperature.t.rawDataId],

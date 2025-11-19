@@ -22,3 +22,8 @@ fields:
     updatedAt: DateTime, default=now # Automatically set by the server
     ## The time the sensor was created
     createdAt: DateTime, default=now # Automatically set by the server
+
+indexes:
+  sensor_identifier_node_idx:
+    fields: identifier, parentNodeId
+    unique: true

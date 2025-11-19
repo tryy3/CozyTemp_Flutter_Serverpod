@@ -82,15 +82,14 @@ class EndpointTemperature extends _i1.EndpointRef {
   _i2.Future<_i5.Node?> getNodeHistoricalData(
     String nodeId,
     String timeRange,
-  ) =>
-      caller.callServerEndpoint<_i5.Node?>(
-        'temperature',
-        'getNodeHistoricalData',
-        {
-          'nodeId': nodeId,
-          'timeRange': timeRange,
-        },
-      );
+  ) => caller.callServerEndpoint<_i5.Node?>(
+    'temperature',
+    'getNodeHistoricalData',
+    {
+      'nodeId': nodeId,
+      'timeRange': timeRange,
+    },
+  );
 
   /// Updates a node's name and/or description
   /// Returns the updated node or null if not found
@@ -98,16 +97,15 @@ class EndpointTemperature extends _i1.EndpointRef {
     String nodeId,
     String? name,
     String? description,
-  ) =>
-      caller.callServerEndpoint<_i5.Node?>(
-        'temperature',
-        'updateNode',
-        {
-          'nodeId': nodeId,
-          'name': name,
-          'description': description,
-        },
-      );
+  ) => caller.callServerEndpoint<_i5.Node?>(
+    'temperature',
+    'updateNode',
+    {
+      'nodeId': nodeId,
+      'name': name,
+      'description': description,
+    },
+  );
 
   /// Updates a sensor's name and/or description
   /// Returns the updated sensor or null if not found
@@ -115,16 +113,15 @@ class EndpointTemperature extends _i1.EndpointRef {
     String sensorId,
     String? name,
     String? description,
-  ) =>
-      caller.callServerEndpoint<_i6.Sensor?>(
-        'temperature',
-        'updateSensor',
-        {
-          'sensorId': sensorId,
-          'name': name,
-          'description': description,
-        },
-      );
+  ) => caller.callServerEndpoint<_i6.Sensor?>(
+    'temperature',
+    'updateSensor',
+    {
+      'sensorId': sensorId,
+      'name': name,
+      'description': description,
+    },
+  );
 
   /// Fetches uncalibrated raw temperature data
   /// [limit] - Maximum number of records to return
@@ -146,12 +143,12 @@ class EndpointTemperature extends _i1.EndpointRef {
   /// - Unique constraint on rawDataId prevents duplicate calibrations
   /// If any constraint is violated, the entire operation fails and an error is thrown
   _i2.Future<bool> createCalibratedTemperature(
-          List<_i8.CalibrationInput> calibrations) =>
-      caller.callServerEndpoint<bool>(
-        'temperature',
-        'createCalibratedTemperature',
-        {'calibrations': calibrations},
-      );
+    List<_i8.CalibrationInput> calibrations,
+  ) => caller.callServerEndpoint<bool>(
+    'temperature',
+    'createCalibratedTemperature',
+    {'calibrations': calibrations},
+  );
 }
 
 class Client extends _i1.ServerpodClientShared {
@@ -165,21 +162,22 @@ class Client extends _i1.ServerpodClientShared {
       _i1.MethodCallContext,
       Object,
       StackTrace,
-    )? onFailedCall,
+    )?
+    onFailedCall,
     Function(_i1.MethodCallContext)? onSucceededCall,
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
-          host,
-          _i9.Protocol(),
-          securityContext: securityContext,
-          authenticationKeyManager: authenticationKeyManager,
-          streamingConnectionTimeout: streamingConnectionTimeout,
-          connectionTimeout: connectionTimeout,
-          onFailedCall: onFailedCall,
-          onSucceededCall: onSucceededCall,
-          disconnectStreamsOnLostInternetConnection:
-              disconnectStreamsOnLostInternetConnection,
-        ) {
+         host,
+         _i9.Protocol(),
+         securityContext: securityContext,
+         authenticationKeyManager: authenticationKeyManager,
+         streamingConnectionTimeout: streamingConnectionTimeout,
+         connectionTimeout: connectionTimeout,
+         onFailedCall: onFailedCall,
+         onSucceededCall: onSucceededCall,
+         disconnectStreamsOnLostInternetConnection:
+             disconnectStreamsOnLostInternetConnection,
+       ) {
     greeting = EndpointGreeting(this);
     temperature = EndpointTemperature(this);
   }
@@ -190,9 +188,9 @@ class Client extends _i1.ServerpodClientShared {
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
-        'greeting': greeting,
-        'temperature': temperature,
-      };
+    'greeting': greeting,
+    'temperature': temperature,
+  };
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

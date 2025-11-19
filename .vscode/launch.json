@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Flutter",
             "type": "dart",
@@ -28,6 +29,7 @@
         {
             "name": "flutter_server_flutter (Production)",
             "cwd": "flutter_server_flutter",
+            "program": "bin/main.dart",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -39,6 +41,16 @@
             "cwd": "flutter_server_flutter/widgetbook",
             "request": "launch",
             "type": "dart",
+        },
+        {
+            "name": "flutter_server_flutter (Serverpod)",
+            "cwd": "flutter_server_server",
+            "request": "launch",
+
+            "type": "dart",
+            "args": [
+                "--apply-migrations"
+            ]
         },
         {
             "name": "flutter_server_flutter (profile mode)",

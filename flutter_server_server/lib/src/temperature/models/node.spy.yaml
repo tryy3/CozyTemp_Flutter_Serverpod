@@ -19,3 +19,8 @@ fields:
     updatedAt: DateTime, default=now # Automatically set by the server
     ## The time the node was created
     createdAt: DateTime, default=now # Automatically set by the server
+
+indexes:
+  node_identifier_idx:
+    fields: identifier
+    unique: true
