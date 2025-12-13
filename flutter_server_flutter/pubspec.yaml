@@ -24,7 +24,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  serverpod_flutter: 3.0.0-rc.1
+  serverpod_flutter: 3.0.1
   flutter_server_client:
     path: ../flutter_server_client
 
